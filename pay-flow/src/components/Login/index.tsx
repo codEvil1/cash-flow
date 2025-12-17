@@ -1,3 +1,4 @@
+import Button from "../Button";
 import Input from "../Input";
 import { Page } from "./style";
 
@@ -9,7 +10,7 @@ function Login() {
         <h1>Entrar</h1>
         <Input label="teste" type="email" />
         <Input label="teste" type="password" />
-        <button>Entrar</button>
+        <Button theme="dark">teste</Button>
       </div>
     </Page>
   );
