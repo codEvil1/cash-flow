@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+const darkText = "rgba(255, 255, 255, 0.9)";
+const lightText = "rgba(0, 0, 0, 0.88)";
+
 interface ButtonStyleProps {
   theme: "light" | "dark";
 }
@@ -23,8 +26,7 @@ export const StyledButton = styled.button<ButtonStyleProps>`
   font-weight: 600;
   font-family: system-ui, -apple-system, BlinkMacSystemFont;
 
-  color: ${({ theme }) =>
-    theme === "dark" ? "rgba(255,255,255,0.9)" : "rgba(0,0,0,0.85)"};
+  color: ${({ theme }) => (theme === "dark" ? darkText : lightText)};
 
   cursor: pointer;
   outline: none;
@@ -55,6 +57,7 @@ export const Content = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+  color: inherit;
 `;
 
 export const IconWrapper = styled.span`
@@ -64,5 +67,6 @@ export const IconWrapper = styled.span`
   svg {
     width: 18px;
     height: 18px;
+    color: inherit;
   }
 `;

@@ -22,3 +22,17 @@ export const Page = styled.div<PageProps>`
   font-family: system-ui, -apple-system, BlinkMacSystemFont;
   color: ${({ theme }) => (theme === "dark" ? darkText : lightText)};
 `;
+
+export const StyledLink = styled.a<PageProps>`
+  text-decoration: none;
+  color: ${({ theme }) => (theme === "dark" ? darkText : lightText)};
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+export const RightContainer = styled.div<PageProps>`
+  display: flex;
+  justify-content: flex-end;
+`;

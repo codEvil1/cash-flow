@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+const darkText = "rgba(255, 255, 255, 0.9)";
+const lightText = "rgba(0, 0, 0, 0.88)";
+
 interface SelectStyleProps {
   theme: "light" | "dark";
 }
@@ -12,7 +15,7 @@ export const Container = styled.div`
     font-size: 13px;
     margin-bottom: 6px;
     display: block;
-    color: rgba(255, 255, 255, 0.75);
+    color: ${darkText};
   }
 `;
 
@@ -40,8 +43,7 @@ export const StyledSelect = styled.select<SelectStyleProps>`
     ${({ theme }) =>
       theme === "dark" ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.08)"};
 
-  color: ${({ theme }) =>
-    theme === "dark" ? "rgba(255,255,255,0.9)" : "rgba(0,0,0,0.85)"};
+  color: ${({ theme }) => (theme === "dark" ? darkText : lightText)};
 
   outline: none;
   transition: all 0.25s ease;
@@ -57,7 +59,7 @@ export const StyledSelect = styled.select<SelectStyleProps>`
   }
 
   option {
-    color: #000; /* dropdown nativo */
+    color: ${({ theme }) => (theme === "dark" ? darkText : lightText)};
   }
 `;
 
@@ -73,5 +75,5 @@ export const Arrow = styled.span`
 
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
-  border-top: 6px solid rgba(255, 255, 255, 0.7);
+  border-top: 6px solid ${darkText};
 `;

@@ -4,6 +4,9 @@ interface InputStyleProps {
   theme: "light" | "dark";
 }
 
+const darkText = "rgba(255, 255, 255, 0.9)";
+const lightText = "rgba(0, 0, 0, 0.88)";
+
 export const Container = styled.div`
   width: 100%;
   display: flex;
@@ -12,7 +15,7 @@ export const Container = styled.div`
 
   label {
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.75);
+    color: ${darkText};
   }
 `;
 
@@ -36,15 +39,14 @@ export const StyledInput = styled.input<InputStyleProps>`
     ${({ theme }) =>
       theme === "dark" ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.08)"};
 
-  color: ${({ theme }) =>
-    theme === "dark" ? "rgba(255,255,255,0.9)" : "rgba(0,0,0,0.85)"};
+  color: ${({ theme }) => (theme === "dark" ? darkText : lightText)};
 
   outline: none;
   transition: all 0.25s ease;
 
   &::placeholder {
-    color: ${({ theme }) =>
-      theme === "dark" ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.45)"};
+    color: ${({ theme }) => (theme === "dark" ? darkText : lightText)};
+    opacity: 0.55; /* mantém efeito visual sem criar nova cor */
   }
 
   &:focus {
