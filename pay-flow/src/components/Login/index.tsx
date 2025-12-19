@@ -6,22 +6,32 @@ import logoLight from "../../assets/logo_light.png";
 import Select from "../Select";
 import type { Options } from "../Select/type";
 import { useState } from "react";
+import Toggle from "../Toggle";
+import { Moon, Sun } from "lucide-react";
 
 type ThemeMode = "light" | "dark";
 
 function Login() {
   const getLanguageOptions = (): Options[] => {
     return [
-      { value: "pt", label: "Português (Brasil)" },
-      { value: "en", label: "Inglês" },
-      { value: "es", label: "Espanhol" },
+      { value: "pt", label: "Português", icon: null },
+      { value: "en", label: "Inglês", icon: null },
+      { value: "es", label: "Espanhol", icon: null },
     ];
   };
 
   const getThemeOptions = (): Options[] => {
     return [
-      { value: "light", label: "Claro" },
-      { value: "dark", label: "Escuro" },
+      {
+        value: "light",
+        label: "Claro",
+        icon: <Sun size={18} strokeWidth={1.8} />,
+      },
+      {
+        value: "dark",
+        label: "Escuro",
+        icon: <Moon size={18} strokeWidth={1.8} />,
+      },
     ];
   };
 
@@ -57,12 +67,11 @@ function Login() {
           </StyledLink>
         </RightContainer>
         <Select theme={theme} options={getLanguageOptions()} />
-        <Select
-          theme={theme}
+        <Toggle
+          value={theme}
           options={getThemeOptions()}
           onChange={(value) => setTheme(value as ThemeMode)}
-          value={theme}
-        />
+        ></Toggle>
       </div>
     </Page>
   );

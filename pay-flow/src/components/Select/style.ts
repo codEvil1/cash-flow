@@ -63,7 +63,7 @@ export const StyledSelect = styled.select<SelectStyleProps>`
   }
 `;
 
-export const Arrow = styled.span`
+export const Arrow = styled.span<SelectStyleProps>`
   position: absolute;
   right: 16px;
   top: 50%;
@@ -75,5 +75,7 @@ export const Arrow = styled.span`
 
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
-  border-top: 6px solid ${darkText};
+
+  border-top: 6px solid
+    ${({ theme }) => (theme === "dark" ? darkText : lightText)};
 `;

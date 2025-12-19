@@ -32,7 +32,7 @@ function Select<T>({
           </option>
         ))}
       </StyledSelect>
-      <Arrow />
+      <Arrow theme={theme} />
     </Container>
   );
 }

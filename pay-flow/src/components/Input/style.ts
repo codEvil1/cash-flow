@@ -46,7 +46,6 @@ export const StyledInput = styled.input<InputStyleProps>`
 
   &::placeholder {
     color: ${({ theme }) => (theme === "dark" ? darkText : lightText)};
-    opacity: 0.55; /* mantém efeito visual sem criar nova cor */
   }
 
   &:focus {
