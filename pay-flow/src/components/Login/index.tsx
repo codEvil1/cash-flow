@@ -19,7 +19,8 @@ import { useTranslation } from "react-i18next";
 import i18n from "i18next";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "../../validations/loginschema";
+import { toast } from "react-toastify";
+import { loginSchema } from "../../validations/loginSchema";
 
 type ThemeMode = "light" | "dark";
 
@@ -66,8 +67,11 @@ function Login() {
   };
 
   const onSubmit = (data: LoginFormData) => {
+    // chamada login backend
+    toast.success("Sucesso");
+    toast.error("Erro");
+    toast.warning("Atenção");
     console.log(data);
-    // aqui você chama sua API .NET
   };
 
   const [theme, setTheme] = useState<ThemeMode>(getSystemTheme);
