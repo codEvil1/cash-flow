@@ -19,5 +19,8 @@
     "passwordNoSpaces": "Senha Não Pode Conter Espaços em Branco",
     "passwordRequired": "Senha é Obrigatória"
   },
-  "resetPassword": { "sendCode": "Enviar Código" }
+  "resetPassword": {
+    "sendCode": "Enviar Código",
+    "sendCodeEmail": "Enviar Código de Redefinição de Senha por E-mail"
+  }
 }

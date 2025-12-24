@@ -15,6 +15,7 @@ import { loginSchema } from "../../validations/loginSchema";
 import { APP_VERSION } from "../../config/app";
 import { Body, Footer, Header, Page } from "../Login/style";
 import Button from "../../components/Button";
+import { VerificationCode } from "../../components/VerificationCode";
 
 // import { useNavigate } from "react-router-dom";
 
@@ -76,7 +77,14 @@ function ResetPassword() {
     // navigate("/dashboard");
   };
 
+  const sendCode = () => {
+    // envia código por email
+    setDisableCode(true);
+    console.log(disableCode);
+  };
+
   const [theme, setTheme] = useState<ThemeMode>(getSystemTheme);
+  const [disableCode, setDisableCode] = useState<boolean>(false);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -113,9 +121,15 @@ function ResetPassword() {
             error={errors.email?.message}
             {...register("email")}
           />
-          <Button icon={Send} text={"aaa"}>
+          <Button
+            type="button"
+            icon={Send}
+            text={t("resetPassword.sendCodeEmail")}
+            onClick={sendCode}
+          >
             {t("resetPassword.sendCode")}
           </Button>
+          <VerificationCode theme={theme} error={""} disabled={!disableCode} />
           <Footer theme={theme}>
             {t("app.version")} v{APP_VERSION}
           </Footer>
