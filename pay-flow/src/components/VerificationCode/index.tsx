@@ -1,13 +1,15 @@
 import { useRef, useState, type InputHTMLAttributes } from "react";
-import { CodeContainer, CodeInput } from "./style";
+import { CodeContainer, CodeInput, Label } from "./style";
 
 interface VerificationCodeProps extends InputHTMLAttributes<HTMLInputElement> {
+  label: string;
   theme?: "light" | "dark";
   error?: string;
   onComplete?: (code: string) => void;
 }
 
 export function VerificationCode({
+  label,
   theme = "light",
   error,
   ...props
@@ -43,24 +45,27 @@ export function VerificationCode({
   };
 
   return (
-    <CodeContainer>
-      {code.map((digit, index) => (
-        <CodeInput
-          key={index}
-          type="text"
-          inputMode="numeric"
-          maxLength={1}
-          value={digit}
-          onChange={(event) => handleChange(event.target.value, index)}
-          onKeyDown={(event) => handleKeyDown(event, index)}
-          theme={theme}
-          hasError={!!error}
-          ref={(element) => {
-            inputsRef.current[index] = element;
-          }}
-          {...props}
-        />
-      ))}
-    </CodeContainer>
+    <>
+      <Label theme={theme}>{label}</Label>
+      <CodeContainer>
+        {code.map((digit, index) => (
+          <CodeInput
+            key={index}
+            type="text"
+            inputMode="numeric"
+            maxLength={1}
+            value={digit}
+            onChange={(event) => handleChange(event.target.value, index)}
+            onKeyDown={(event) => handleKeyDown(event, index)}
+            theme={theme}
+            hasError={!!error}
+            ref={(element) => {
+              inputsRef.current[index] = element;
+            }}
+            {...props}
+          />
+        ))}
+      </CodeContainer>
+    </>
   );
 }

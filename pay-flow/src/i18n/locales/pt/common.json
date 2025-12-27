@@ -15,7 +15,7 @@
   "validation": {
     "emailInvalid": "E-mail Inválido",
     "emailRequired": "E-mail é Obrigatório",
-    "passwordMin": "Senha Precisa Ter no Mínimo Doze Caracteres",
+    "passwordMin": "Senha Precisa Ter Doze Caracteres",
     "passwordNoSpaces": "Senha Não Pode Conter Espaços em Branco",
     "passwordRequired": "Senha é Obrigatória"
   },
@@ -24,7 +24,10 @@
     "sentEmail": "E-mail Enviado",
     "sendCodeEmail": "Enviar Código de Redefinição de Senha por E-mail",
     "changePassword": "Alterar Senha",
-    "confirmPassword": "Confirmação da Senha"
+    "confirmPassword": "Confirmação da Senha",
+    "titleEmail": "Recuperação de Senha",
+    "titleReset": "Criar Nova Senha",
+    "recoveryCode": "Código de Recuperação"
   },
   "common": {
     "back": "Voltar"

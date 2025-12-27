@@ -87,4 +87,3 @@ export const ErrorIcon = styled.span`
     pointer-events: auto;
   }
 `;
-
