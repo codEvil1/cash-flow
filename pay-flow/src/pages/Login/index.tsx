@@ -1,5 +1,5 @@
-import Button from "../Button";
-import Input from "../Input";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
 import {
   Body,
   Footer,
@@ -11,10 +11,10 @@ import {
 } from "./style";
 import logoDark from "../../assets/logo_dark.png";
 import logoLight from "../../assets/logo_light.png";
-import Select from "../Select";
-import type { Options } from "../Select/type";
+import Select from "../../components/Select";
+import type { Options } from "../../components/Select/type";
 import { useState } from "react";
-import Toggle from "../Toggle";
+import Toggle from "../../components/Toggle";
 import { Moon, Sun, LogIn } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import i18n from "i18next";
