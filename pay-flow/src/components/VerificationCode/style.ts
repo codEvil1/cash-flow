@@ -61,3 +61,9 @@ export const CodeInput = styled.input<CodeInputProps>`
         : "0 0 0 4px rgba(0,0,0,0.05)"};
   }
 `;
+
+export const Label = styled.div<CodeInputProps>`
+  color: ${({ theme }) =>
+    theme === "dark" ? colors.darkText : colors.lightText};
+  font-size: 15px;
+`;

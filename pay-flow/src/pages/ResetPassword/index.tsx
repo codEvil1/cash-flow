@@ -14,7 +14,7 @@ import { Body, Footer, Header, Page } from "../Login/style";
 import Button from "../../components/Button";
 import { VerificationCode } from "../../components/VerificationCode";
 import { resetPasswordSchema } from "../../validations/resetPasswordSchema";
-import { GridButton } from "./style";
+import { GridButton, Title } from "./style";
 
 type ThemeMode = "light" | "dark";
 type ResetPasswordStep = "email" | "reset";
@@ -101,6 +101,11 @@ function ResetPassword() {
         />
       </Header>
       <Body>
+        <Title theme={theme}>
+          {step === "email"
+            ? t("resetPassword.titleEmail")
+            : t("resetPassword.titleReset")}
+        </Title>
         {step === "email" && (
           <>
             <Input
@@ -112,7 +117,7 @@ function ResetPassword() {
             <Button
               type="button"
               icon={Mail}
-              text={t("common.back")}
+              text={t("resetPassword.sendCode")}
               onClick={goToNextStep}
             >
               {t("resetPassword.sendCode")}
@@ -122,18 +127,21 @@ function ResetPassword() {
         {step === "reset" && (
           <>
             <VerificationCode
+              label={t("resetPassword.recoveryCode")}
               theme={theme}
               onComplete={(value) => setCode(value)}
               error={errors.code?.message}
               {...register("code")}
             />
             <Input
+              type="password"
               placeholder={t("login.password")}
               theme={theme}
               error={errors.password?.message}
               {...register("password")}
             />
             <Input
+              type="password"
               placeholder={t("resetPassword.confirmPassword")}
               theme={theme}
               error={errors.confirmPassword?.message}
@@ -151,7 +159,7 @@ function ResetPassword() {
               <Button
                 type="button"
                 icon={KeyRound}
-                text={t("common.back")}
+                text={t("resetPassword.changePassword")}
                 onClick={handleResetPassword}
               >
                 {t("resetPassword.changePassword")}
@@ -159,10 +167,10 @@ function ResetPassword() {
             </GridButton>
           </>
         )}
-        <Footer theme={theme}>
-          {t("app.version")} v{APP_VERSION}
-        </Footer>
       </Body>
+      <Footer theme={theme}>
+        {t("app.version")} v{APP_VERSION}
+      </Footer>
     </Page>
   );
 }

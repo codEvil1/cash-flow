@@ -141,10 +141,10 @@ function Login() {
           <StyledLink href="/create-account" theme={theme}>
             {t("login.createAccount")}
           </StyledLink>
-          <Footer theme={theme}>
-            {t("app.version")} v{APP_VERSION}
-          </Footer>
         </Body>
+        <Footer theme={theme}>
+          {t("app.version")} v{APP_VERSION}
+        </Footer>
       </Page>
     </form>
   );
