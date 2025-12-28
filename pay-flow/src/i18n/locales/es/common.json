@@ -1,15 +1,41 @@
 {
   "login": {
     "forgotPassword": "¿Olvidaste tu contraseña?",
-    "login": "Iniciar sesión",
+    "login": "Ingresar",
     "createAccount": "Crear cuenta",
     "email": "Correo electrónico",
     "password": "Contraseña",
     "logo": "Logo",
-    "selectTheme": "Seleccionar tema",
     "signIn": "Iniciar sesión",
     "enterEmail": "Ingresa tu correo electrónico",
     "enterPassword": "Ingresa tu contraseña"
   },
-  "app": { "version": "Versión" }
+  "app": {
+    "version": "Versión"
+  },
+  "validation": {
+    "emailInvalid": "Correo electrónico inválido",
+    "emailRequired": "El correo electrónico es obligatorio",
+    "passwordMin": "La contraseña debe tener al menos doce caracteres",
+    "passwordNoSpaces": "La contraseña no puede contener espacios en blanco",
+    "passwordRequired": "La contraseña es obligatoria"
+  },
+  "resetPassword": {
+    "sendCode": "Enviar código",
+    "sentEmail": "Correo enviado",
+    "sendCodeEmail": "Enviar código de restablecimiento de contraseña por correo electrónico",
+    "changePassword": "Cambiar contraseña",
+    "confirmPassword": "Confirmación de contraseña",
+    "titleEmail": "Recuperación de contraseña",
+    "titleReset": "Crear nueva contraseña",
+    "recoveryCode": "Código de recuperación"
+  },
+  "common": {
+    "back": "Volver"
+  },
+  "theme": {
+    "light": "Claro",
+    "dark": "Oscuro",
+    "selectTheme": "Seleccionar tema"
+  }
 }
