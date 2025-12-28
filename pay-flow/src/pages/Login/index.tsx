@@ -4,28 +4,22 @@ import {
   Body,
   Footer,
   GridButton,
-  Header,
   Page,
   RightContainer,
   StyledLink,
 } from "./style";
 import logoDark from "../../assets/logo_dark.png";
 import logoLight from "../../assets/logo_light.png";
-import Select from "../../components/Select";
-import type { Options } from "../../components/Select/type";
-import { useState } from "react";
-import Toggle from "../../components/Toggle";
-import { Moon, Sun, LogIn } from "lucide-react";
+import { LogIn } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import i18n from "i18next";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import { loginSchema } from "../../validations/loginSchema";
 import { APP_VERSION } from "../../config/app";
+import HeaderControls from "../../components/HeaderControls";
+import { useTheme } from "../../contexts/theme/useTheme";
 // import { useNavigate } from "react-router-dom";
-
-type ThemeMode = "light" | "dark";
 
 interface LoginFormData {
   email: string;
@@ -34,6 +28,8 @@ interface LoginFormData {
 
 function Login() {
   const { t } = useTranslation();
+  const { theme } = useTheme();
+
   // const navigate = useNavigate();
   const {
     register,
@@ -42,37 +38,6 @@ function Login() {
   } = useForm<LoginFormData>({
     resolver: yupResolver(loginSchema(t)),
   });
-
-  const currentLanguage = i18n.language.split("-")[0];
-
-  const getLanguageOptions = (): Options[] => {
-    return [
-      { value: "pt", label: "Português", icon: null },
-      { value: "en", label: "English", icon: null },
-      { value: "es", label: "Español", icon: null },
-    ];
-  };
-
-  const getThemeOptions = (): Options[] => {
-    return [
-      {
-        value: "light",
-        label: "Claro",
-        icon: <Sun size={18} strokeWidth={1.8} />,
-      },
-      {
-        value: "dark",
-        label: "Escuro",
-        icon: <Moon size={18} strokeWidth={1.8} />,
-      },
-    ];
-  };
-
-  const getSystemTheme = (): ThemeMode => {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-  };
 
   const onSubmit = (data: LoginFormData) => {
     // chamada login backend
@@ -83,28 +48,10 @@ function Login() {
     // navigate("/dashboard");
   };
 
-  const [theme, setTheme] = useState<ThemeMode>(getSystemTheme);
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Page theme={theme}>
-        <Header>
-          <Select
-            theme={theme}
-            options={getLanguageOptions()}
-            value={currentLanguage}
-            text={t("login.selectTheme")}
-            onChange={(value) => {
-              i18n.changeLanguage(value);
-            }}
-          />
-          <Toggle
-            value={theme}
-            options={getThemeOptions()}
-            text={t("login.selectTheme")}
-            onChange={(value) => setTheme(value as ThemeMode)}
-          />
-        </Header>
+    <Page theme={theme}>
+      <HeaderControls />
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Body>
           <img
             src={theme === "dark" ? logoDark : logoLight}
@@ -129,7 +76,7 @@ function Login() {
             {...register("password")}
           />
           <RightContainer theme={theme}>
-            <StyledLink href="/reset-password" theme={theme}>
+            <StyledLink to="/reset-password" theme={theme}>
               {t("login.forgotPassword")}
             </StyledLink>
           </RightContainer>
@@ -138,15 +85,15 @@ function Login() {
               {t("login.login")}
             </Button>
           </GridButton>
-          <StyledLink href="/create-account" theme={theme}>
+          <StyledLink to="/create-account" theme={theme}>
             {t("login.createAccount")}
           </StyledLink>
         </Body>
-        <Footer theme={theme}>
-          {t("app.version")} v{APP_VERSION}
-        </Footer>
-      </Page>
-    </form>
+      </form>
+      <Footer theme={theme}>
+        {t("app.version")} v{APP_VERSION}
+      </Footer>
+    </Page>
   );
 }
 

@@ -1,22 +1,19 @@
 import Input from "../../components/Input";
-import Select from "../../components/Select";
-import type { Options } from "../../components/Select/type";
 import { useState } from "react";
-import Toggle from "../../components/Toggle";
-import { Moon, Sun, KeyRound, ArrowLeft, Mail } from "lucide-react";
+import { KeyRound, ArrowLeft, Mail } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import i18n from "i18next";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import { APP_VERSION } from "../../config/app";
-import { Body, Footer, Header, Page } from "../Login/style";
+import { Body, Footer, Page } from "../Login/style";
 import Button from "../../components/Button";
 import { VerificationCode } from "../../components/VerificationCode";
 import { resetPasswordSchema } from "../../validations/resetPasswordSchema";
 import { GridButton, Title } from "./style";
+import HeaderControls from "../../components/HeaderControls";
+import { useTheme } from "../../contexts/theme/useTheme";
 
-type ThemeMode = "light" | "dark";
 type ResetPasswordStep = "email" | "reset";
 
 interface ResetPasswordFormData {
@@ -28,6 +25,7 @@ interface ResetPasswordFormData {
 
 function ResetPassword() {
   const { t } = useTranslation();
+  const { theme } = useTheme();
 
   const {
     register,
@@ -38,33 +36,8 @@ function ResetPassword() {
     mode: "onTouched",
   });
 
-  const currentLanguage = i18n.language.split("-")[0];
-
-  const [theme, setTheme] = useState<ThemeMode>(
-    window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
-  );
-
   const [step, setStep] = useState<ResetPasswordStep>("email");
   const [code, setCode] = useState("");
-
-  const getLanguageOptions = (): Options[] => [
-    { value: "pt", label: "Português", icon: null },
-    { value: "en", label: "English", icon: null },
-    { value: "es", label: "Español", icon: null },
-  ];
-
-  const getThemeOptions = (): Options[] => [
-    {
-      value: "light",
-      label: "Claro",
-      icon: <Sun size={18} strokeWidth={1.8} />,
-    },
-    {
-      value: "dark",
-      label: "Escuro",
-      icon: <Moon size={18} strokeWidth={1.8} />,
-    },
-  ];
 
   const goToNextStep = async () => {
     const isValid = await trigger("email");
@@ -85,21 +58,7 @@ function ResetPassword() {
 
   return (
     <Page theme={theme}>
-      <Header>
-        <Select
-          theme={theme}
-          options={getLanguageOptions()}
-          value={currentLanguage}
-          text={t("login.selectLanguage")}
-          onChange={(value) => i18n.changeLanguage(value)}
-        />
-        <Toggle
-          value={theme}
-          options={getThemeOptions()}
-          text={t("login.selectTheme")}
-          onChange={(value) => setTheme(value as ThemeMode)}
-        />
-      </Header>
+      <HeaderControls />
       <Body>
         <Title theme={theme}>
           {step === "email"
