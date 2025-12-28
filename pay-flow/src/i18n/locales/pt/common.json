@@ -35,5 +35,11 @@
     "light": "Claro",
     "dark": "Escuro",
     "selectTheme": "Selecione o Tema"
+  },
+  "createAccount": {
+    "titleEmail": "Crie Sua Conta",
+    "titleCreate": "Defina Sua Senha",
+    "verificationCode": "Código de Verificação",
+    "createAccount": "Criar Conta"
   }
 }

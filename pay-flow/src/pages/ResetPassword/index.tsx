@@ -9,10 +9,10 @@ import { APP_VERSION } from "../../config/app";
 import { Body, Footer, Page } from "../Login/style";
 import Button from "../../components/Button";
 import { VerificationCode } from "../../components/VerificationCode";
-import { resetPasswordSchema } from "../../validations/resetPasswordSchema";
 import { GridButton, Title } from "./style";
 import HeaderControls from "../../components/HeaderControls";
 import { useTheme } from "../../contexts/theme/useTheme";
+import { resetPasswordSchema } from "../../validations/resetPasswordSchema";
 
 type ResetPasswordStep = "email" | "reset";
 
