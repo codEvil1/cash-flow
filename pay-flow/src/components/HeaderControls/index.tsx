@@ -4,9 +4,10 @@ import Toggle from "../../components/Toggle";
 import { Moon, Sun } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../contexts/theme/useTheme";
-import { Header } from "./style";
+import { Header, Left, Right } from "./style";
 import i18n from "../../i18n";
 import { useState } from "react";
+import Breadcrumb from "../Breadcrumb";
 
 export type Language = "pt" | "en" | "es";
 
@@ -55,21 +56,24 @@ function HeaderControls() {
 
   return (
     <Header>
-      <Select
-        theme={theme}
-        options={getLanguageOptions()}
-        value={language}
-        text={t("login.selectTheme")}
-        onChange={(value) => {
-          changeLanguage(value as Language);
-        }}
-      />
-      <Toggle
-        value={theme}
-        options={getThemeOptions()}
-        text={t("theme.selectTheme")}
-        onChange={toggleTheme}
-      />
+      <Left>
+        <Breadcrumb theme={theme} />
+      </Left>
+      <Right>
+        <Select
+          theme={theme}
+          options={getLanguageOptions()}
+          value={language}
+          text={t("login.selectTheme")}
+          onChange={(value) => changeLanguage(value as Language)}
+        />
+        <Toggle
+          value={theme}
+          options={getThemeOptions()}
+          text={t("theme.selectTheme")}
+          onChange={toggleTheme}
+        />
+      </Right>
     </Header>
   );
 }
