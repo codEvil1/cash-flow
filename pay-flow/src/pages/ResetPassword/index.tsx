@@ -76,6 +76,7 @@ function ResetPassword() {
               placeholder={t("login.email")}
               theme={theme}
               error={errors.email?.message}
+              text={t("login.enterEmail")}
               {...register("email")}
             />
             <Button
@@ -100,6 +101,7 @@ function ResetPassword() {
             <Input
               type="password"
               placeholder={t("login.password")}
+              text={t("login.enterPassword")}
               theme={theme}
               error={errors.password?.message}
               {...register("password")}
@@ -107,6 +109,7 @@ function ResetPassword() {
             <Input
               type="password"
               placeholder={t("resetPassword.confirmPassword")}
+              text={t("login.confirmaPassword")}
               theme={theme}
               error={errors.confirmPassword?.message}
               {...register("confirmPassword")}

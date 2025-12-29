@@ -8,7 +8,8 @@
     "logo": "Logo",
     "signIn": "Fazer Login",
     "enterEmail": "Informe seu Email",
-    "enterPassword": "Informe sua Senha"
+    "enterPassword": "Informe sua Senha",
+    "confirmaPassword": "COnfirme sua Senha"
   },
   "app": { "version": "Versão" },
   "validation": {

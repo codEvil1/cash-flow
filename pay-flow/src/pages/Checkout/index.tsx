@@ -7,7 +7,8 @@ import { Body, Footer, Page } from "../Login/style";
 import HeaderControls from "../../components/HeaderControls";
 import { APP_VERSION } from "../../config/app";
 import { checkoutSchema } from "../../validations/checkoutSchema";
-import Input from "../../components/Input";
+import InputButton from "../../components/InputButton";
+import { Search } from "lucide-react";
 
 interface CheckoutFormData {
   product: string;
@@ -35,6 +36,10 @@ function Login() {
     // navigate("/dashboard");
   };
 
+  const teste = () => {
+    return "teste";
+  };
+
   return (
     <Page theme={theme}>
       <HeaderControls
@@ -42,11 +47,13 @@ function Login() {
       />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Body>
-          <Input
+          <InputButton
+            value={teste()}
+            icon={Search}
+            onClick={() => console.log("click")}
             placeholder={t("checkout.product")}
             theme={theme}
             text={t("checkout.enterProduct")}
-            autoFocus
             error={errors.product?.message}
             {...register("product")}
           />
