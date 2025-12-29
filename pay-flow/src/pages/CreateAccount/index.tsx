@@ -58,7 +58,12 @@ function CreateAccount() {
 
   return (
     <Page theme={theme}>
-      <HeaderControls />
+      <HeaderControls
+        breadcrumbs={[
+          { label: "login.login", path: "/" },
+          { label: "login.createAccount", path: "/create-account" },
+        ]}
+      />
       <Body>
         <Title theme={theme}>
           {step === "email"

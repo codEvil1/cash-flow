@@ -58,7 +58,12 @@ function ResetPassword() {
 
   return (
     <Page theme={theme}>
-      <HeaderControls />
+      <HeaderControls
+        breadcrumbs={[
+          { label: "login.login", path: "/" },
+          { label: "login.resetPassword", path: "/reset-password" },
+        ]}
+      />
       <Body>
         <Title theme={theme}>
           {step === "email"

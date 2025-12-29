@@ -41,5 +41,11 @@
     "titleCreate": "Defina Sua Senha",
     "verificationCode": "Código de Verificação",
     "createAccount": "Criar Conta"
+  },
+  "checkout": {
+    "checkout": "Checkout",
+    "discount": "Desconto",
+    "product": "Produto",
+    "enterProduct": "Informe o Código do Produto"
   }
 }
