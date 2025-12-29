@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../components/Style/theme";
+import { Link } from "react-router-dom";
 
 interface PageProps {
   theme: "light" | "dark";
@@ -18,7 +19,7 @@ export const Page = styled.div<PageProps>`
   font-family: system-ui, -apple-system, BlinkMacSystemFont;
 `;
 
-export const StyledLink = styled.a<PageProps>`
+export const StyledLink = styled(Link)<PageProps>`
   text-decoration: none;
   color: ${({ theme }) =>
     theme === "dark" ? colors.darkText : colors.lightText};

@@ -6,7 +6,6 @@
     "email": "E-mail",
     "password": "Senha",
     "logo": "Logo",
-    "selectTheme": "Selecione o Tema",
     "signIn": "Fazer Login",
     "enterEmail": "Informe seu Email",
     "enterPassword": "Informe sua Senha"
@@ -31,5 +30,16 @@
   },
   "common": {
     "back": "Voltar"
+  },
+  "theme": {
+    "light": "Claro",
+    "dark": "Escuro",
+    "selectTheme": "Selecione o Tema"
+  },
+  "createAccount": {
+    "titleEmail": "Crie Sua Conta",
+    "titleCreate": "Defina Sua Senha",
+    "verificationCode": "Código de Verificação",
+    "createAccount": "Criar Conta"
   }
 }

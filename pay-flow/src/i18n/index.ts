@@ -17,8 +17,7 @@ i18n
     },
     fallbackLng: "pt",
     detection: {
-      order: ["navigator", "localStorage", "cookie"],
-      caches: ["localStorage"],
+      order: ["localStorage", "navigator", "cookie"],
     },
     interpolation: {
       escapeValue: false,

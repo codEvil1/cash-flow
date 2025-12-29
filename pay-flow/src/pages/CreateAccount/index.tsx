@@ -1,50 +1,50 @@
-import Input from "../../components/Input";
-import { useState } from "react";
-import { KeyRound, ArrowLeft, Mail } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { toast } from "react-toastify";
 import { APP_VERSION } from "../../config/app";
 import { Body, Footer, Page } from "../Login/style";
-import Button from "../../components/Button";
-import { VerificationCode } from "../../components/VerificationCode";
-import { GridButton, Title } from "./style";
 import HeaderControls from "../../components/HeaderControls";
 import { useTheme } from "../../contexts/theme/useTheme";
-import { resetPasswordSchema } from "../../validations/resetPasswordSchema";
+import Input from "../../components/Input";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { createAccountSchema } from "../../validations/createAccountSchema";
+import { GridButton, Title } from "../ResetPassword/style";
+import { useState } from "react";
+import Button from "../../components/Button";
+import { ArrowLeft, Mail, UserPlus } from "lucide-react";
+import { toast } from "react-toastify";
+import { VerificationCode } from "../../components/VerificationCode";
 
-type ResetPasswordStep = "email" | "reset";
+type CreateAccountStep = "email" | "create";
 
-interface ResetPasswordFormData {
+interface LoginFormData {
   email: string;
-  code: string;
   password: string;
   confirmPassword: string;
+  code: string;
 }
 
-function ResetPassword() {
+function CreateAccount() {
   const { t } = useTranslation();
   const { theme } = useTheme();
+
+  const [step, setStep] = useState<CreateAccountStep>("email");
+  const [code, setCode] = useState("");
 
   const {
     register,
     trigger,
     formState: { errors },
-  } = useForm<ResetPasswordFormData>({
-    resolver: yupResolver(resetPasswordSchema(t)),
+  } = useForm<LoginFormData>({
+    resolver: yupResolver(createAccountSchema(t)),
     mode: "onTouched",
   });
-
-  const [step, setStep] = useState<ResetPasswordStep>("email");
-  const [code, setCode] = useState("");
 
   const goToNextStep = async () => {
     const isValid = await trigger("email");
     if (!isValid) return;
     // API envio do código
     toast.success(t("resetPassword.sentEmail"));
-    setStep("reset");
+    setStep("create");
   };
 
   const handleResetPassword = async () => {
@@ -52,7 +52,7 @@ function ResetPassword() {
     if (!isValid) return;
     console.log(code);
     // API validar código
-    // API redefinir senha
+    // API criar conta
     toast.success(t("resetPassword.passwordChanged"));
   };
 
@@ -62,8 +62,8 @@ function ResetPassword() {
       <Body>
         <Title theme={theme}>
           {step === "email"
-            ? t("resetPassword.titleEmail")
-            : t("resetPassword.titleReset")}
+            ? t("createAccount.titleEmail")
+            : t("createAccount.titleCreate")}
         </Title>
         {step === "email" && (
           <>
@@ -83,10 +83,10 @@ function ResetPassword() {
             </Button>
           </>
         )}
-        {step === "reset" && (
+        {step === "create" && (
           <>
             <VerificationCode
-              label={t("resetPassword.recoveryCode")}
+              label={t("createAccount.verificationCode")}
               theme={theme}
               onComplete={(value) => setCode(value)}
               error={errors.code?.message}
@@ -117,11 +117,11 @@ function ResetPassword() {
               </Button>
               <Button
                 type="button"
-                icon={KeyRound}
-                text={t("resetPassword.changePassword")}
+                icon={UserPlus}
+                text={t("createAccount.createAccount")}
                 onClick={handleResetPassword}
               >
-                {t("resetPassword.changePassword")}
+                {t("createAccount.createAccount")}
               </Button>
             </GridButton>
           </>
@@ -134,4 +134,4 @@ function ResetPassword() {
   );
 }
 
-export default ResetPassword;
+export default CreateAccount;
