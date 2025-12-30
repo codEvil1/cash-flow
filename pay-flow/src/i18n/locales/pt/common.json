@@ -47,6 +47,10 @@
     "checkout": "Checkout",
     "discount": "Desconto",
     "product": "Produto",
-    "enterProduct": "Informe o Código do Produto"
+    "enterProduct": "Informe o Código do Produto",
+    "cashier": "Atendente",
+    "custumer": "Cliente",
+    "payment": "Pagamento",
+    "promotions": "Promoções"
   }
 }
