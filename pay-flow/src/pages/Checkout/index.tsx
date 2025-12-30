@@ -9,6 +9,7 @@ import { APP_VERSION } from "../../config/app";
 import { checkoutSchema } from "../../validations/checkoutSchema";
 import InputButton from "../../components/InputButton";
 import { Search } from "lucide-react";
+import { Card } from "../../components/Card";
 
 interface CheckoutFormData {
   product: string;
@@ -47,16 +48,18 @@ function Login() {
       />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Body>
-          <InputButton
-            value={teste()}
-            icon={Search}
-            onClick={() => console.log("click")}
-            placeholder={t("checkout.product")}
-            theme={theme}
-            text={t("checkout.enterProduct")}
-            error={errors.product?.message}
-            {...register("product")}
-          />
+          <Card theme={theme} title={t("checkout.checkout")}>
+            <InputButton
+              value={teste()}
+              icon={Search}
+              onClick={() => console.log("click")}
+              placeholder={t("checkout.product")}
+              theme={theme}
+              text={t("checkout.enterProduct")}
+              error={errors.product?.message}
+              {...register("product")}
+            />
+          </Card>
         </Body>
       </form>
       <Footer theme={theme}>
