@@ -30,7 +30,7 @@ function InputButton({
         error={error}
         value={value}
       />
-      <ActionButton type="button" onClick={onClick}>
+      <ActionButton type="button" onClick={onClick} theme={theme}>
         <Icon size={16} />
       </ActionButton>
     </InputWrapper>

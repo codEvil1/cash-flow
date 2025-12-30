@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import { colors } from "../Style/theme";
+
+interface InputButtonStyleProps {
+  theme: "light" | "dark";
+}
 
 export const InputWrapper = styled.div`
   position: relative;
@@ -11,7 +16,7 @@ export const StyledInput = styled.input`
   padding: 10px 44px 10px 12px;
 `;
 
-export const ActionButton = styled.button`
+export const ActionButton = styled.button<InputButtonStyleProps>`
   position: absolute;
   right: 10px;
   top: 50%;
@@ -22,4 +27,6 @@ export const ActionButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  color: ${({ theme }) =>
+    theme === "dark" ? colors.darkText : colors.lightText};
 `;
