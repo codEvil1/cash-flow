@@ -8,7 +8,8 @@
     "logo": "Logo",
     "signIn": "Fazer Login",
     "enterEmail": "Informe seu Email",
-    "enterPassword": "Informe sua Senha"
+    "enterPassword": "Informe sua Senha",
+    "confirmaPassword": "COnfirme sua Senha"
   },
   "app": { "version": "Versão" },
   "validation": {
@@ -41,5 +42,15 @@
     "titleCreate": "Defina Sua Senha",
     "verificationCode": "Código de Verificação",
     "createAccount": "Criar Conta"
+  },
+  "checkout": {
+    "checkout": "Checkout",
+    "discount": "Desconto",
+    "product": "Produto",
+    "enterProduct": "Informe o Código do Produto",
+    "cashier": "Atendente",
+    "custumer": "Cliente",
+    "payment": "Pagamento",
+    "promotions": "Promoções"
   }
 }

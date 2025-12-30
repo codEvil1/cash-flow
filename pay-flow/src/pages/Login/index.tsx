@@ -19,6 +19,7 @@ import { loginSchema } from "../../validations/loginSchema";
 import { APP_VERSION } from "../../config/app";
 import HeaderControls from "../../components/HeaderControls";
 import { useTheme } from "../../contexts/theme/useTheme";
+import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 
 interface LoginFormData {
@@ -29,8 +30,8 @@ interface LoginFormData {
 function Login() {
   const { t } = useTranslation();
   const { theme } = useTheme();
+  const navigate = useNavigate();
 
-  // const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -41,16 +42,14 @@ function Login() {
 
   const onSubmit = (data: LoginFormData) => {
     // chamada login backend
-    toast.success("Sucesso");
-    toast.error("Erro");
-    toast.warning("Atenção");
     console.log(data);
-    // navigate("/dashboard");
+    toast.success("Sucesso");
+    navigate("/checkout");
   };
 
   return (
     <Page theme={theme}>
-      <HeaderControls />
+      <HeaderControls breadcrumbs={[{ label: "login.login", path: "/" }]} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Body>
           <img

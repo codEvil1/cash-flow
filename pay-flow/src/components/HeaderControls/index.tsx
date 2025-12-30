@@ -11,7 +11,11 @@ import Breadcrumb from "../Breadcrumb";
 
 export type Language = "pt" | "en" | "es";
 
-function HeaderControls() {
+interface HeaderControlsProps {
+  breadcrumbs: { label: string; path: string }[];
+}
+
+function HeaderControls({ breadcrumbs }: HeaderControlsProps) {
   const { t } = useTranslation();
   const { theme, toggleTheme } = useTheme();
 
@@ -57,7 +61,7 @@ function HeaderControls() {
   return (
     <Header>
       <Left>
-        <Breadcrumb theme={theme} />
+        <Breadcrumb theme={theme} items={breadcrumbs} />
       </Left>
       <Right>
         <Select

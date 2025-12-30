@@ -58,7 +58,12 @@ function CreateAccount() {
 
   return (
     <Page theme={theme}>
-      <HeaderControls />
+      <HeaderControls
+        breadcrumbs={[
+          { label: "login.login", path: "/" },
+          { label: "login.createAccount", path: "/create-account" },
+        ]}
+      />
       <Body>
         <Title theme={theme}>
           {step === "email"
@@ -71,6 +76,7 @@ function CreateAccount() {
               placeholder={t("login.email")}
               theme={theme}
               error={errors.email?.message}
+              text={t("login.enterEmail")}
               {...register("email")}
             />
             <Button
@@ -94,6 +100,7 @@ function CreateAccount() {
             />
             <Input
               type="password"
+              text={t("login.enterEmail")}
               placeholder={t("login.password")}
               theme={theme}
               error={errors.password?.message}
@@ -102,6 +109,7 @@ function CreateAccount() {
             <Input
               type="password"
               placeholder={t("resetPassword.confirmPassword")}
+              text={t("login.confirmaPassword")}
               theme={theme}
               error={errors.confirmPassword?.message}
               {...register("confirmPassword")}
