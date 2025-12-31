@@ -61,11 +61,10 @@ function HeaderControls({ breadcrumbs }: HeaderControlsProps) {
   return (
     <Header>
       <Left>
-        <Breadcrumb theme={theme} items={breadcrumbs} />
+        <Breadcrumb items={breadcrumbs} />
       </Left>
       <Right>
         <Select
-          theme={theme}
           options={getLanguageOptions()}
           value={language}
           text={t("login.selectTheme")}

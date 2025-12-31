@@ -48,13 +48,12 @@ function Login() {
       />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Body>
-          <Card theme={theme} title={t("checkout.checkout")}>
+          <Card title={t("checkout.checkout")}>
             <InputButton
               value={teste()}
               icon={Search}
               onClick={() => console.log("click")}
               placeholder={t("checkout.product")}
-              theme={theme}
               text={t("checkout.enterProduct")}
               error={errors.product?.message}
               {...register("product")}

@@ -47,7 +47,6 @@ function Payment() {
         <Body>
           <Input
             placeholder={t("checkout.product")}
-            theme={theme}
             text={t("checkout.enterProduct")}
             error={errors.product?.message}
             {...register("product")}

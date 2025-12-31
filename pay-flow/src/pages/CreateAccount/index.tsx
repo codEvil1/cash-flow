@@ -74,7 +74,6 @@ function CreateAccount() {
           <>
             <Input
               placeholder={t("login.email")}
-              theme={theme}
               error={errors.email?.message}
               text={t("login.enterEmail")}
               {...register("email")}
@@ -93,7 +92,6 @@ function CreateAccount() {
           <>
             <VerificationCode
               label={t("createAccount.verificationCode")}
-              theme={theme}
               onComplete={(value) => setCode(value)}
               error={errors.code?.message}
               {...register("code")}
@@ -102,7 +100,6 @@ function CreateAccount() {
               type="password"
               text={t("login.enterEmail")}
               placeholder={t("login.password")}
-              theme={theme}
               error={errors.password?.message}
               {...register("password")}
             />
@@ -110,7 +107,6 @@ function CreateAccount() {
               type="password"
               placeholder={t("resetPassword.confirmPassword")}
               text={t("login.confirmaPassword")}
-              theme={theme}
               error={errors.confirmPassword?.message}
               {...register("confirmPassword")}
             />
