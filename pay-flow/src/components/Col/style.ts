@@ -4,6 +4,8 @@ interface StyledColProps {
   xs?: number;
   md?: number;
   lg?: number;
+  align: string;
+  justify: string;
 }
 
 const getWidth = (size?: number) => {
@@ -12,6 +14,16 @@ const getWidth = (size?: number) => {
 };
 
 export const StyledCol = styled.div<StyledColProps>`
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  padding-left: 8px;
+  padding-right: 8px;
+
+  align-items: ${({ align }) => align};
+  justify-content: ${({ justify }) => justify};
+
   flex: 0 0 ${({ xs }) => getWidth(xs)};
   max-width: ${({ xs }) => getWidth(xs)};
 
