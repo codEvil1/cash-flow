@@ -11,7 +11,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { productSchema } from "../../validations/productSchema";
 import Input from "../Input";
 
-interface ProductFormData {
+export interface ProductFormData {
   item: string;
   description?: string;
   quantity: number;

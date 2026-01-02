@@ -23,7 +23,12 @@ function Login() {
       <Body>
         <Row>
           <Col lg={9}>
-            <ProductCard />
+            <Row>
+              <ProductCard />
+            </Row>
+            <Row>
+              <ProductList />
+            </Row>
           </Col>
           <Col lg={3}>
             <Card title={t("checkout.discount")}>a</Card>
