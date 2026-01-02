@@ -10,6 +10,8 @@ import { checkoutSchema } from "../../validations/checkoutSchema";
 import InputButton from "../../components/InputButton";
 import { Search } from "lucide-react";
 import { Card } from "../../components/Card";
+import noImage from "../../assets/noImage.png";
+import { ImageProduct } from "./style";
 
 interface CheckoutFormData {
   product: string;
@@ -49,6 +51,7 @@ function Login() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Body>
           <Card title={t("checkout.checkout")}>
+            <ImageProduct src={noImage} alt="Produto sem imagem" />
             <InputButton
               value={teste()}
               icon={Search}
