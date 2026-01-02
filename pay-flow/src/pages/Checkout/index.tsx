@@ -10,14 +10,23 @@ import { checkoutSchema } from "../../validations/checkoutSchema";
 import InputButton from "../../components/InputButton";
 import { Search } from "lucide-react";
 import { Card } from "../../components/Card";
+import noImage from "../../assets/noImage.png";
+import { ImageProduct } from "./style";
+import Input from "../../components/Input";
+import { useState } from "react";
 
 interface CheckoutFormData {
   product: string;
+  description?: string;
+  quantity: number;
+  price?: number;
 }
 
 function Login() {
   const { t } = useTranslation();
   const { theme } = useTheme();
+
+  const [disabledAddProduct, setDisabledAddProduct] = useState(false);
 
   // const navigate = useNavigate();
   const {
@@ -34,6 +43,7 @@ function Login() {
     toast.error("Erro");
     toast.warning("Atenção");
     console.log(data);
+    setDisabledAddProduct(true);
     // navigate("/dashboard");
   };
 
@@ -48,18 +58,36 @@ function Login() {
       />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Body>
-          <Card theme={theme} title={t("checkout.checkout")}>
+          <Card title={t("checkout.checkout")}>
+            <ImageProduct src={noImage} alt={t("checkout.noImage")} />
             <InputButton
               value={teste()}
               icon={Search}
               onClick={() => console.log("click")}
               placeholder={t("checkout.product")}
-              theme={theme}
               text={t("checkout.enterProduct")}
               error={errors.product?.message}
               {...register("product")}
             />
+            <Input
+              text={t("checkout.description")}
+              placeholder={t("checkout.description")}
+              {...register("description")}
+            />
+            <Input
+              text={t("checkout.quantity")}
+              placeholder={t("checkout.quantity")}
+              type="number"
+              disabled={disabledAddProduct}
+              {...register("quantity")}
+            />
+            <Input
+              text={t("checkout.price")}
+              placeholder={t("checkout.price")}
+              {...register("price")}
+            />
           </Card>
+          <Card title={t("checkout.checkout")}>a</Card>
         </Body>
       </form>
       <Footer theme={theme}>

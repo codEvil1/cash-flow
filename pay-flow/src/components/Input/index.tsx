@@ -2,21 +2,17 @@ import { Container, StyledInput, ErrorIcon } from "./style";
 import type { InputHTMLAttributes } from "react";
 import { XCircle } from "lucide-react";
 import { Tooltip } from "react-tooltip";
+import { useTheme } from "../../contexts/theme/useTheme";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder: string;
   text: string;
-  theme?: "light" | "dark";
   error?: string;
 }
 
-function Input({
-  placeholder,
-  text,
-  theme = "light",
-  error,
-  ...props
-}: InputProps) {
+function Input({ placeholder, text, error, ...props }: InputProps) {
+  const { theme } = useTheme();
+
   return (
     <Container>
       <StyledInput

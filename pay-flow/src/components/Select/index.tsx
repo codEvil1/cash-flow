@@ -1,21 +1,17 @@
+import { useTheme } from "../../contexts/theme/useTheme";
 import { Arrow, Container, StyledSelect } from "./style";
 import type { Options } from "./type";
 
 interface SelectProps<T>
   extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, "onChange"> {
   options: Options<T>[];
-  theme?: "light" | "dark";
   text: string;
   onChange?: (value: T) => void;
 }
 
-function Select<T>({
-  theme = "light",
-  options,
-  text,
-  onChange,
-  ...props
-}: SelectProps<T>) {
+function Select<T>({ options, text, onChange, ...props }: SelectProps<T>) {
+  const { theme } = useTheme();
+
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selected = options.find(
       (opt) => String(opt.value) === e.target.value

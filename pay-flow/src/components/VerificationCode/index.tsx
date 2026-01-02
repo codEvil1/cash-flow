@@ -1,19 +1,20 @@
 import { useRef, useState, type InputHTMLAttributes } from "react";
 import { CodeContainer, CodeInput, Label } from "./style";
+import { useTheme } from "../../contexts/theme/useTheme";
 
 interface VerificationCodeProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  theme?: "light" | "dark";
   error?: string;
   onComplete?: (code: string) => void;
 }
 
 export function VerificationCode({
   label,
-  theme = "light",
   error,
   ...props
 }: VerificationCodeProps) {
+  const { theme } = useTheme();
+
   const [code, setCode] = useState<string[]>(Array(6).fill(""));
   const inputsRef = useRef<Array<HTMLInputElement | null>>([]);
 

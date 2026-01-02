@@ -60,7 +60,6 @@ function Login() {
           />
           <Input
             placeholder={t("login.email")}
-            theme={theme}
             text={t("login.enterEmail")}
             autoFocus
             error={errors.email?.message}
@@ -69,7 +68,6 @@ function Login() {
           <Input
             placeholder={t("login.password")}
             type="password"
-            theme={theme}
             text={t("login.enterPassword")}
             error={errors.password?.message}
             {...register("password")}

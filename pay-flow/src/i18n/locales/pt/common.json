@@ -17,7 +17,9 @@
     "emailRequired": "E-mail é Obrigatório",
     "passwordMin": "Senha Precisa Ter Doze Caracteres",
     "passwordNoSpaces": "Senha Não Pode Conter Espaços em Branco",
-    "passwordRequired": "Senha é Obrigatória"
+    "passwordRequired": "Senha é Obrigatória",
+    "quantityRequired": "Quantidade é Obrigatória",
+    "quantityMin": "Quantidade Inválida"
   },
   "resetPassword": {
     "sendCode": "Enviar Código",
@@ -51,6 +53,10 @@
     "cashier": "Atendente",
     "custumer": "Cliente",
     "payment": "Pagamento",
-    "promotions": "Promoções"
+    "promotions": "Promoções",
+    "noImage": "Produto sem imagem",
+    "description": "Descrição",
+    "quantity": "Quantidade",
+    "price": "Preço"
   }
 }

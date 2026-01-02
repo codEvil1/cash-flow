@@ -1,12 +1,12 @@
 import { type LucideIcon } from "lucide-react";
 import { ActionButton, InputWrapper } from "./style";
 import Input from "../Input";
+import { useTheme } from "../../contexts/theme/useTheme";
 
 export interface InputButtonProps {
   value: string;
   placeholder: string;
   text: string;
-  theme?: "light" | "dark";
   error?: string;
   icon: LucideIcon;
   onClick: () => void;
@@ -16,17 +16,17 @@ function InputButton({
   value,
   placeholder,
   text,
-  theme = "light",
   error,
   icon: Icon,
   onClick,
 }: InputButtonProps) {
+  const { theme } = useTheme();
+
   return (
     <InputWrapper>
       <Input
         placeholder={placeholder}
         text={text}
-        theme={theme}
         error={error}
         value={value}
       />
