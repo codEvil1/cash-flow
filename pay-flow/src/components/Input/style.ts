@@ -3,7 +3,7 @@ import { colors } from "../Style/theme";
 
 interface InputStyleProps {
   theme: "light" | "dark";
-  hasError: boolean;
+  hasError?: boolean;
 }
 
 export const Container = styled.div`
