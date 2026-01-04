@@ -70,5 +70,9 @@
     "id": "ID",
     "name": "Nome",
     "rating": "Avaliação"
+  },
+  "productList": {
+    "emptyList": "Lista Vazia",
+    "addProduct": "Adicionar Produto"
   }
 }

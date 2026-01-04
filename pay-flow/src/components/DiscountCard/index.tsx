@@ -1,9 +1,11 @@
 import { useTranslation } from "react-i18next";
-import { Card } from "../Card";
 import { Label, RowItem, Value } from "./style";
 import { Percent, Tag } from "lucide-react";
 import { useCurrency } from "../../contexts/Currency/useCurrency";
 import { formatCurrency } from "../../utils/formatCurrency";
+import { useTheme } from "../../contexts/Theme/useTheme";
+import Card from "../Card";
+import { useNavigate } from "react-router-dom";
 
 export interface DiscountCardProps {
   data: {
@@ -13,15 +15,19 @@ export interface DiscountCardProps {
     originalTotal: number;
     finalTotal: number;
   };
-  theme: "light" | "dark";
 }
 
-function DiscountCard({ data, theme = "light" }: DiscountCardProps) {
+function DiscountCard({ data }: DiscountCardProps) {
   const { t } = useTranslation();
   const { currency, locale } = useCurrency();
+  const { theme } = useTheme();
+  const navigate = useNavigate();
 
   return (
-    <Card title={t("discount.discount")}>
+    <Card
+      title={t("discount.discount")}
+      onClick={() => navigate("/checkout/promotions")}
+    >
       {data.couponCode && (
         <RowItem theme={theme}>
           <Tag size={16} />

@@ -1,7 +1,9 @@
 import { useTranslation } from "react-i18next";
-import { Card } from "../Card";
 import { Label, RowItem, Value } from "./style";
 import { RatingStars } from "../RatingStars";
+import { useTheme } from "../../contexts/Theme/useTheme";
+import Card from "../Card";
+import { useNavigate } from "react-router-dom";
 
 export interface CashierCardCardProps {
   data: {
@@ -11,14 +13,18 @@ export interface CashierCardCardProps {
     rating: number;
     reviewsCount?: number;
   };
-  theme: "light" | "dark";
 }
 
-function CashierCard({ data, theme = "light" }: CashierCardCardProps) {
+function CashierCard({ data }: CashierCardCardProps) {
   const { t } = useTranslation();
+  const { theme } = useTheme();
+  const navigate = useNavigate();
 
   return (
-    <Card title={t("cashier.cashier")}>
+    <Card
+      title={t("cashier.cashier")}
+      onClick={() => navigate("/checkout/cashier")}
+    >
       <RowItem theme={theme}>
         <Label>{t("cashier.id")}</Label>
         <Value>{data.id}</Value>

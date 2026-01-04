@@ -3,10 +3,12 @@ import { colors } from "../Style/theme";
 
 interface CardStyleProps {
   theme: "light" | "dark";
+  clickable: boolean;
 }
 
 export const CardContainer = styled.div<CardStyleProps>`
   width: 100%;
+  cursor: ${({ clickable }) => (clickable ? "pointer" : "default")};
 
   background: ${({ theme }) =>
     theme === "dark" ? colors.darkComponentBg : colors.lightComponentBg};
@@ -15,7 +17,6 @@ export const CardContainer = styled.div<CardStyleProps>`
   -webkit-backdrop-filter: blur(16px);
 
   border-radius: 16px;
-
   border: 1px solid
     ${({ theme }) =>
       theme === "dark" ? colors.darkBorder : colors.lightBorder};
@@ -27,6 +28,25 @@ export const CardContainer = styled.div<CardStyleProps>`
 
   display: flex;
   flex-direction: column;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  ${({ clickable, theme }) =>
+    clickable &&
+    `
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: ${
+          theme === "dark"
+            ? "0 16px 36px rgba(0,0,0,0.55)"
+            : "0 16px 36px rgba(0,0,0,0.18)"
+        };
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    `}
 `;
 
 export const CardTitle = styled.h3`

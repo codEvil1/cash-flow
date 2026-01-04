@@ -6,6 +6,7 @@ interface TableStyleProps {
   align?: "left" | "center" | "right";
   width?: number | string;
   zebra?: boolean;
+  clickable?: boolean;
 }
 
 export const TableWrapper = styled.div<TableStyleProps>`
@@ -40,7 +41,6 @@ export const Th = styled.th<TableStyleProps>`
 
   font-weight: 600;
   font-size: 0.875rem;
-  cursor: pointer;
 
   border-bottom: 1px solid
     ${({ theme }) =>
@@ -56,6 +56,8 @@ export const Tr = styled.tr<TableStyleProps>`
       : "transparent"};
 
   transition: background 0.2s ease;
+
+  cursor: ${({ clickable }) => (clickable ? "pointer" : "default")};
 
   &:hover {
     background: ${({ theme }) =>

@@ -4,16 +4,19 @@ import { useTheme } from "../../contexts/Theme/useTheme";
 
 interface CardProps {
   title?: string;
+  onClick?: () => void;
   children: ReactNode;
 }
 
-export function Card({ title, children }: CardProps) {
+function Card({ title, children, onClick }: CardProps) {
   const { theme } = useTheme();
 
   return (
-    <CardContainer theme={theme}>
+    <CardContainer theme={theme} onClick={onClick} clickable={!!onClick}>
       {title && <CardTitle theme={theme}>{title}</CardTitle>}
       <CardContent>{children}</CardContent>
     </CardContainer>
   );
 }
+
+export default Card;

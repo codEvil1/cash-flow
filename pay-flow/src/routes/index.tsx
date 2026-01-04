@@ -20,7 +20,7 @@ function AppRoutes() {
         <Route path="/checkout/product" element={<Product />} />
         <Route path="/checkout/customer" element={<Customer />} />
         <Route path="/checkout/promotions" element={<Promotions />} />
-        <Route path="/checkout/attendant" element={<Cashier />} />
+        <Route path="/checkout/cashier" element={<Cashier />} />
         <Route path="/checkout/payment" element={<Payment />} />
       </Routes>
     </BrowserRouter>

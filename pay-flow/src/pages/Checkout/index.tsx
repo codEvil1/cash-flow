@@ -3,20 +3,34 @@ import { useTheme } from "../../contexts/Theme/useTheme";
 import { Footer, Page } from "../Login/style";
 import HeaderControls from "../../components/HeaderControls";
 import { APP_VERSION } from "../../config/app";
-import { Card } from "../../components/Card";
 import { Body } from "./style";
 import { Row } from "../../components/Row";
 import { Col } from "../../components/Col";
-import ProductCard from "../../components/ProductCard";
+import ProductCard, {
+  type ProductFormData,
+} from "../../components/ProductCard";
 import ProductListCard from "../../components/ProductListCard";
 import DiscountCard from "../../components/DiscountCard";
 import CashierCard from "../../components/CashierCard";
+import { formatCurrency } from "../../utils/formatCurrency";
+import Input from "../../components/Input";
+import { useCurrency } from "../../contexts/Currency/useCurrency";
+import Button from "../../components/Button";
+import { Trash } from "lucide-react";
+import { useState } from "react";
+import Card from "../../components/Card";
 
-function Login() {
+function Checkout() {
   const { t } = useTranslation();
   const { theme } = useTheme();
+  const { currency, locale } = useCurrency();
 
-  // const navigate = useNavigate();
+  const [products, setProducts] = useState<ProductFormData[]>([]);
+
+  function handleRemove(item: string) {
+    // event.stopPropagation();
+    setProducts((prev) => prev.filter((product) => product.item !== item));
+  }
 
   return (
     <Page theme={theme}>
@@ -30,7 +44,79 @@ function Login() {
               <ProductCard />
             </Row>
             <Row>
-              <ProductListCard />
+              <ProductListCard
+                columns={[
+                  {
+                    key: "item",
+                    label: t("checkout.product"),
+                    align: "center",
+                    width: "20%",
+                  },
+                  {
+                    key: "description",
+                    label: t("checkout.description"),
+                    align: "center",
+                    width: "40%",
+                  },
+                  {
+                    key: "quantity",
+                    label: t("checkout.quantity"),
+                    align: "center",
+                    width: "10%",
+                    render: (value) => (
+                      <Input
+                        placeholder="aa"
+                        text="aa"
+                        // type="number"
+                        value={value}
+                        readOnly
+                        center
+                      />
+                    ),
+                  },
+                  {
+                    key: "price",
+                    label: t("checkout.price"),
+                    align: "center",
+                    width: "20%",
+                    render: (value) =>
+                      formatCurrency(Number(value), locale, currency),
+                  },
+                  {
+                    key: "item",
+                    label: "",
+                    align: "center",
+                    width: "10%",
+                    render: (_, row) => (
+                      <Button
+                        onClick={() => handleRemove(row.item)}
+                        text={""}
+                        icon={Trash}
+                      ></Button>
+                    ),
+                  },
+                ]}
+                data={[
+                  {
+                    item: "24011112",
+                    description: "Produto X",
+                    quantity: 2,
+                    price: 50,
+                  },
+                  {
+                    item: "24011113",
+                    description: "Produto Y",
+                    quantity: 1,
+                    price: 50,
+                  },
+                  {
+                    item: "24011110",
+                    description: "Produto Z",
+                    quantity: 3,
+                    price: 25,
+                  },
+                ]}
+              />
             </Row>
           </Col>
           <Col lg={3}>
@@ -43,7 +129,6 @@ function Login() {
                   discountValue: 30,
                   finalTotal: 120,
                 }}
-                theme={theme}
               />
             </Row>
             <Row>
@@ -55,7 +140,6 @@ function Login() {
                   rating: 4.5,
                   reviewsCount: 128,
                 }}
-                theme={theme}
               />
             </Row>
             <Row>
@@ -74,4 +158,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Checkout;

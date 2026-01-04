@@ -1,52 +1,19 @@
 import { useTranslation } from "react-i18next";
-import { Card } from "../Card";
 import { Row } from "../Row";
 import { Col } from "../Col";
 import Table, { type Column } from "../Table";
 import type { ProductFormData } from "../ProductCard";
-import { useTheme } from "../../contexts/Theme/useTheme";
-import { useCurrency } from "../../contexts/Currency/useCurrency";
-import { formatCurrency } from "../../utils/formatCurrency";
+import Card from "../Card";
+import { useNavigate } from "react-router-dom";
 
-function ProductListCard() {
+export interface ProductListCardProps {
+  columns: Column<ProductFormData>[];
+  data: ProductFormData[];
+}
+
+function ProductListCard({ columns, data }: ProductListCardProps) {
   const { t } = useTranslation();
-  const { theme } = useTheme();
-  const { currency, locale } = useCurrency();
-
-  const columns: Column<ProductFormData>[] = [
-    {
-      key: "item",
-      label: t("checkout.product"),
-      align: "center",
-      width: "20%",
-    },
-    {
-      key: "description",
-      label: t("checkout.description"),
-      align: "center",
-      width: "40%",
-    },
-    {
-      key: "quantity",
-      label: t("checkout.quantity"),
-      align: "center",
-      width: "20%",
-    },
-    {
-      key: "price",
-      label: t("checkout.price"),
-      align: "center",
-      width: "20%",
-      render: (value) => formatCurrency(Number(value), locale, currency),
-    },
-  ];
-
-  const data: ProductFormData[] = Array.from({ length: 11 }).map(() => ({
-    item: "24011108",
-    description: "Café",
-    quantity: 2,
-    price: 12.1,
-  }));
+  const navigate = useNavigate();
 
   return (
     <Card title={t("checkout.productList")}>
@@ -55,9 +22,8 @@ function ProductListCard() {
           <Table<ProductFormData>
             columns={columns}
             data={data}
-            theme={theme}
             pageSize={10}
-            emptyMessage={t("common.emptyList")}
+            onRowClick={(row) => navigate(`/checkout/product/${row.item}`)}
           />
         </Col>
       </Row>

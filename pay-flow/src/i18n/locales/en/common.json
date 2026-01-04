@@ -1,14 +1,15 @@
 {
   "login": {
-    "forgotPassword": "Forgot your password?",
-    "login": "Log in",
-    "createAccount": "Create account",
+    "forgotPassword": "Forgot Password?",
+    "login": "Log In",
+    "createAccount": "Create Account",
     "email": "Email",
     "password": "Password",
     "logo": "Logo",
-    "signIn": "Sign in",
+    "signIn": "Sign In",
     "enterEmail": "Enter your email",
-    "enterPassword": "Enter your password"
+    "enterPassword": "Enter your password",
+    "confirmaPassword": "Confirm your password"
   },
   "app": {
     "version": "Version"
@@ -16,19 +17,21 @@
   "validation": {
     "emailInvalid": "Invalid email",
     "emailRequired": "Email is required",
-    "passwordMin": "Password must be at least twelve characters long",
-    "passwordNoSpaces": "Password must not contain whitespace",
-    "passwordRequired": "Password is required"
+    "passwordMin": "Password must be at least twelve characters",
+    "passwordNoSpaces": "Password cannot contain blank spaces",
+    "passwordRequired": "Password is required",
+    "quantityRequired": "Quantity is required",
+    "quantityMin": "Invalid quantity"
   },
   "resetPassword": {
-    "sendCode": "Send code",
-    "sentEmail": "Email sent",
-    "sendCodeEmail": "Send password reset code via email",
-    "changePassword": "Change password",
-    "confirmPassword": "Confirm password",
-    "titleEmail": "Password recovery",
-    "titleReset": "Create new password",
-    "recoveryCode": "Recovery code"
+    "sendCode": "Send Code",
+    "sentEmail": "Email Sent",
+    "sendCodeEmail": "Send password reset code by email",
+    "changePassword": "Change Password",
+    "confirmPassword": "Confirm Password",
+    "titleEmail": "Password Recovery",
+    "titleReset": "Create New Password",
+    "recoveryCode": "Recovery Code"
   },
   "common": {
     "back": "Back"
@@ -36,6 +39,38 @@
   "theme": {
     "light": "Light",
     "dark": "Dark",
-    "selectTheme": "Select theme"
+    "selectTheme": "Select Theme"
+  },
+  "createAccount": {
+    "titleEmail": "Create Your Account",
+    "titleCreate": "Set Your Password",
+    "verificationCode": "Verification Code",
+    "createAccount": "Create Account"
+  },
+  "checkout": {
+    "checkout": "Checkout",
+    "product": "Product",
+    "enterProduct": "Enter Product Code",
+    "custumer": "Customer",
+    "payment": "Payment",
+    "promotions": "Promotions",
+    "noImage": "Product without image",
+    "description": "Description",
+    "quantity": "Quantity",
+    "price": "Price",
+    "productList": "Product List"
+  },
+  "discount": {
+    "cupom": "Coupon",
+    "discount": "Discount",
+    "originalValue": "Original Value",
+    "economy": "Savings",
+    "total": "Final Total"
+  },
+  "cashier": {
+    "cashier": "Cashier",
+    "id": "ID",
+    "name": "Name",
+    "rating": "Rating"
   }
 }

@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Search } from "lucide-react";
-import { Card } from "../Card";
+import { PackagePlus, Search } from "lucide-react";
 import { Row } from "../Row";
 import { Col } from "../Col";
 import { ImageProduct } from "../../pages/Checkout/style";
@@ -10,6 +9,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { productSchema } from "../../validations/productSchema";
 import Input from "../Input";
+import Button from "../Button";
+import Card from "../Card";
+import { useNavigate } from "react-router-dom";
 
 export interface ProductFormData {
   item: string;
@@ -20,6 +22,7 @@ export interface ProductFormData {
 
 function ProductCard() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -28,12 +31,11 @@ function ProductCard() {
     resolver: yupResolver(productSchema(t)),
   });
 
-  const teste = () => {
-    return "teste";
-  };
-
   return (
-    <Card title={t("checkout.product")}>
+    <Card
+      title={t("checkout.product")}
+      onClick={() => navigate("/checkout/product")}
+    >
       <Row align="center">
         <Col lg={3}>
           <ImageProduct src={noImage} alt={t("checkout.noImage")} />
@@ -42,7 +44,7 @@ function ProductCard() {
           <Row>
             <Col lg={3} align="center" justify="center">
               <InputButton
-                value={teste()}
+                value={""}
                 icon={Search}
                 onClick={() => console.log("click")}
                 placeholder={t("checkout.product")}
@@ -75,6 +77,13 @@ function ProductCard() {
                 placeholder={t("checkout.price")}
                 {...register("price")}
               />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Button icon={PackagePlus} text={t("productList.addProduct")}>
+                {t("productList.addProduct")}
+              </Button>
             </Col>
           </Row>
         </Col>
