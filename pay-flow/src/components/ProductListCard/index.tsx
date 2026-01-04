@@ -4,11 +4,14 @@ import { Row } from "../Row";
 import { Col } from "../Col";
 import Table, { type Column } from "../Table";
 import type { ProductFormData } from "../ProductCard";
-import { useTheme } from "../../contexts/theme/useTheme";
+import { useTheme } from "../../contexts/Theme/useTheme";
+import { useCurrency } from "../../contexts/Currency/useCurrency";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 function ProductListCard() {
   const { t } = useTranslation();
   const { theme } = useTheme();
+  const { currency, locale } = useCurrency();
 
   const columns: Column<ProductFormData>[] = [
     {
@@ -34,7 +37,7 @@ function ProductListCard() {
       label: t("checkout.price"),
       align: "center",
       width: "20%",
-      render: (value) => `R$ ${Number(value).toFixed(2).replace(".", ",")}`,
+      render: (value) => formatCurrency(Number(value), locale, currency),
     },
   ];
 
@@ -42,7 +45,7 @@ function ProductListCard() {
     item: "24011108",
     description: "Café",
     quantity: 2,
-    price: 12,
+    price: 12.1,
   }));
 
   return (

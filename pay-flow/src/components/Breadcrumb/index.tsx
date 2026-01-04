@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { ChevronRight } from "lucide-react";
 import { Container, CrumbLink, Item } from "./style";
 import type { InputHTMLAttributes } from "react";
-import { useTheme } from "../../contexts/theme/useTheme";
+import { useTheme } from "../../contexts/Theme/useTheme";
 
 interface BreadcrumbProps extends InputHTMLAttributes<HTMLInputElement> {
   items: { label: string; path: string }[];

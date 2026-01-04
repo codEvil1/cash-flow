@@ -1,4 +1,4 @@
-import { useTheme } from "../../contexts/theme/useTheme";
+import { useTheme } from "../../contexts/Theme/useTheme";
 import { Arrow, Container, StyledSelect } from "./style";
 import type { Options } from "./type";
 

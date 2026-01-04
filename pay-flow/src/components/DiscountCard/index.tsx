@@ -2,6 +2,8 @@ import { useTranslation } from "react-i18next";
 import { Card } from "../Card";
 import { Label, RowItem, Value } from "./style";
 import { Percent, Tag } from "lucide-react";
+import { useCurrency } from "../../contexts/Currency/useCurrency";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 export interface DiscountCardProps {
   data: {
@@ -16,6 +18,7 @@ export interface DiscountCardProps {
 
 function DiscountCard({ data, theme = "light" }: DiscountCardProps) {
   const { t } = useTranslation();
+  const { currency, locale } = useCurrency();
 
   return (
     <Card title={t("discount.discount")}>
@@ -35,15 +38,15 @@ function DiscountCard({ data, theme = "light" }: DiscountCardProps) {
       )}
       <RowItem theme={theme}>
         <Label>{t("discount.originalValue")}</Label>
-        <Value>R$ {data.originalTotal.toFixed(2)}</Value>
+        <Value>{formatCurrency(data.originalTotal, locale, currency)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <Label>{t("discount.economy")}</Label>
-        <Value>- R$ {data.discountValue.toFixed(2)}</Value>
+        <Value>-{formatCurrency(data.discountValue, locale, currency)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <Label>{t("discount.total")}</Label>
-        <Value>R$ {data.finalTotal.toFixed(2)}</Value>
+        <Value>{formatCurrency(data.finalTotal, locale, currency)}</Value>
       </RowItem>
     </Card>
   );

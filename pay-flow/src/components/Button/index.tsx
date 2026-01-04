@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, ElementType } from "react";
 import { Content, IconWrapper, StyledButton } from "./style";
-import { useTheme } from "../../contexts/theme/useTheme";
+import { useTheme } from "../../contexts/Theme/useTheme";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;

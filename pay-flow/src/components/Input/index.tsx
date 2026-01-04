@@ -2,7 +2,7 @@ import { Container, StyledInput, ErrorIcon } from "./style";
 import type { InputHTMLAttributes } from "react";
 import { XCircle } from "lucide-react";
 import { Tooltip } from "react-tooltip";
-import { useTheme } from "../../contexts/theme/useTheme";
+import { useTheme } from "../../contexts/Theme/useTheme";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder: string;
