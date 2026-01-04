@@ -8,6 +8,7 @@ import { Body } from "./style";
 import { Row } from "../../components/Row";
 import { Col } from "../../components/Col";
 import ProductCard from "../../components/ProductCard";
+import ProductListCard from "../../components/ProductListCard";
 
 function Login() {
   const { t } = useTranslation();
@@ -27,7 +28,7 @@ function Login() {
               <ProductCard />
             </Row>
             <Row>
-              <ProductList />
+              <ProductListCard />
             </Row>
           </Col>
           <Col lg={3}>
