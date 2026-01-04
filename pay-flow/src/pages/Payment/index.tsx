@@ -1,12 +1,10 @@
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../contexts/theme/useTheme";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import { Body, Footer, Page } from "../Login/style";
 import HeaderControls from "../../components/HeaderControls";
 import { APP_VERSION } from "../../config/app";
-import { checkoutSchema } from "../../validations/checkoutSchema";
 import Input from "../../components/Input";
 
 interface PaymentFormData {
@@ -23,7 +21,7 @@ function Payment() {
     handleSubmit,
     formState: { errors },
   } = useForm<PaymentFormData>({
-    resolver: yupResolver(checkoutSchema(t)),
+    // resolver: yupResolver(checkoutSchema(t)),
   });
 
   const onSubmit = (data: PaymentFormData) => {

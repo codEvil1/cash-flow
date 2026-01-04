@@ -57,6 +57,8 @@
     "noImage": "Produto sem imagem",
     "description": "Descrição",
     "quantity": "Quantidade",
-    "price": "Preço"
+    "price": "Preço",
+    "cupom": "Cupom",
+    "productList": "Lista de Produtos"
   }
 }

@@ -45,7 +45,7 @@ export const CardTitle = styled.h3`
 
 export const CardContent = styled.div`
   padding: 16px;
-
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 12px;

@@ -1,9 +1,17 @@
 import styled from "styled-components";
-import type { RowProps } from ".";
 
-export const StyledRow = styled.div<RowProps>`
+interface StyledRowProps {
+  align: string;
+  justify: string;
+}
+
+export const StyledRow = styled.div<StyledRowProps>`
   display: flex;
-  flex-wrap: wrap;
   width: 100%;
-  gap: ${({ gap = 0 }) => `${gap}px`};
+  flex-wrap: wrap;
+
+  margin-bottom: 16px;
+
+  align-items: ${({ align }) => align};
+  justify-content: ${({ justify }) => justify};
 `;

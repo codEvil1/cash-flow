@@ -22,3 +22,9 @@ export const ImageProduct = styled.img`
   height: auto;
   filter: grayscale(100%) opacity(0.7);
 `;
+
+export const Body = styled.div`
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+`;
