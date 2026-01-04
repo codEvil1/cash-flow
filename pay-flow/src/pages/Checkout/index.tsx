@@ -10,6 +10,7 @@ import { Col } from "../../components/Col";
 import ProductCard from "../../components/ProductCard";
 import ProductListCard from "../../components/ProductListCard";
 import DiscountCard from "../../components/DiscountCard";
+import CashierCard from "../../components/CashierCard";
 
 function Login() {
   const { t } = useTranslation();
@@ -43,10 +44,19 @@ function Login() {
                   finalTotal: 120,
                 }}
                 theme={theme}
-              ></DiscountCard>
+              />
             </Row>
             <Row>
-              <Card title={t("checkout.cashier")}>a</Card>
+              <CashierCard
+                data={{
+                  id: "0421",
+                  name: "João Silva",
+                  role: "Atendente",
+                  rating: 4.5,
+                  reviewsCount: 128,
+                }}
+                theme={theme}
+              />
             </Row>
             <Row>
               <Card title={t("checkout.custumer")}>a</Card>

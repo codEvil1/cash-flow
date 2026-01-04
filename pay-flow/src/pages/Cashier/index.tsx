@@ -38,7 +38,7 @@ function Cashier() {
       <HeaderControls
         breadcrumbs={[
           { label: "checkout.checkout", path: "/checkout" },
-          { label: "checkout.cashier", path: "/checkout/cashier" },
+          { label: "cashier.cashier", path: "/checkout/cashier" },
         ]}
       />
       <form onSubmit={handleSubmit(onSubmit)}>

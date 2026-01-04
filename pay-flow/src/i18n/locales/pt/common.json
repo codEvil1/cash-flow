@@ -49,7 +49,6 @@
     "checkout": "Checkout",
     "product": "Produto",
     "enterProduct": "Informe o Código do Produto",
-    "cashier": "Atendente",
     "custumer": "Cliente",
     "payment": "Pagamento",
     "promotions": "Promoções",
@@ -65,5 +64,11 @@
     "originalValue": "Valor Original",
     "economy": "Economia",
     "total": "Final Total"
+  },
+  "cashier": {
+    "cashier": "Atendente",
+    "id": "ID",
+    "name": "Nome",
+    "rating": "Avaliação"
   }
 }
