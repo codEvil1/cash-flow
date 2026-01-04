@@ -4,6 +4,7 @@ import { RatingStars } from "../RatingStars";
 import { useTheme } from "../../contexts/Theme/useTheme";
 import Card from "../Card";
 import { useNavigate } from "react-router-dom";
+import { Hash, Star, User } from "lucide-react";
 
 export interface CashierCardCardProps {
   data: {
@@ -26,14 +27,17 @@ function CashierCard({ data }: CashierCardCardProps) {
       onClick={() => navigate("/checkout/cashier")}
     >
       <RowItem theme={theme}>
+        <Hash size={16} />
         <Label>{t("cashier.id")}</Label>
         <Value>{data.id}</Value>
       </RowItem>
       <RowItem theme={theme}>
+        <User size={16} />
         <Label>{t("cashier.name")}</Label>
         <Value>{data.name}</Value>
       </RowItem>
       <RowItem theme={theme}>
+        <Star size={16}/>
         <Label>{t("cashier.rating")}</Label>
         <Value>
           <RatingStars value={data.rating} />

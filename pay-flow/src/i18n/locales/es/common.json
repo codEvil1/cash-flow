@@ -51,7 +51,7 @@
     "checkout": "Checkout",
     "product": "Producto",
     "enterProduct": "Ingresa el código del producto",
-    "custumer": "Cliente",
+    "customer": "Cliente",
     "payment": "Pago",
     "promotions": "Promociones",
     "noImage": "Producto sin imagen",

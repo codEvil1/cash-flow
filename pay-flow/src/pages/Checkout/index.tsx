@@ -1,8 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../contexts/Theme/useTheme";
-import { Footer, Page } from "../Login/style";
+import { Page } from "../Login/style";
 import HeaderControls from "../../components/HeaderControls";
-import { APP_VERSION } from "../../config/app";
 import { Body } from "./style";
 import { Row } from "../../components/Row";
 import { Col } from "../../components/Col";
@@ -19,6 +18,7 @@ import Button from "../../components/Button";
 import { Trash } from "lucide-react";
 import { useState } from "react";
 import Card from "../../components/Card";
+import CustomerCard from "../../components/CustumerCard";
 
 function Checkout() {
   const { t } = useTranslation();
@@ -143,7 +143,15 @@ function Checkout() {
               />
             </Row>
             <Row>
-              <Card title={t("checkout.custumer")}>a</Card>
+              <CustomerCard
+                data={{
+                  name: "Bruno Paese",
+                  identifier: "031.656.400-17",
+                  phone: "54994057272",
+                  email: "brunoviniciuspaese@gmail.com",
+                  country: "BR",
+                }}
+              />
             </Row>
             <Row>
               <Card title={t("checkout.payment")}>a</Card>
@@ -151,9 +159,6 @@ function Checkout() {
           </Col>
         </Row>
       </Body>
-      <Footer theme={theme}>
-        {t("app.version")} v{APP_VERSION}
-      </Footer>
     </Page>
   );
 }

@@ -49,7 +49,6 @@
     "checkout": "Checkout",
     "product": "Produto",
     "enterProduct": "Informe o Código do Produto",
-    "custumer": "Cliente",
     "payment": "Pagamento",
     "promotions": "Promoções",
     "noImage": "Produto sem imagem",
@@ -74,5 +73,12 @@
   "productList": {
     "emptyList": "Lista Vazia",
     "addProduct": "Adicionar Produto"
+  },
+  "customer": {
+    "customer": "Cliente",
+    "name": "Nome",
+    "identifier": "Identificador",
+    "phone": "Telefone",
+    "email": "E-mail"
   }
 }

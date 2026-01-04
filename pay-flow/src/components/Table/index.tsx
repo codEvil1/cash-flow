@@ -1,4 +1,4 @@
-import { useMemo, useState, type ReactNode } from "react";
+import { useMemo, useState } from "react";
 import {
   TableWrapper,
   StyledTable,
@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../contexts/Theme/useTheme";
+import type { ReactNode, MouseEvent } from "react";
 
 export interface Column<T> {
   key: keyof T;
@@ -112,6 +113,25 @@ function Table<T>({ columns, data, pageSize = 10, onRowClick }: TableProps<T>) {
     );
   }
 
+  const handleClick = (event: MouseEvent<HTMLTableRowElement>, row: T) => {
+    const interactiveElements = [
+      "INPUT",
+      "BUTTON",
+      "SELECT",
+      "TEXTAREA",
+      "A",
+      "LABEL",
+    ];
+    const isInteractive = interactiveElements.some((tag) =>
+      (event.target as HTMLElement).closest(tag)
+    );
+    if (isInteractive) {
+      event.stopPropagation();
+      return;
+    }
+    onRowClick?.(row);
+  };
+
   return (
     <TableWrapper theme={theme}>
       <StyledTable>
@@ -153,7 +173,7 @@ function Table<T>({ columns, data, pageSize = 10, onRowClick }: TableProps<T>) {
               zebra={index % 2 === 0}
               theme={theme}
               clickable={!!onRowClick}
-              onClick={() => onRowClick?.(row)}
+              onClick={(event) => handleClick(event, row)}
             >
               {columns.map((col) => {
                 const value = row[col.key];

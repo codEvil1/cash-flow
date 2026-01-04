@@ -1,9 +1,8 @@
 import { useTranslation } from "react-i18next";
-import { PackagePlus, Search } from "lucide-react";
+import { PackagePlus } from "lucide-react";
 import { Row } from "../Row";
 import { Col } from "../Col";
 import { ImageProduct } from "../../pages/Checkout/style";
-import InputButton from "../InputButton";
 import noImage from "../../assets/noImage.png";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -43,12 +42,9 @@ function ProductCard() {
         <Col lg={9}>
           <Row>
             <Col lg={3} align="center" justify="center">
-              <InputButton
-                value={""}
-                icon={Search}
-                onClick={() => console.log("click")}
-                placeholder={t("checkout.product")}
+              <Input
                 text={t("checkout.enterProduct")}
+                placeholder={t("checkout.product")}
                 error={errors.item?.message}
                 {...register("item")}
               />
