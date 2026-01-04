@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { CardContainer, CardTitle, CardContent } from "./style";
-import { useTheme } from "../../contexts/theme/useTheme";
+import { useTheme } from "../../contexts/Theme/useTheme";
 
 interface CardProps {
   title?: string;

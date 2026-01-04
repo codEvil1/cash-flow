@@ -1,6 +1,6 @@
 import { useRef, useState, type InputHTMLAttributes } from "react";
 import { CodeContainer, CodeInput, Label } from "./style";
-import { useTheme } from "../../contexts/theme/useTheme";
+import { useTheme } from "../../contexts/Theme/useTheme";
 
 interface VerificationCodeProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;

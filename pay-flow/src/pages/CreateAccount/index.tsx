@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { APP_VERSION } from "../../config/app";
 import { Body, Footer, Page } from "../Login/style";
 import HeaderControls from "../../components/HeaderControls";
-import { useTheme } from "../../contexts/theme/useTheme";
+import { useTheme } from "../../contexts/Theme/useTheme";
 import Input from "../../components/Input";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

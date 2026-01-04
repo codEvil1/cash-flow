@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useTheme } from "../../contexts/theme/useTheme";
+import { useTheme } from "../../contexts/Theme/useTheme";
 import { Footer, Page } from "../Login/style";
 import HeaderControls from "../../components/HeaderControls";
 import { APP_VERSION } from "../../config/app";
@@ -9,6 +9,8 @@ import { Row } from "../../components/Row";
 import { Col } from "../../components/Col";
 import ProductCard from "../../components/ProductCard";
 import ProductListCard from "../../components/ProductListCard";
+import DiscountCard from "../../components/DiscountCard";
+import CashierCard from "../../components/CashierCard";
 
 function Login() {
   const { t } = useTranslation();
@@ -32,10 +34,36 @@ function Login() {
             </Row>
           </Col>
           <Col lg={3}>
-            <Card title={t("checkout.discount")}>a</Card>
-            <Card title={t("checkout.cashier")}>a</Card>
-            <Card title={t("checkout.custumer")}>a</Card>
-            <Card title={t("checkout.payment")}>a</Card>
+            <Row>
+              <DiscountCard
+                data={{
+                  couponCode: "PROMO20",
+                  percentage: 20,
+                  originalTotal: 150,
+                  discountValue: 30,
+                  finalTotal: 120,
+                }}
+                theme={theme}
+              />
+            </Row>
+            <Row>
+              <CashierCard
+                data={{
+                  id: "0421",
+                  name: "João Silva",
+                  role: "Atendente",
+                  rating: 4.5,
+                  reviewsCount: 128,
+                }}
+                theme={theme}
+              />
+            </Row>
+            <Row>
+              <Card title={t("checkout.custumer")}>a</Card>
+            </Row>
+            <Row>
+              <Card title={t("checkout.payment")}>a</Card>
+            </Row>
           </Col>
         </Row>
       </Body>

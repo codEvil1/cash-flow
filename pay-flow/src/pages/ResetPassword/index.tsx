@@ -11,7 +11,7 @@ import Button from "../../components/Button";
 import { VerificationCode } from "../../components/VerificationCode";
 import { GridButton, Title } from "./style";
 import HeaderControls from "../../components/HeaderControls";
-import { useTheme } from "../../contexts/theme/useTheme";
+import { useTheme } from "../../contexts/Theme/useTheme";
 import { resetPasswordSchema } from "../../validations/resetPasswordSchema";
 
 type ResetPasswordStep = "email" | "reset";

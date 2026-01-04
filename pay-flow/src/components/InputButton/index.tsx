@@ -1,7 +1,7 @@
 import { type LucideIcon } from "lucide-react";
 import { ActionButton, InputWrapper } from "./style";
 import Input from "../Input";
-import { useTheme } from "../../contexts/theme/useTheme";
+import { useTheme } from "../../contexts/Theme/useTheme";
 
 export interface InputButtonProps {
   value: string;

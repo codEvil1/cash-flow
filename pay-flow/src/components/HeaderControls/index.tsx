@@ -3,7 +3,7 @@ import type { Options } from "../../components/Select/type";
 import Toggle from "../../components/Toggle";
 import { Moon, Sun } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "../../contexts/theme/useTheme";
+import { useTheme } from "../../contexts/Theme/useTheme";
 import { Header, Left, Right } from "./style";
 import i18n from "../../i18n";
 import { useState } from "react";
