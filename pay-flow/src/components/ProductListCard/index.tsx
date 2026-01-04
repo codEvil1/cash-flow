@@ -20,6 +20,7 @@ function ProductListCard() {
     {
       key: "description",
       label: t("checkout.description"),
+      align: "center",
       width: "40%",
     },
     {

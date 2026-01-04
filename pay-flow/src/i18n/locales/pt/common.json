@@ -47,7 +47,6 @@
   },
   "checkout": {
     "checkout": "Checkout",
-    "discount": "Desconto",
     "product": "Produto",
     "enterProduct": "Informe o Código do Produto",
     "cashier": "Atendente",
@@ -58,7 +57,13 @@
     "description": "Descrição",
     "quantity": "Quantidade",
     "price": "Preço",
-    "cupom": "Cupom",
     "productList": "Lista de Produtos"
+  },
+  "discount": {
+    "cupom": "Cupom",
+    "discount": "Desconto",
+    "originalValue": "Valor Original",
+    "economy": "Economia",
+    "total": "Final Total"
   }
 }

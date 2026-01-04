@@ -9,6 +9,7 @@ import { Row } from "../../components/Row";
 import { Col } from "../../components/Col";
 import ProductCard from "../../components/ProductCard";
 import ProductListCard from "../../components/ProductListCard";
+import DiscountCard from "../../components/DiscountCard";
 
 function Login() {
   const { t } = useTranslation();
@@ -32,10 +33,27 @@ function Login() {
             </Row>
           </Col>
           <Col lg={3}>
-            <Card title={t("checkout.discount")}>a</Card>
-            <Card title={t("checkout.cashier")}>a</Card>
-            <Card title={t("checkout.custumer")}>a</Card>
-            <Card title={t("checkout.payment")}>a</Card>
+            <Row>
+              <DiscountCard
+                data={{
+                  couponCode: "PROMO20",
+                  percentage: 20,
+                  originalTotal: 150,
+                  discountValue: 30,
+                  finalTotal: 120,
+                }}
+                theme={theme}
+              ></DiscountCard>
+            </Row>
+            <Row>
+              <Card title={t("checkout.cashier")}>a</Card>
+            </Row>
+            <Row>
+              <Card title={t("checkout.custumer")}>a</Card>
+            </Row>
+            <Row>
+              <Card title={t("checkout.payment")}>a</Card>
+            </Row>
           </Col>
         </Row>
       </Body>
