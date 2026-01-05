@@ -17,6 +17,7 @@ export interface ProductFormData {
   item: string;
   description?: string;
   quantity: number;
+  unitPrice?: number;
   price?: number;
 }
 
@@ -86,6 +87,13 @@ function ProductCard() {
                   type="number"
                   error={errors.quantity?.message}
                   {...register("quantity")}
+                />
+              </Col>
+              <Col lg={3}>
+                <Input
+                  text={t("checkout.unitPrice")}
+                  placeholder={t("checkout.unitPrice")}
+                  {...register("unitPrice")}
                 />
               </Col>
               <Col lg={3}>

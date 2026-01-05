@@ -47,13 +47,13 @@ function Checkout() {
                     key: "item",
                     label: t("checkout.product"),
                     align: "center",
-                    width: "20%",
+                    width: "15%",
                   },
                   {
                     key: "description",
                     label: t("checkout.description"),
                     align: "center",
-                    width: "40%",
+                    width: "37%",
                   },
                   {
                     key: "quantity",
@@ -72,10 +72,23 @@ function Checkout() {
                     ),
                   },
                   {
+                    key: "unitPrice",
+                    label: t("checkout.unitPrice"),
+                    align: "center",
+                    width: "15%",
+                    render: (value, row) => {
+                      return `${formatCurrency(
+                        Number(value),
+                        locale,
+                        currency
+                      )} (${row.quantity}x)`;
+                    },
+                  },
+                  {
                     key: "price",
                     label: t("checkout.price"),
                     align: "center",
-                    width: "20%",
+                    width: "15%",
                     render: (value) =>
                       formatCurrency(Number(value), locale, currency),
                   },
@@ -83,11 +96,11 @@ function Checkout() {
                     key: "item",
                     label: "",
                     align: "center",
-                    width: "10%",
+                    width: "8%",
                     render: (_, row) => (
                       <Button
                         onClick={() => handleRemove(row.item)}
-                        text={""}
+                        text={"checkout.removeProduct"}
                         icon={Trash}
                       ></Button>
                     ),

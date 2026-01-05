@@ -1,76 +1,95 @@
 {
   "login": {
-    "forgotPassword": "¿Olvidaste tu contraseña?",
-    "login": "Iniciar sesión",
-    "createAccount": "Crear cuenta",
-    "email": "Correo electrónico",
+    "forgotPassword": "¿Olvidaste la Contraseña?",
+    "login": "Iniciar Sesión",
+    "createAccount": "Crear Cuenta",
+    "email": "Correo Electrónico",
     "password": "Contraseña",
     "logo": "Logo",
-    "signIn": "Iniciar sesión",
-    "enterEmail": "Ingresa tu correo electrónico",
-    "enterPassword": "Ingresa tu contraseña",
-    "confirmaPassword": "Confirma tu contraseña"
+    "signIn": "Ingresar",
+    "enterEmail": "Ingrese su Correo Electrónico",
+    "enterPassword": "Ingrese su Contraseña",
+    "confirmaPassword": "Confirme su Contraseña"
   },
-  "app": {
-    "version": "Versión"
-  },
+  "app": { "version": "Versión" },
   "validation": {
-    "emailInvalid": "Correo electrónico inválido",
-    "emailRequired": "El correo electrónico es obligatorio",
-    "passwordMin": "La contraseña debe tener al menos doce caracteres",
-    "passwordNoSpaces": "La contraseña no puede contener espacios en blanco",
-    "passwordRequired": "La contraseña es obligatoria",
-    "quantityRequired": "La cantidad es obligatoria",
-    "quantityMin": "Cantidad inválida"
+    "emailInvalid": "Correo Electrónico Inválido",
+    "emailRequired": "El Correo Electrónico es Obligatorio",
+    "passwordMin": "La Contraseña Debe Tener Doce Caracteres",
+    "passwordNoSpaces": "La Contraseña No Puede Contener Espacios",
+    "passwordRequired": "La Contraseña es Obligatoria",
+    "quantityRequired": "La Cantidad es Obligatoria",
+    "quantityMin": "Cantidad Inválida"
   },
   "resetPassword": {
-    "sendCode": "Enviar código",
-    "sentEmail": "Correo enviado",
-    "sendCodeEmail": "Enviar código de restablecimiento de contraseña por correo",
-    "changePassword": "Cambiar contraseña",
-    "confirmPassword": "Confirmar contraseña",
-    "titleEmail": "Recuperación de contraseña",
-    "titleReset": "Crear nueva contraseña",
-    "recoveryCode": "Código de recuperación"
+    "sendCode": "Enviar Código",
+    "sentEmail": "Correo Enviado",
+    "sendCodeEmail": "Enviar Código de Restablecimiento por Correo",
+    "changePassword": "Cambiar Contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "titleEmail": "Recuperación de Contraseña",
+    "titleReset": "Crear Nueva Contraseña",
+    "recoveryCode": "Código de Recuperación"
   },
-  "common": {
-    "back": "Volver"
-  },
+  "common": { "back": "Volver" },
   "theme": {
     "light": "Claro",
     "dark": "Oscuro",
-    "selectTheme": "Seleccionar tema"
+    "selectTheme": "Seleccionar Tema"
   },
   "createAccount": {
-    "titleEmail": "Crea tu cuenta",
-    "titleCreate": "Define tu contraseña",
-    "verificationCode": "Código de verificación",
-    "createAccount": "Crear cuenta"
+    "titleEmail": "Crea Tu Cuenta",
+    "titleCreate": "Define Tu Contraseña",
+    "verificationCode": "Código de Verificación",
+    "createAccount": "Crear Cuenta"
   },
   "checkout": {
     "checkout": "Checkout",
     "product": "Producto",
-    "enterProduct": "Ingresa el código del producto",
-    "customer": "Cliente",
-    "payment": "Pago",
+    "enterProduct": "Ingrese Código del Producto",
     "promotions": "Promociones",
-    "noImage": "Producto sin imagen",
+    "noImage": "Producto sin Imagen",
     "description": "Descripción",
     "quantity": "Cantidad",
     "price": "Precio",
-    "productList": "Lista de productos"
+    "productList": "Lista de Productos"
   },
   "discount": {
     "cupom": "Cupón",
     "discount": "Descuento",
-    "originalValue": "Valor original",
+    "originalValue": "Valor Original",
     "economy": "Ahorro",
-    "total": "Total final"
+    "total": "Descuento Total"
   },
   "cashier": {
-    "cashier": "Atendente",
+    "cashier": "Cajero",
     "id": "ID",
     "name": "Nombre",
     "rating": "Calificación"
+  },
+  "productList": {
+    "emptyList": "Lista Vacía",
+    "addProduct": "Agregar Producto"
+  },
+  "customer": {
+    "customer": "Cliente",
+    "name": "Nombre",
+    "identifier": "Identificador",
+    "phone": "Teléfono",
+    "email": "Correo Electrónico"
+  },
+  "payment": {
+    "payment": "Pago",
+    "value": "Valor Original",
+    "total": "Total",
+    "paymentMethod": "Método de Pago",
+    "installments": "Cuotas"
+  },
+  "shipping": {
+    "shipping": "Envío",
+    "type": "Tipo",
+    "deliveryTime": "Tiempo de Entrega",
+    "cost": "Costo",
+    "address": "Dirección"
   }
 }
