@@ -49,7 +49,6 @@
     "checkout": "Checkout",
     "product": "Produto",
     "enterProduct": "Informe o Código do Produto",
-    "payment": "Pagamento",
     "promotions": "Promoções",
     "noImage": "Produto sem imagem",
     "description": "Descrição",
@@ -80,5 +79,15 @@
     "identifier": "Identificador",
     "phone": "Telefone",
     "email": "E-mail"
+  },
+  "payment": {
+    "payment": "Pagamento",
+    "value": "Total Bruto",
+    "total": "Total Líquido",
+    "paymentMethod": "Método de Pagamento",
+    "installments": "Parcelas"
+  },
+  "shipping": {
+    "shipping": "Frete"
   }
 }

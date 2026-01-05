@@ -17,8 +17,8 @@ import { useCurrency } from "../../contexts/Currency/useCurrency";
 import Button from "../../components/Button";
 import { Trash } from "lucide-react";
 import { useState } from "react";
-import Card from "../../components/Card";
 import CustomerCard from "../../components/CustumerCard";
+import PaymentCard from "../../components/PaymentCard";
 
 function Checkout() {
   const { t } = useTranslation();
@@ -154,7 +154,18 @@ function Checkout() {
               />
             </Row>
             <Row>
-              <Card title={t("checkout.payment")}>a</Card>
+              <PaymentCard
+                data={{
+                  paymentMethod: "card",
+                  cardBrand: "Visa",
+                  discount: 100,
+                  shipping: 50,
+                  installments: 4,
+                  installmentValue: 857.5,
+                  value: 2400,
+                  total: 2350,
+                }}
+              />
             </Row>
           </Col>
         </Row>

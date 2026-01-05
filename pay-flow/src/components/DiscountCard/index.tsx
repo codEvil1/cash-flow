@@ -50,7 +50,7 @@ function DiscountCard({ data }: DiscountCardProps) {
       <RowItem theme={theme}>
         <ArrowDown size={16} />
         <Label>{t("discount.economy")}</Label>
-        <Value>-{formatCurrency(data.discountValue, locale, currency)}</Value>
+        <Value>- {formatCurrency(data.discountValue, locale, currency)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <Check size={16} />
