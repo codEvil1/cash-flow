@@ -8,6 +8,7 @@ import AppRoutes from "./routes/index.tsx";
 import { ThemeProvider } from "./contexts/Theme/ThemeProvider.tsx";
 import { CurrencyProvider } from "./contexts/Currency/CurrencyProvider";
 import { ProductListProvider } from "./contexts/ProductList/ProductListProvider.tsx";
+import { PaymentProvider } from "./contexts/Payment/PaymentProvider.tsx";
 
 // TODO: alterar tema do toast conforme seleção
 
@@ -16,16 +17,18 @@ createRoot(document.getElementById("root")!).render(
     <CurrencyProvider>
       <ThemeProvider>
         <ProductListProvider>
-          <GlobalStyle />
-          <AppRoutes />
-          <ToastContainer
-            position="bottom-right"
-            autoClose={3000}
-            closeOnClick
-            pauseOnHover
-            draggable
-            theme="dark"
-          />
+          <PaymentProvider>
+            <GlobalStyle />
+            <AppRoutes />
+            <ToastContainer
+              position="bottom-right"
+              autoClose={3000}
+              closeOnClick
+              pauseOnHover
+              draggable
+              theme="dark"
+            />
+          </PaymentProvider>
         </ProductListProvider>
       </ThemeProvider>
     </CurrencyProvider>

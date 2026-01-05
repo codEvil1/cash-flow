@@ -5,7 +5,9 @@ import HeaderControls from "../../components/HeaderControls";
 import { Body } from "./style";
 import { Row } from "../../components/Row";
 import { Col } from "../../components/Col";
-import ProductCard from "../../components/ProductCard";
+import ProductCard, {
+  type ProductFormData,
+} from "../../components/ProductCard";
 import ProductListCard from "../../components/ProductListCard";
 import DiscountCard from "../../components/DiscountCard";
 import CashierCard from "../../components/CashierCard";
@@ -23,10 +25,10 @@ function Checkout() {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { currency, locale } = useCurrency();
-  const { productList, setProductList } = useProductList();
+  const { productList, removeProduct } = useProductList();
 
-  const handleRemove = (item: string) => {
-    setProductList(productList.filter((p) => p.item !== item));
+  const handleRemove = (product: ProductFormData) => {
+    removeProduct(product);
   };
 
   return (
@@ -99,7 +101,7 @@ function Checkout() {
                     width: "8%",
                     render: (_, row) => (
                       <Button
-                        onClick={() => handleRemove(row.item)}
+                        onClick={() => handleRemove(row)}
                         text={"checkout.removeProduct"}
                         icon={Trash}
                       ></Button>
@@ -164,7 +166,6 @@ function Checkout() {
                   installments: 4,
                   installmentValue: 857.5,
                   value: 2400,
-                  total: 2350,
                 }}
               />
             </Row>

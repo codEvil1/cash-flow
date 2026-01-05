@@ -13,11 +13,11 @@ import Card from "../Card";
 import { useNavigate } from "react-router-dom";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { useCurrency } from "../../contexts/Currency/useCurrency";
+import { usePayment } from "../../contexts/Payment/usePayment";
 
 export interface PaymentCardProps {
   data: {
     value: number;
-    total: number;
     discount?: number;
     shipping?: number;
     paymentMethod: string;
@@ -31,6 +31,7 @@ function PaymentCard({ data }: PaymentCardProps) {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { currency, locale } = useCurrency();
+  const { subTotal } = usePayment();
   const navigate = useNavigate();
 
   return (
@@ -52,7 +53,7 @@ function PaymentCard({ data }: PaymentCardProps) {
       <RowItem theme={theme}>
         <DollarSign size={16} />
         <Label>{t("payment.value")}</Label>
-        <Value>{formatCurrency(data.value, locale, currency)}</Value>
+        <Value>{formatCurrency(subTotal, locale, currency)}</Value>
       </RowItem>
       {data.discount && data.discount > 0 && (
         <RowItem theme={theme}>
@@ -71,7 +72,7 @@ function PaymentCard({ data }: PaymentCardProps) {
       <RowItem theme={theme}>
         <Check size={16} />
         <Label>{t("payment.total")}</Label>
-        <Value>{formatCurrency(data.total, locale, currency)}</Value>
+        <Value>{formatCurrency(data.value, locale, currency)}</Value>
       </RowItem>
       {data.paymentMethod === "card" && data.installmentValue && (
         <RowItem theme={theme}>

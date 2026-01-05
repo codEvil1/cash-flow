@@ -6,5 +6,5 @@ export function formatCurrency(
   return new Intl.NumberFormat(locale, {
     style: "currency",
     currency,
-  }).format(value);
+  }).format(value || 0);
 }
