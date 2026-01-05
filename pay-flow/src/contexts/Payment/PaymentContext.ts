@@ -1,22 +1,19 @@
 import { createContext } from "react";
 
+export interface Installments {
+  number: number;
+  amount: number;
+}
+
 export interface PaymentContextData {
   subTotal: number;
-  // netTotal: number;
-  // discount: number;
-  // shipping: number;
-  // paymentMethod: string;
-  // cardBrand: string;
-  // installments: number;
-  // installmentValue: number;
-  // setSubtotal: (subtotal: number) => void;
-  // setNetTotal: (netTotal: number) => void;
-  // setDiscount: (discount: number) => void;
-  // setShipping: (shipping: number) => void;
-  // setPaymentMethod: (paymentMethod: string) => void;
-  // setCardBrand: (cardBrand: string) => void;
-  // setInstallments: (installments: number) => void;
-  // setInstallmentValue: (installmentValue: number) => void;
+  netTotal: number;
+  paymentMethod: string;
+  brand: string;
+  installments: Installments[];
+  setPaymentMethod: (paymentMethod: string) => void;
+  setBrand: (brand: string) => void;
+  setInstallments: (installments: Installments[]) => void;
 }
 
 export const PaymentContext = createContext<PaymentContextData>(
