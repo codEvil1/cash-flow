@@ -5,9 +5,7 @@ import HeaderControls from "../../components/HeaderControls";
 import { Body } from "./style";
 import { Row } from "../../components/Row";
 import { Col } from "../../components/Col";
-import ProductCard, {
-  type ProductFormData,
-} from "../../components/ProductCard";
+import ProductCard from "../../components/ProductCard";
 import ProductListCard from "../../components/ProductListCard";
 import DiscountCard from "../../components/DiscountCard";
 import CashierCard from "../../components/CashierCard";
@@ -16,22 +14,20 @@ import Input from "../../components/Input";
 import { useCurrency } from "../../contexts/Currency/useCurrency";
 import Button from "../../components/Button";
 import { Trash } from "lucide-react";
-import { useState } from "react";
 import CustomerCard from "../../components/CustumerCard";
 import PaymentCard from "../../components/PaymentCard";
 import ShippingCard from "../../components/ShippingCard";
+import { useProductList } from "../../contexts/ProductList/useProductList";
 
 function Checkout() {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { currency, locale } = useCurrency();
+  const { productList, setProductList } = useProductList();
 
-  const [products, setProducts] = useState<ProductFormData[]>([]);
-
-  function handleRemove(item: string) {
-    // event.stopPropagation();
-    setProducts((prev) => prev.filter((product) => product.item !== item));
-  }
+  const handleRemove = (item: string) => {
+    setProductList(productList.filter((p) => p.item !== item));
+  };
 
   return (
     <Page theme={theme}>
@@ -97,26 +93,7 @@ function Checkout() {
                     ),
                   },
                 ]}
-                data={[
-                  {
-                    item: "24011112",
-                    description: "Produto X",
-                    quantity: 2,
-                    price: 50,
-                  },
-                  {
-                    item: "24011113",
-                    description: "Produto Y",
-                    quantity: 1,
-                    price: 50,
-                  },
-                  {
-                    item: "24011110",
-                    description: "Produto Z",
-                    quantity: 3,
-                    price: 25,
-                  },
-                ]}
+                data={productList}
               />
             </Row>
           </Col>

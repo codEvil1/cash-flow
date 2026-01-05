@@ -15,7 +15,6 @@ function Product() {
   const { t } = useTranslation();
   const { theme } = useTheme();
 
-  // const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -27,10 +26,7 @@ function Product() {
   const onSubmit = (data: ProductFormData) => {
     // chamada login backend
     toast.success("Sucesso");
-    toast.error("Erro");
-    toast.warning("Atenção");
     console.log(data);
-    // navigate("/dashboard");
   };
 
   return (
