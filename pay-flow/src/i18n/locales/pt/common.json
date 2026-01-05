@@ -61,7 +61,7 @@
     "discount": "Desconto",
     "originalValue": "Valor Original",
     "economy": "Economia",
-    "total": "Final Total"
+    "total": "Total Desconto"
   },
   "cashier": {
     "cashier": "Atendente",
@@ -82,12 +82,16 @@
   },
   "payment": {
     "payment": "Pagamento",
-    "value": "Total Bruto",
-    "total": "Total Líquido",
+    "value": "Valor Original",
+    "total": "Total",
     "paymentMethod": "Método de Pagamento",
     "installments": "Parcelas"
   },
   "shipping": {
-    "shipping": "Frete"
+    "shipping": "Frete",
+    "type": "Tipo",
+    "deliveryTime": "Prazo de Entrega",
+    "cost": "Valor",
+    "address": "Endereço"
   }
 }

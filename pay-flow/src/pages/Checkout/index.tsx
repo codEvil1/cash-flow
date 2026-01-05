@@ -19,6 +19,7 @@ import { Trash } from "lucide-react";
 import { useState } from "react";
 import CustomerCard from "../../components/CustumerCard";
 import PaymentCard from "../../components/PaymentCard";
+import ShippingCard from "../../components/ShippingCard";
 
 function Checkout() {
   const { t } = useTranslation();
@@ -121,17 +122,6 @@ function Checkout() {
           </Col>
           <Col lg={3}>
             <Row>
-              <DiscountCard
-                data={{
-                  couponCode: "PROMO20",
-                  percentage: 20,
-                  originalTotal: 150,
-                  discountValue: 30,
-                  finalTotal: 120,
-                }}
-              />
-            </Row>
-            <Row>
               <CashierCard
                 data={{
                   id: "0421",
@@ -150,6 +140,27 @@ function Checkout() {
                   phone: "54994057272",
                   email: "brunoviniciuspaese@gmail.com",
                   country: "BR",
+                }}
+              />
+            </Row>
+            <Row>
+              <ShippingCard
+                data={{
+                  type: "Sedex",
+                  deliveryTime: "12-15 Dias Úteis",
+                  cost: 50,
+                  address: "Andrea Pontin, 172, Centro, Carlos Barbosa",
+                }}
+              />
+            </Row>
+            <Row>
+              <DiscountCard
+                data={{
+                  couponCode: "PROMO20",
+                  percentage: 20,
+                  originalTotal: 150,
+                  discountValue: 30,
+                  finalTotal: 120,
                 }}
               />
             </Row>
