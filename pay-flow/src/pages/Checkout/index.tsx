@@ -1,9 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../contexts/Theme/useTheme";
-import { Footer, Page } from "../Login/style";
+import { Page } from "../Login/style";
 import HeaderControls from "../../components/HeaderControls";
-import { APP_VERSION } from "../../config/app";
-import { Card } from "../../components/Card";
 import { Body } from "./style";
 import { Row } from "../../components/Row";
 import { Col } from "../../components/Col";
@@ -11,12 +9,25 @@ import ProductCard from "../../components/ProductCard";
 import ProductListCard from "../../components/ProductListCard";
 import DiscountCard from "../../components/DiscountCard";
 import CashierCard from "../../components/CashierCard";
+import { formatCurrency } from "../../utils/formatCurrency";
+import Input from "../../components/Input";
+import { useCurrency } from "../../contexts/Currency/useCurrency";
+import Button from "../../components/Button";
+import { Trash } from "lucide-react";
+import CustomerCard from "../../components/CustumerCard";
+import PaymentCard from "../../components/PaymentCard";
+import ShippingCard from "../../components/ShippingCard";
+import { useProductList } from "../../contexts/ProductList/useProductList";
 
-function Login() {
+function Checkout() {
   const { t } = useTranslation();
   const { theme } = useTheme();
+  const { currency, locale } = useCurrency();
+  const { productList, setProductList } = useProductList();
 
-  // const navigate = useNavigate();
+  const handleRemove = (item: string) => {
+    setProductList(productList.filter((p) => p.item !== item));
+  };
 
   return (
     <Page theme={theme}>
@@ -30,22 +41,63 @@ function Login() {
               <ProductCard />
             </Row>
             <Row>
-              <ProductListCard />
+              <ProductListCard
+                columns={[
+                  {
+                    key: "item",
+                    label: t("checkout.product"),
+                    align: "center",
+                    width: "20%",
+                  },
+                  {
+                    key: "description",
+                    label: t("checkout.description"),
+                    align: "center",
+                    width: "40%",
+                  },
+                  {
+                    key: "quantity",
+                    label: t("checkout.quantity"),
+                    align: "center",
+                    width: "10%",
+                    render: (value) => (
+                      <Input
+                        placeholder="aa"
+                        text="aa"
+                        // type="number"
+                        value={value}
+                        readOnly
+                        center
+                      />
+                    ),
+                  },
+                  {
+                    key: "price",
+                    label: t("checkout.price"),
+                    align: "center",
+                    width: "20%",
+                    render: (value) =>
+                      formatCurrency(Number(value), locale, currency),
+                  },
+                  {
+                    key: "item",
+                    label: "",
+                    align: "center",
+                    width: "10%",
+                    render: (_, row) => (
+                      <Button
+                        onClick={() => handleRemove(row.item)}
+                        text={""}
+                        icon={Trash}
+                      ></Button>
+                    ),
+                  },
+                ]}
+                data={productList}
+              />
             </Row>
           </Col>
           <Col lg={3}>
-            <Row>
-              <DiscountCard
-                data={{
-                  couponCode: "PROMO20",
-                  percentage: 20,
-                  originalTotal: 150,
-                  discountValue: 30,
-                  finalTotal: 120,
-                }}
-                theme={theme}
-              />
-            </Row>
             <Row>
               <CashierCard
                 data={{
@@ -55,23 +107,59 @@ function Login() {
                   rating: 4.5,
                   reviewsCount: 128,
                 }}
-                theme={theme}
               />
             </Row>
             <Row>
-              <Card title={t("checkout.custumer")}>a</Card>
+              <CustomerCard
+                data={{
+                  name: "Bruno Paese",
+                  identifier: "031.656.400-17",
+                  phone: "54994057272",
+                  email: "brunoviniciuspaese@gmail.com",
+                  country: "BR",
+                }}
+              />
             </Row>
             <Row>
-              <Card title={t("checkout.payment")}>a</Card>
+              <ShippingCard
+                data={{
+                  type: "Sedex",
+                  deliveryTime: "12-15 Dias Úteis",
+                  cost: 50,
+                  address: "Andrea Pontin, 172, Centro, Carlos Barbosa",
+                }}
+              />
+            </Row>
+            <Row>
+              <DiscountCard
+                data={{
+                  couponCode: "PROMO20",
+                  percentage: 20,
+                  originalTotal: 150,
+                  discountValue: 30,
+                  finalTotal: 120,
+                }}
+              />
+            </Row>
+            <Row>
+              <PaymentCard
+                data={{
+                  paymentMethod: "card",
+                  cardBrand: "Visa",
+                  discount: 100,
+                  shipping: 50,
+                  installments: 4,
+                  installmentValue: 857.5,
+                  value: 2400,
+                  total: 2350,
+                }}
+              />
             </Row>
           </Col>
         </Row>
       </Body>
-      <Footer theme={theme}>
-        {t("app.version")} v{APP_VERSION}
-      </Footer>
     </Page>
   );
 }
 
-export default Login;
+export default Checkout;

@@ -1,14 +1,15 @@
 {
   "login": {
     "forgotPassword": "¿Olvidaste tu contraseña?",
-    "login": "Ingresar",
+    "login": "Iniciar sesión",
     "createAccount": "Crear cuenta",
     "email": "Correo electrónico",
     "password": "Contraseña",
     "logo": "Logo",
     "signIn": "Iniciar sesión",
     "enterEmail": "Ingresa tu correo electrónico",
-    "enterPassword": "Ingresa tu contraseña"
+    "enterPassword": "Ingresa tu contraseña",
+    "confirmaPassword": "Confirma tu contraseña"
   },
   "app": {
     "version": "Versión"
@@ -18,14 +19,16 @@
     "emailRequired": "El correo electrónico es obligatorio",
     "passwordMin": "La contraseña debe tener al menos doce caracteres",
     "passwordNoSpaces": "La contraseña no puede contener espacios en blanco",
-    "passwordRequired": "La contraseña es obligatoria"
+    "passwordRequired": "La contraseña es obligatoria",
+    "quantityRequired": "La cantidad es obligatoria",
+    "quantityMin": "Cantidad inválida"
   },
   "resetPassword": {
     "sendCode": "Enviar código",
     "sentEmail": "Correo enviado",
-    "sendCodeEmail": "Enviar código de restablecimiento de contraseña por correo electrónico",
+    "sendCodeEmail": "Enviar código de restablecimiento de contraseña por correo",
     "changePassword": "Cambiar contraseña",
-    "confirmPassword": "Confirmación de contraseña",
+    "confirmPassword": "Confirmar contraseña",
     "titleEmail": "Recuperación de contraseña",
     "titleReset": "Crear nueva contraseña",
     "recoveryCode": "Código de recuperación"
@@ -37,5 +40,37 @@
     "light": "Claro",
     "dark": "Oscuro",
     "selectTheme": "Seleccionar tema"
+  },
+  "createAccount": {
+    "titleEmail": "Crea tu cuenta",
+    "titleCreate": "Define tu contraseña",
+    "verificationCode": "Código de verificación",
+    "createAccount": "Crear cuenta"
+  },
+  "checkout": {
+    "checkout": "Checkout",
+    "product": "Producto",
+    "enterProduct": "Ingresa el código del producto",
+    "customer": "Cliente",
+    "payment": "Pago",
+    "promotions": "Promociones",
+    "noImage": "Producto sin imagen",
+    "description": "Descripción",
+    "quantity": "Cantidad",
+    "price": "Precio",
+    "productList": "Lista de productos"
+  },
+  "discount": {
+    "cupom": "Cupón",
+    "discount": "Descuento",
+    "originalValue": "Valor original",
+    "economy": "Ahorro",
+    "total": "Total final"
+  },
+  "cashier": {
+    "cashier": "Atendente",
+    "id": "ID",
+    "name": "Nombre",
+    "rating": "Calificación"
   }
 }

@@ -49,8 +49,6 @@
     "checkout": "Checkout",
     "product": "Produto",
     "enterProduct": "Informe o Código do Produto",
-    "custumer": "Cliente",
-    "payment": "Pagamento",
     "promotions": "Promoções",
     "noImage": "Produto sem imagem",
     "description": "Descrição",
@@ -63,12 +61,37 @@
     "discount": "Desconto",
     "originalValue": "Valor Original",
     "economy": "Economia",
-    "total": "Final Total"
+    "total": "Total Desconto"
   },
   "cashier": {
     "cashier": "Atendente",
     "id": "ID",
     "name": "Nome",
     "rating": "Avaliação"
+  },
+  "productList": {
+    "emptyList": "Lista Vazia",
+    "addProduct": "Adicionar Produto"
+  },
+  "customer": {
+    "customer": "Cliente",
+    "name": "Nome",
+    "identifier": "Identificador",
+    "phone": "Telefone",
+    "email": "E-mail"
+  },
+  "payment": {
+    "payment": "Pagamento",
+    "value": "Valor Original",
+    "total": "Total",
+    "paymentMethod": "Método de Pagamento",
+    "installments": "Parcelas"
+  },
+  "shipping": {
+    "shipping": "Frete",
+    "type": "Tipo",
+    "deliveryTime": "Prazo de Entrega",
+    "cost": "Valor",
+    "address": "Endereço"
   }
 }

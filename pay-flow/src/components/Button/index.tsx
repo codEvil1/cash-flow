@@ -9,7 +9,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 function Button({ children, icon, text, ...props }: ButtonProps) {
   const { theme } = useTheme();
-
   const Icon = icon;
 
   return (
@@ -20,7 +19,7 @@ function Button({ children, icon, text, ...props }: ButtonProps) {
             <Icon />
           </IconWrapper>
         )}
-        <span>{children}</span>
+        {children && <span>{children}</span>}
       </Content>
     </StyledButton>
   );

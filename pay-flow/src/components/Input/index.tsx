@@ -7,10 +7,11 @@ import { useTheme } from "../../contexts/Theme/useTheme";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder: string;
   text: string;
+  center?: boolean;
   error?: string;
 }
 
-function Input({ placeholder, text, error, ...props }: InputProps) {
+function Input({ placeholder, text, center, error, ...props }: InputProps) {
   const { theme } = useTheme();
 
   return (
@@ -20,6 +21,7 @@ function Input({ placeholder, text, error, ...props }: InputProps) {
         hasError={!!error}
         placeholder={placeholder}
         title={text}
+        center={center}
         {...props}
       />
       {error && (

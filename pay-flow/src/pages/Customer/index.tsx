@@ -38,7 +38,7 @@ function Customer() {
       <HeaderControls
         breadcrumbs={[
           { label: "checkout.checkout", path: "/checkout" },
-          { label: "checkout.customer", path: "/checkout/customer" },
+          { label: "customer.customer", path: "/checkout/customer" },
         ]}
       />
       <form onSubmit={handleSubmit(onSubmit)}>

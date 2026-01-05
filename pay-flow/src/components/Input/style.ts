@@ -3,6 +3,7 @@ import { colors } from "../Style/theme";
 
 interface InputStyleProps {
   theme: "light" | "dark";
+  center?: boolean;
   hasError?: boolean;
 }
 
@@ -45,6 +46,8 @@ export const StyledInput = styled.input<InputStyleProps>`
 
   color: ${({ theme }) =>
     theme === "dark" ? colors.darkText : colors.lightText};
+
+  text-align: ${({ center }) => (center ? "center" : "left")};
 
   outline: none;
   transition: all 0.25s ease;

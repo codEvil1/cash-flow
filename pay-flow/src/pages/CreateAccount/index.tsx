@@ -7,7 +7,7 @@ import Input from "../../components/Input";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createAccountSchema } from "../../validations/createAccountSchema";
-import { GridButton, Title } from "../ResetPassword/style";
+import { GridButton, Title } from "../Shipping/style";
 import { useState } from "react";
 import Button from "../../components/Button";
 import { ArrowLeft, Mail, UserPlus } from "lucide-react";

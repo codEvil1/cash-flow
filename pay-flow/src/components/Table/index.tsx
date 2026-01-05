@@ -1,4 +1,4 @@
-import { useMemo, useState, type ReactNode } from "react";
+import { useMemo, useState } from "react";
 import {
   TableWrapper,
   StyledTable,
@@ -22,6 +22,9 @@ import {
   ArrowDown,
   ArrowUpDown,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { useTheme } from "../../contexts/Theme/useTheme";
+import type { ReactNode, MouseEvent } from "react";
 
 export interface Column<T> {
   key: keyof T;
@@ -41,18 +44,14 @@ interface SortState<T> {
 export interface TableProps<T> {
   columns: Column<T>[];
   data: T[];
-  emptyMessage?: string;
   pageSize?: number;
-  theme?: "light" | "dark";
+  onRowClick?: (row: T) => void;
 }
 
-function Table<T>({
-  columns,
-  data,
-  emptyMessage,
-  pageSize = 10,
-  theme = "light",
-}: TableProps<T>) {
+function Table<T>({ columns, data, pageSize = 10, onRowClick }: TableProps<T>) {
+  const { t } = useTranslation();
+  const { theme } = useTheme();
+
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState<SortState<T>>({
     key: null,
@@ -109,10 +108,29 @@ function Table<T>({
     return (
       <Empty theme={theme}>
         <Inbox size={20} />
-        <span>{emptyMessage || "Lista Vazia"}</span>
+        <span>{t("productList.emptyList")}</span>
       </Empty>
     );
   }
+
+  const handleClick = (event: MouseEvent<HTMLTableRowElement>, row: T) => {
+    const interactiveElements = [
+      "INPUT",
+      "BUTTON",
+      "SELECT",
+      "TEXTAREA",
+      "A",
+      "LABEL",
+    ];
+    const isInteractive = interactiveElements.some((tag) =>
+      (event.target as HTMLElement).closest(tag)
+    );
+    if (isInteractive) {
+      event.stopPropagation();
+      return;
+    }
+    onRowClick?.(row);
+  };
 
   return (
     <TableWrapper theme={theme}>
@@ -131,12 +149,16 @@ function Table<T>({
                 >
                   <HeaderContent align={col.align}>
                     {col.label}
-                    {!isActive && <ArrowUpDown size={14} />}
-                    {isActive && sort.direction === "asc" && (
-                      <ArrowUp size={14} />
-                    )}
-                    {isActive && sort.direction === "desc" && (
-                      <ArrowDown size={14} />
+                    {col.label && (
+                      <>
+                        {!isActive && <ArrowUpDown size={14} />}
+                        {isActive && sort.direction === "asc" && (
+                          <ArrowUp size={14} />
+                        )}
+                        {isActive && sort.direction === "desc" && (
+                          <ArrowDown size={14} />
+                        )}
+                      </>
                     )}
                   </HeaderContent>
                 </Th>
@@ -146,7 +168,13 @@ function Table<T>({
         </thead>
         <tbody>
           {paginatedData.map((row, index) => (
-            <Tr key={index} zebra={index % 2 === 0} theme={theme}>
+            <Tr
+              key={index}
+              zebra={index % 2 === 0}
+              theme={theme}
+              clickable={!!onRowClick}
+              onClick={(event) => handleClick(event, row)}
+            >
               {columns.map((col) => {
                 const value = row[col.key];
 

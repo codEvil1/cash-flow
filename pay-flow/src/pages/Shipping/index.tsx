@@ -1,32 +1,37 @@
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "../../contexts/Theme/useTheme";
 import { toast } from "react-toastify";
-import { Body, Footer, Page } from "../Login/style";
+import { useTheme } from "../../contexts/Theme/useTheme";
 import HeaderControls from "../../components/HeaderControls";
-import { APP_VERSION } from "../../config/app";
+import { Footer, Page } from "../Login/style";
+import { Body } from "../Checkout/style";
 import Input from "../../components/Input";
+import { APP_VERSION } from "../../config/app";
 
-interface ProductFormData {
+interface ShippingFormData {
   product: string;
 }
 
-function Product() {
+function Shipping() {
   const { t } = useTranslation();
   const { theme } = useTheme();
 
+  // const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ProductFormData>({
-    // resolver: yupResolver(productSchema(t)),
+  } = useForm<ShippingFormData>({
+    // resolver: yupResolver(checkoutSchema(t)),
   });
 
-  const onSubmit = (data: ProductFormData) => {
+  const onSubmit = (data: ShippingFormData) => {
     // chamada login backend
     toast.success("Sucesso");
+    toast.error("Erro");
+    toast.warning("Atenção");
     console.log(data);
+    // navigate("/dashboard");
   };
 
   return (
@@ -34,7 +39,7 @@ function Product() {
       <HeaderControls
         breadcrumbs={[
           { label: "checkout.checkout", path: "/checkout" },
-          { label: "checkout.product", path: "/checkout/product" },
+          { label: "checkout.promotions", path: "/checkout/promotions" },
         ]}
       />
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -54,4 +59,4 @@ function Product() {
   );
 }
 
-export default Product;
+export default Shipping;
