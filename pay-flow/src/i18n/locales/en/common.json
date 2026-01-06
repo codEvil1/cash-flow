@@ -1,41 +1,37 @@
 {
   "login": {
     "forgotPassword": "Forgot Password?",
-    "login": "Log In",
+    "login": "Login",
     "createAccount": "Create Account",
     "email": "Email",
     "password": "Password",
     "logo": "Logo",
     "signIn": "Sign In",
-    "enterEmail": "Enter your email",
-    "enterPassword": "Enter your password",
-    "confirmaPassword": "Confirm your password"
+    "enterEmail": "Enter your Email",
+    "enterPassword": "Enter your Password",
+    "confirmaPassword": "Confirm your Password"
   },
-  "app": {
-    "version": "Version"
-  },
+  "app": { "version": "Version" },
   "validation": {
-    "emailInvalid": "Invalid email",
-    "emailRequired": "Email is required",
-    "passwordMin": "Password must be at least twelve characters",
-    "passwordNoSpaces": "Password cannot contain blank spaces",
-    "passwordRequired": "Password is required",
-    "quantityRequired": "Quantity is required",
-    "quantityMin": "Invalid quantity"
+    "emailInvalid": "Invalid Email",
+    "emailRequired": "Email is Required",
+    "passwordMin": "Password Must Be Twelve Characters",
+    "passwordNoSpaces": "Password Cannot Contain Spaces",
+    "passwordRequired": "Password is Required",
+    "quantityRequired": "Quantity is Required",
+    "quantityMin": "Invalid Quantity"
   },
   "resetPassword": {
     "sendCode": "Send Code",
     "sentEmail": "Email Sent",
-    "sendCodeEmail": "Send password reset code by email",
+    "sendCodeEmail": "Send Password Reset Code by Email",
     "changePassword": "Change Password",
     "confirmPassword": "Confirm Password",
     "titleEmail": "Password Recovery",
     "titleReset": "Create New Password",
     "recoveryCode": "Recovery Code"
   },
-  "common": {
-    "back": "Back"
-  },
+  "common": { "back": "Back" },
   "theme": {
     "light": "Light",
     "dark": "Dark",
@@ -51,10 +47,8 @@
     "checkout": "Checkout",
     "product": "Product",
     "enterProduct": "Enter Product Code",
-    "customer": "Customer",
-    "payment": "Payment",
     "promotions": "Promotions",
-    "noImage": "Product without image",
+    "noImage": "Product without Image",
     "description": "Description",
     "quantity": "Quantity",
     "price": "Price",
@@ -65,12 +59,37 @@
     "discount": "Discount",
     "originalValue": "Original Value",
     "economy": "Savings",
-    "total": "Final Total"
+    "total": "Total Discount"
   },
   "cashier": {
     "cashier": "Cashier",
     "id": "ID",
     "name": "Name",
     "rating": "Rating"
+  },
+  "productList": {
+    "emptyList": "Empty List",
+    "addProduct": "Add Product"
+  },
+  "customer": {
+    "customer": "Customer",
+    "name": "Name",
+    "identifier": "Identifier",
+    "phone": "Phone",
+    "email": "Email"
+  },
+  "payment": {
+    "payment": "Payment",
+    "value": "Original Value",
+    "total": "Total",
+    "paymentMethod": "Payment Method",
+    "installments": "Installments"
+  },
+  "shipping": {
+    "shipping": "Shipping",
+    "type": "Type",
+    "deliveryTime": "Delivery Time",
+    "cost": "Cost",
+    "address": "Address"
   }
 }

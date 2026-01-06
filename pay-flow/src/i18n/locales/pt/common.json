@@ -53,8 +53,10 @@
     "noImage": "Produto sem imagem",
     "description": "Descrição",
     "quantity": "Quantidade",
-    "price": "Preço",
-    "productList": "Lista de Produtos"
+    "price": "Preço Total",
+    "productList": "Lista de Produtos",
+    "unitPrice": "Preço Unitário",
+    "removeProduct": "Remover Produto"
   },
   "discount": {
     "cupom": "Cupom",

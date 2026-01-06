@@ -3,7 +3,8 @@ import type { ProductFormData } from "../../components/ProductCard";
 
 interface ProductListProviderContextData {
   productList: ProductFormData[];
-  setProductList: (products: ProductFormData[]) => void;
+  addProduct: (products: ProductFormData) => void;
+  removeProduct: (products: ProductFormData) => void;
 }
 
 export const ProductListContext = createContext<ProductListProviderContextData>(

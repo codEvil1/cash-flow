@@ -4,7 +4,7 @@ import { useTheme } from "../../contexts/Theme/useTheme";
 import { toast } from "react-toastify";
 import { Body, Footer, Page } from "../Login/style";
 import HeaderControls from "../../components/HeaderControls";
-import { APP_VERSION } from "../../config/app";
+import { APP_VERSION } from "../../config/constants";
 import Input from "../../components/Input";
 
 interface CashierFormData {

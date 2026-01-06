@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { APP_VERSION } from "../../config/app";
+import { APP_VERSION } from "../../config/constants";
 import { Body, Footer, Page } from "../Login/style";
 import HeaderControls from "../../components/HeaderControls";
 import { useTheme } from "../../contexts/Theme/useTheme";

@@ -17,12 +17,13 @@ export interface ProductFormData {
   item: string;
   description?: string;
   quantity: number;
-  price?: number;
+  unitPrice?: number;
+  price: number;
 }
 
 function ProductCard() {
   const { t } = useTranslation();
-  const { productList, setProductList } = useProductList();
+  const { addProduct } = useProductList();
   const navigate = useNavigate();
 
   const {
@@ -34,19 +35,8 @@ function ProductCard() {
     resolver: yupResolver(productSchema(t)),
   });
 
-  const addProduct = (product: ProductFormData) => {
-    const exists = productList.some((p) => p.item === product.item);
-    if (exists) {
-      setProductList(
-        productList.map((p) =>
-          p.item === product.item
-            ? { ...p, quantity: p.quantity + product.quantity }
-            : p
-        )
-      );
-    } else {
-      setProductList([...productList, product]);
-    }
+  const handleAddProduct = (product: ProductFormData) => {
+    addProduct(product);
     reset();
   };
 
@@ -55,7 +45,7 @@ function ProductCard() {
       title={t("checkout.product")}
       onClick={() => navigate("/checkout/product")}
     >
-      <form onSubmit={handleSubmit(addProduct)}>
+      <form onSubmit={handleSubmit(handleAddProduct)}>
         <Row align="center">
           <Col lg={3}>
             <ImageProduct src={noImage} alt={t("checkout.noImage")} />
@@ -86,6 +76,13 @@ function ProductCard() {
                   type="number"
                   error={errors.quantity?.message}
                   {...register("quantity")}
+                />
+              </Col>
+              <Col lg={3}>
+                <Input
+                  text={t("checkout.unitPrice")}
+                  placeholder={t("checkout.unitPrice")}
+                  {...register("unitPrice")}
                 />
               </Col>
               <Col lg={3}>
