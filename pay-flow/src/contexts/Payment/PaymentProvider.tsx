@@ -1,24 +1,31 @@
 import { useMemo, useState, type ReactNode } from "react";
-import { PaymentContext, type Installments } from "./PaymentContext";
+import { PaymentContext } from "./PaymentContext";
 import {
+  calculateInstallments,
   calculateNetTotal,
   calculateSubTotal,
 } from "../../pages/Checkout/saleCalculations";
 import { useProductList } from "../ProductList/useProductList";
 import { useShipping } from "../Shipping/useShipping";
+import { useDiscount } from "../Discount/useDiscount";
 
 export function PaymentProvider({ children }: { children: ReactNode }) {
   const [paymentMethod, setPaymentMethod] = useState<string>("");
   const [brand, setBrand] = useState<string>("");
-  const [installments, setInstallments] = useState<Installments[]>([]);
+  const [installmentCount, setInstallmentCount] = useState<number>(0);
 
   const { productList } = useProductList();
   const { freight } = useShipping();
+  const { discountValue } = useDiscount();
 
   const subTotal = useMemo(() => calculateSubTotal(productList), [productList]);
   const netTotal = useMemo(
-    () => calculateNetTotal(productList, freight),
-    [freight, productList]
+    () => calculateNetTotal(productList, freight, discountValue),
+    [discountValue, freight, productList]
+  );
+  const installmentAmount = useMemo(
+    () => calculateInstallments(netTotal, installmentCount),
+    [installmentCount, netTotal]
   );
 
   return (
@@ -28,10 +35,11 @@ export function PaymentProvider({ children }: { children: ReactNode }) {
         netTotal,
         paymentMethod,
         brand,
-        installments,
+        installmentCount,
+        installmentAmount,
         setPaymentMethod,
         setBrand,
-        setInstallments,
+        setInstallmentCount,
       }}
     >
       {children}

@@ -163,9 +163,6 @@ function Checkout() {
                   cardBrand: "Visa",
                   discount: 100,
                   shipping: 50,
-                  installments: 4,
-                  installmentValue: 857.5,
-                  value: 2400,
                 }}
               />
             </Row>
