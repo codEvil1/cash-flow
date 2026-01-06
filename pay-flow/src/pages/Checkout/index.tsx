@@ -114,57 +114,19 @@ function Checkout() {
           </Col>
           <Col lg={3}>
             <Row>
-              <CashierCard
-                data={{
-                  id: "0421",
-                  name: "João Silva",
-                  role: "Atendente",
-                  rating: 4.5,
-                  reviewsCount: 128,
-                }}
-              />
+              <CashierCard />
             </Row>
             <Row>
-              <CustomerCard
-                data={{
-                  name: "Bruno Paese",
-                  identifier: "031.656.400-17",
-                  phone: "54994057272",
-                  email: "brunoviniciuspaese@gmail.com",
-                  country: "BR",
-                }}
-              />
+              <CustomerCard />
             </Row>
             <Row>
-              <ShippingCard
-                data={{
-                  type: "Sedex",
-                  deliveryTime: "12-15 Dias Úteis",
-                  cost: 50,
-                  address: "Andrea Pontin, 172, Centro, Carlos Barbosa",
-                }}
-              />
+              <ShippingCard />
             </Row>
             <Row>
-              <DiscountCard
-                data={{
-                  couponCode: "PROMO20",
-                  percentage: 20,
-                  originalTotal: 150,
-                  discountValue: 30,
-                  finalTotal: 120,
-                }}
-              />
+              <DiscountCard />
             </Row>
             <Row>
-              <PaymentCard
-                data={{
-                  paymentMethod: "card",
-                  cardBrand: "Visa",
-                  discount: 100,
-                  shipping: 50,
-                }}
-              />
+              <PaymentCard />
             </Row>
           </Col>
         </Row>

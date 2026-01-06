@@ -6,18 +6,13 @@ import Card from "../Card";
 import { useNavigate } from "react-router-dom";
 import { Hash, Star, User } from "lucide-react";
 import { calculateAverageRating } from "../../utils/rating";
+import { useCashier } from "../../contexts/Cashier/useCashier";
+import { formatEmpty } from "../../utils/formatEmpty";
 
-export interface CashierCardCardProps {
-  data: {
-    id: string;
-    name: string;
-    ratings: number[];
-  };
-}
-
-function CashierCard({ data }: CashierCardCardProps) {
+function CashierCard() {
   const { t } = useTranslation();
   const { theme } = useTheme();
+  const { id, name, ratings } = useCashier();
   const navigate = useNavigate();
 
   return (
@@ -28,20 +23,20 @@ function CashierCard({ data }: CashierCardCardProps) {
       <RowItem theme={theme}>
         <Hash size={16} />
         <Label>{t("cashier.id")}</Label>
-        <Value>{data.id}</Value>
+        <Value>{id}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <User size={16} />
         <Label>{t("cashier.name")}</Label>
-        <Value>{data.name}</Value>
+        <Value>{formatEmpty(name)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <Star size={16} />
         <Label>{t("cashier.rating")}</Label>
         <Value>
-          <RatingStars value={calculateAverageRating(data.ratings)} />
-          {calculateAverageRating(data.ratings).toFixed(1)}
-          {data.ratings.length && <span>({data.ratings.length})</span>}
+          <RatingStars value={calculateAverageRating(ratings)} />
+          {calculateAverageRating(ratings).toFixed(1)}
+          <span>({ratings.length})</span>
         </Value>
       </RowItem>
     </Card>

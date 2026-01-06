@@ -5,20 +5,13 @@ import { useTheme } from "../../contexts/Theme/useTheme";
 import Card from "../Card";
 import { useNavigate } from "react-router-dom";
 import { formatPhoneInternational } from "../../utils/phone";
+import { useCustomer } from "../../contexts/Customer/useCustomer";
+import { formatEmpty } from "../../utils/formatEmpty";
 
-export interface CustomerCardProps {
-  data: {
-    name: string;
-    identifier: string;
-    phone: string;
-    email: string;
-    country: string;
-  };
-}
-
-function CustomerCard({ data }: CustomerCardProps) {
+function CustomerCard() {
   const { t } = useTranslation();
   const { theme } = useTheme();
+  const { name, identifier, phone, country, email } = useCustomer();
   const navigate = useNavigate();
 
   return (
@@ -29,22 +22,22 @@ function CustomerCard({ data }: CustomerCardProps) {
       <RowItem theme={theme}>
         <User size={16} />
         <Label>{t("customer.name")}</Label>
-        <Value>{data.name}</Value>
+        <Value>{formatEmpty(name)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <CreditCard size={16} />
         <Label>{t("customer.identifier")}</Label>
-        <Value>{data.identifier}</Value>
+        <Value>{formatEmpty(identifier)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <Phone size={16} />
         <Label>{t("customer.phone")}</Label>
-        <Value>{formatPhoneInternational(data.phone, data.country)}</Value>
+        <Value>{formatPhoneInternational(phone, country)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <Mail size={16} />
         <Label>{t("customer.email")}</Label>
-        <Value>{data.email}</Value>
+        <Value>{formatEmpty(email)}</Value>
       </RowItem>
     </Card>
   );
