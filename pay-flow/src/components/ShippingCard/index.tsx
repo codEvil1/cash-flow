@@ -10,9 +10,9 @@ import { useCurrency } from "../../contexts/Currency/useCurrency";
 export interface ShippingCardProps {
   data: {
     type: string;
-    deliveryTime: string; // Ex: "3-5 dias úteis"
+    deliveryTime: string;
     cost: number;
-    address: string; // Rua, número, bairro, cidade
+    address: string;
   };
 }
 

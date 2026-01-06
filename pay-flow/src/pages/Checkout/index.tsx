@@ -16,7 +16,7 @@ import Input from "../../components/Input";
 import { useCurrency } from "../../contexts/Currency/useCurrency";
 import Button from "../../components/Button";
 import { Trash } from "lucide-react";
-import CustomerCard from "../../components/CustumerCard";
+import CustomerCard from "../../components/CustomerCard";
 import PaymentCard from "../../components/PaymentCard";
 import ShippingCard from "../../components/ShippingCard";
 import { useProductList } from "../../contexts/ProductList/useProductList";

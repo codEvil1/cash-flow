@@ -11,6 +11,7 @@ import { ProductListProvider } from "./contexts/ProductList/ProductListProvider.
 import { PaymentProvider } from "./contexts/Payment/PaymentProvider.tsx";
 import { ShippingProvider } from "./contexts/Shipping/ShippingProvider.tsx";
 import { DiscountProvider } from "./contexts/Discount/ShippingProvider.tsx";
+import { CustomerProvider } from "./contexts/Customer/CustomerProvider.tsx";
 
 // TODO: alterar tema do toast conforme seleção
 
@@ -22,16 +23,18 @@ createRoot(document.getElementById("root")!).render(
           <PaymentProvider>
             <ShippingProvider>
               <DiscountProvider>
-                <GlobalStyle />
-                <AppRoutes />
-                <ToastContainer
-                  position="bottom-right"
-                  autoClose={3000}
-                  closeOnClick
-                  pauseOnHover
-                  draggable
-                  theme="dark"
-                />
+                <CustomerProvider>
+                  <GlobalStyle />
+                  <AppRoutes />
+                  <ToastContainer
+                    position="bottom-right"
+                    autoClose={3000}
+                    closeOnClick
+                    pauseOnHover
+                    draggable
+                    theme="dark"
+                  />
+                </CustomerProvider>
               </DiscountProvider>
             </ShippingProvider>
           </PaymentProvider>

@@ -7,14 +7,13 @@ interface CardRowProps {
 
 export const RowItem = styled.div<CardRowProps>`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 8px;
   color: ${({ theme }) =>
     theme === "dark" ? colors.darkText : colors.lightText};
   width: 100%;
   box-sizing: border-box;
-  padding: 4px 0;
   word-break: break-word;
 `;
 
