@@ -5,14 +5,13 @@ import { useTheme } from "../../contexts/Theme/useTheme";
 import Card from "../Card";
 import { useNavigate } from "react-router-dom";
 import { Hash, Star, User } from "lucide-react";
+import { calculateAverageRating } from "../../utils/rating";
 
 export interface CashierCardCardProps {
   data: {
     id: string;
     name: string;
-    role: string;
-    rating: number;
-    reviewsCount?: number;
+    ratings: number[];
   };
 }
 
@@ -37,12 +36,12 @@ function CashierCard({ data }: CashierCardCardProps) {
         <Value>{data.name}</Value>
       </RowItem>
       <RowItem theme={theme}>
-        <Star size={16}/>
+        <Star size={16} />
         <Label>{t("cashier.rating")}</Label>
         <Value>
-          <RatingStars value={data.rating} />
-          {data.rating.toFixed(1)}
-          {data.reviewsCount && <span>({data.reviewsCount})</span>}
+          <RatingStars value={calculateAverageRating(data.ratings)} />
+          {calculateAverageRating(data.ratings).toFixed(1)}
+          {data.ratings.length && <span>({data.ratings.length})</span>}
         </Value>
       </RowItem>
     </Card>
