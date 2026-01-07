@@ -1,10 +1,17 @@
 export function formatCurrency(
   value: number,
   locale: string,
-  currency: string
+  currency: string,
+  sign: "none" | "minus" | "plus" = "none"
 ) {
-  return new Intl.NumberFormat(locale, {
+  const formattedValue = new Intl.NumberFormat(locale, {
     style: "currency",
     currency,
-  }).format(value || 0);
+  }).format(Math.abs(value || 0));
+
+  if (value === 0) return formattedValue;
+  if (sign === "minus") return `- ${formattedValue}`;
+  if (sign === "plus") return `+ ${formattedValue}`;
+
+  return formattedValue;
 }

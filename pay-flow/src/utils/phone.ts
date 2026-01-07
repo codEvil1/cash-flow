@@ -2,21 +2,19 @@ import {
   parsePhoneNumberFromString,
   type CountryCode,
 } from "libphonenumber-js";
-
 export function formatPhoneInternational(
-  phone: string,
-  defaultCountry?: string
+  phone?: string | null,
+  defaultCountry?: string,
+  fallback = "–"
 ) {
-  // transforma a string em CountryCode para TS
-  const country: CountryCode | undefined = defaultCountry as
-    | CountryCode
-    | undefined;
+  phone = phone?.trim();
+  if (!phone) return fallback;
 
-  // parse
+  const country = defaultCountry as CountryCode | undefined;
+
   const phoneNumber = parsePhoneNumberFromString(phone, {
     defaultCountry: country,
   });
 
-  // se válido, retorna formato nacional, senão retorna número original
   return phoneNumber ? phoneNumber.format("NATIONAL") : phone;
 }

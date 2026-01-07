@@ -4,7 +4,7 @@ import { Row } from "../Row";
 import { Col } from "../Col";
 import { ImageProduct } from "../../pages/Checkout/style";
 import noImage from "../../assets/noImage.png";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { productSchema } from "../../validations/productSchema";
 import Input from "../Input";
@@ -12,6 +12,8 @@ import Button from "../Button";
 import Card from "../Card";
 import { useNavigate } from "react-router-dom";
 import { useProductList } from "../../contexts/ProductList/useProductList";
+import { useCallback, useEffect, useState } from "react";
+import { PRODUCT_CODE_LENGTH } from "../../config/constants";
 
 export interface ProductFormData {
   item: string;
@@ -26,10 +28,14 @@ function ProductCard() {
   const { addProduct } = useProductList();
   const navigate = useNavigate();
 
+  const [image, setImage] = useState<string>(noImage);
+
   const {
     register,
     handleSubmit,
     reset,
+    control,
+    setValue,
     formState: { errors },
   } = useForm<ProductFormData>({
     resolver: yupResolver(productSchema(t)),
@@ -40,6 +46,45 @@ function ProductCard() {
     reset();
   };
 
+  const inputItem = useWatch({
+    control,
+    name: "item",
+  });
+
+  const isValidProductCode = (value: string) =>
+    new RegExp(`^\\d{${PRODUCT_CODE_LENGTH}}$`).test(value);
+
+  const clearProductData = useCallback(() => {
+    reset({
+      item: inputItem,
+      description: "",
+      unitPrice: 0,
+      price: 0,
+      quantity: 1,
+    });
+  }, [inputItem, reset]);
+
+  useEffect(() => {
+    if (!isValidProductCode(inputItem)) {
+      clearProductData();
+      return;
+    }
+    const loadProduct = async () => {
+      // consulta api
+      const product = {
+        description: "Faca",
+        unitPrice: 250,
+        price: 450,
+        image: "https://via.placeholder.com/150",
+      };
+      setValue("description", product.description);
+      setValue("unitPrice", product.unitPrice);
+      setValue("price", product.price);
+      setImage(product.image);
+    };
+    loadProduct();
+  }, [clearProductData, inputItem, setValue]);
+
   return (
     <Card
       title={t("checkout.product")}
@@ -48,7 +93,7 @@ function ProductCard() {
       <form onSubmit={handleSubmit(handleAddProduct)}>
         <Row align="center">
           <Col lg={3}>
-            <ImageProduct src={noImage} alt={t("checkout.noImage")} />
+            <ImageProduct src={image} alt={t("checkout.noImage")} />
           </Col>
           <Col lg={9}>
             <Row>
@@ -57,6 +102,8 @@ function ProductCard() {
                   text={t("checkout.enterProduct")}
                   placeholder={t("checkout.product")}
                   error={errors.item?.message}
+                  autoFocus
+                  maxLength={PRODUCT_CODE_LENGTH}
                   {...register("item")}
                 />
               </Col>

@@ -4,6 +4,7 @@ export interface DiscountContextData {
   couponCode: string;
   discountPercentage: number;
   discountValue: number;
+  totalWithDiscount: number;
   setCouponCode: (cuponCode: string) => void;
   setDiscountPercentage: (discountPercentage: number) => void;
   setDiscountValue: (discountValue: number) => void;

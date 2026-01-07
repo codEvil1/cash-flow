@@ -6,20 +6,14 @@ import Card from "../Card";
 import { useNavigate } from "react-router-dom";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { useCurrency } from "../../contexts/Currency/useCurrency";
+import { useShipping } from "../../contexts/Shipping/useShipping";
+import { formatEmpty } from "../../utils/formatEmpty";
 
-export interface ShippingCardProps {
-  data: {
-    type: string;
-    deliveryTime: string; // Ex: "3-5 dias úteis"
-    cost: number;
-    address: string; // Rua, número, bairro, cidade
-  };
-}
-
-function ShippingCard({ data }: ShippingCardProps) {
+function ShippingCard() {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { currency, locale } = useCurrency();
+  const { type, deliveryTime, freight, adress } = useShipping();
   const navigate = useNavigate();
 
   return (
@@ -30,22 +24,22 @@ function ShippingCard({ data }: ShippingCardProps) {
       <RowItem theme={theme}>
         <Package size={16} />
         <Label>{t("shipping.type")}</Label>
-        <Value>{data.type}</Value>
+        <Value>{formatEmpty(type)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <Calendar size={16} />
         <Label>{t("shipping.deliveryTime")}</Label>
-        <Value>{data.deliveryTime}</Value>
+        <Value>{formatEmpty(deliveryTime)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <DollarSign size={16} />
         <Label>{t("shipping.cost")}</Label>
-        <Value>{formatCurrency(data.cost, locale, currency)}</Value>
+        <Value>{formatCurrency(freight, locale, currency)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <MapPin size={16} />
         <Label>{t("shipping.address")}</Label>
-        <Value>{data.address}</Value>
+        <Value>{formatEmpty(adress)}</Value>
       </RowItem>
     </Card>
   );

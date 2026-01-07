@@ -4,7 +4,7 @@ import {
   calculateInstallments,
   calculateNetTotal,
   calculateSubTotal,
-} from "../../pages/Checkout/saleCalculations";
+} from "../../utils/saleCalculations";
 import { useProductList } from "../ProductList/useProductList";
 import { useShipping } from "../Shipping/useShipping";
 import { useDiscount } from "../Discount/useDiscount";
