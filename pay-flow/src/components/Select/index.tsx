@@ -1,15 +1,22 @@
 import { useTheme } from "../../contexts/Theme/useTheme";
-import { Arrow, Container, StyledSelect } from "./style";
+import { Arrow, Container, StyledLabel, StyledSelect } from "./style";
 import type { Options } from "./type";
 
 interface SelectProps<T>
   extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, "onChange"> {
   options: Options<T>[];
+  label?: string;
   text: string;
   onChange?: (value: T) => void;
 }
 
-function Select<T>({ options, text, onChange, ...props }: SelectProps<T>) {
+function Select<T>({
+  options,
+  label,
+  text,
+  onChange,
+  ...props
+}: SelectProps<T>) {
   const { theme } = useTheme();
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -22,20 +29,23 @@ function Select<T>({ options, text, onChange, ...props }: SelectProps<T>) {
   };
 
   return (
-    <Container>
-      <StyledSelect theme={theme} onChange={handleChange} {...props}>
-        {options.map((option) => (
-          <option
-            key={String(option.value)}
-            value={String(option.value)}
-            title={text}
-          >
-            {option.label}
-          </option>
-        ))}
-      </StyledSelect>
-      <Arrow theme={theme} />
-    </Container>
+    <>
+      {label && <StyledLabel theme={theme}>{label}</StyledLabel>}
+      <Container>
+        <StyledSelect theme={theme} onChange={handleChange} {...props}>
+          {options.map((option) => (
+            <option
+              key={String(option.value)}
+              value={String(option.value)}
+              title={text}
+            >
+              {option.label}
+            </option>
+          ))}
+        </StyledSelect>
+        <Arrow theme={theme} />
+      </Container>
+    </>
   );
 }
 
