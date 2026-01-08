@@ -79,3 +79,13 @@ export const Arrow = styled.span<SelectStyleProps>`
   border-top: 6px solid
     ${({ theme }) => (theme === "dark" ? colors.darkText : colors.lightText)};
 `;
+
+export const StyledLabel = styled.label<SelectStyleProps>`
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont;
+
+  color: ${({ theme }) =>
+    theme === "dark" ? colors.darkText : colors.lightText};
+`;

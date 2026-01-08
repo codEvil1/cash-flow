@@ -12,7 +12,7 @@ import { useDiscount } from "../Discount/useDiscount";
 export function PaymentProvider({ children }: { children: ReactNode }) {
   const [paymentMethod, setPaymentMethod] = useState<string>("");
   const [brand, setBrand] = useState<string>("");
-  const [installmentCount, setInstallmentCount] = useState<number>(0);
+  const [installmentCount, setInstallmentCount] = useState<number>(1);
 
   const { productList } = useProductList();
   const { freight } = useShipping();

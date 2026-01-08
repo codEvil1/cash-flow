@@ -2,9 +2,9 @@ import { useTranslation } from "react-i18next";
 import { Label, RowItem, Value } from "./style";
 import { CreditCard, Mail, Phone, User } from "lucide-react";
 import { useTheme } from "../../contexts/Theme/useTheme";
-import Card from "../Card";
 import { useNavigate } from "react-router-dom";
 import { formatPhoneInternational } from "../../utils/phone";
+import Card from "../../components/Card";
 
 export interface CustomerCardProps {
   data: {
