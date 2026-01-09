@@ -1,10 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../Style/theme";
 import { Link } from "react-router-dom";
-
-interface BreadcrumbStyleProps {
-  theme: "light" | "dark";
-}
+import type { StyleThemeProps } from "../../type/type";
 
 export const CrumbLink = styled(Link)`
   all: unset;
@@ -15,7 +12,7 @@ export const CrumbLink = styled(Link)`
   }
 `;
 
-export const Container = styled.nav<BreadcrumbStyleProps>`
+export const Container = styled.nav<StyleThemeProps>`
   display: flex;
   align-items: center;
   gap: 6px;

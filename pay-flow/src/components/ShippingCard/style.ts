@@ -1,11 +1,8 @@
 import styled from "styled-components";
 import { colors } from "../Style/theme";
+import type { StyleThemeProps } from "../../type/type";
 
-interface CardRowProps {
-  theme: "light" | "dark";
-}
-
-export const RowItem = styled.div<CardRowProps>`
+export const RowItem = styled.div<StyleThemeProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;

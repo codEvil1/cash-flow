@@ -3,7 +3,8 @@ import { colors } from "../Style/theme";
 
 interface CardStyleProps {
   theme: "light" | "dark";
-  clickable: boolean;
+  clickable?: boolean;
+  titlePadding?: number;
 }
 
 export const CardContainer = styled.div<CardStyleProps>`
@@ -49,9 +50,9 @@ export const CardContainer = styled.div<CardStyleProps>`
     `}
 `;
 
-export const CardTitle = styled.h3`
+export const CardTitle = styled.h3<CardStyleProps>`
   margin: 0;
-  padding: 16px 16px 0 16px;
+  padding: 16px 16px ${({ titlePadding = 0 }) => titlePadding}px 16px;
 
   text-align: center;
 

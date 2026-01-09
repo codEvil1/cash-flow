@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../components/Style/theme";
-
-interface PageProps {
-  theme: "light" | "dark";
-}
+import type { StyleThemeProps } from "../../type/type";
 
 export const GridButton = styled.div`
   display: flex;
@@ -12,7 +9,7 @@ export const GridButton = styled.div`
   margin: 20px 0 20px 0;
 `;
 
-export const Title = styled.h1<PageProps>`
+export const Title = styled.h1<StyleThemeProps>`
   font-size: 30px;
   font-weight: 600;
   color: ${({ theme }) =>

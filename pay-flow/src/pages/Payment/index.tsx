@@ -14,6 +14,7 @@ import { usePayment } from "../../contexts/Payment/usePayment";
 import { useCurrency } from "../../contexts/Currency/useCurrency";
 import { SummaryLabel } from "./style";
 import { useMemo } from "react";
+import { PaymentMethod } from "../../config/enum";
 
 interface PaymentFormData {
   paymentMethod: string;
@@ -50,17 +51,15 @@ function Payment() {
   };
 
   const paymentSummary: string = useMemo(() => {
-    if (!paymentMethod) return "";
-
-    if (paymentMethod === "cash" && netTotal) {
-      return `À vista: ${formatCurrency(netTotal, currency, locale)}`;
+    console.log(installmentCount);
+    if (paymentMethod === PaymentMethod.CASH && netTotal) {
+      return `À vista: ${formatCurrency(netTotal, locale, currency)}`;
     }
-
-    if (paymentMethod === "credit" && installmentCount) {
+    if (paymentMethod === PaymentMethod.CREDIT && installmentCount) {
       return `${installmentCount}x de ${formatCurrency(
         installmentAmount,
-        currency,
-        locale
+        locale,
+        currency
       )}`;
     }
 
@@ -74,6 +73,32 @@ function Payment() {
     paymentMethod,
   ]);
 
+  const paymentMethods = useMemo(
+    () => [
+      {
+        label: t("payment.cash"),
+        value: PaymentMethod.CASH,
+        icon: null,
+      },
+      {
+        label: t("payment.credit"),
+        value: PaymentMethod.CREDIT,
+        icon: null,
+      },
+      {
+        label: t("payment.debit"),
+        value: PaymentMethod.DEBIT,
+        icon: null,
+      },
+      {
+        label: t("payment.pix"),
+        value: PaymentMethod.PIX,
+        icon: null,
+      },
+    ],
+    [t]
+  );
+
   return (
     <Page theme={theme}>
       <HeaderControls
@@ -84,29 +109,26 @@ function Payment() {
       />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Body>
-          <Card title={t("payment.payment")}>
+          <Card title={t("payment.payment")} titlePadding={16}>
             <Row>
               <Col>
                 <Select
                   label={t("payment.paymentMethod")}
                   text={t("payment.paymentMethod")}
                   value={paymentMethod}
-                  onChange={(value) => setPaymentMethod(String(value))}
-                  options={[
-                    { label: t("payment.cash"), value: "cash", icon: null },
-                    { label: t("payment.credit"), value: "credit", icon: null },
-                  ]}
+                  onChange={(value) => setPaymentMethod(value)}
+                  options={paymentMethods}
                 />
               </Col>
             </Row>
-            {paymentMethod === "credit" && (
+            {paymentMethod === PaymentMethod.CREDIT && (
               <Row>
                 <Col>
                   <Select
                     label={t("payment.installments")}
                     text={t("payment.installments")}
                     value={installmentCount}
-                    onChange={(value) => setInstallmentCount(Number(value))}
+                    onChange={(value) => setInstallmentCount(value)}
                     options={[
                       { label: "1x", value: 1, icon: null },
                       { label: "2x", value: 2, icon: null },
@@ -117,11 +139,13 @@ function Payment() {
                 </Col>
               </Row>
             )}
-            <Row>
-              <Col>
-                <SummaryLabel>{paymentSummary}</SummaryLabel>
-              </Col>
-            </Row>
+            {paymentSummary && (
+              <Row>
+                <Col>
+                  <SummaryLabel theme={theme}>{paymentSummary}</SummaryLabel>
+                </Col>
+              </Row>
+            )}
           </Card>
         </Body>
       </form>

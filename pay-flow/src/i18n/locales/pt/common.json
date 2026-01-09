@@ -87,7 +87,11 @@
     "value": "Valor Original",
     "total": "Total",
     "paymentMethod": "Método de Pagamento",
-    "installments": "Parcelas"
+    "installments": "Parcelas",
+    "credit": "Crédito",
+    "pix": "PIX",
+    "cash": "Dinheiro",
+    "debit": "Débito"
   },
   "shipping": {
     "shipping": "Frete",

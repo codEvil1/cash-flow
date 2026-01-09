@@ -1,12 +1,9 @@
 import styled from "styled-components";
 import { colors } from "../../components/Style/theme";
 import { Link } from "react-router-dom";
+import type { StyleThemeProps } from "../../type/type";
 
-interface PageProps {
-  theme: "light" | "dark";
-}
-
-export const Page = styled.div<PageProps>`
+export const Page = styled.div<StyleThemeProps>`
   min-height: 100vh;
   width: 100%;
 
@@ -19,7 +16,7 @@ export const Page = styled.div<PageProps>`
   font-family: system-ui, -apple-system, BlinkMacSystemFont;
 `;
 
-export const StyledLink = styled(Link)<PageProps>`
+export const StyledLink = styled(Link)<StyleThemeProps>`
   text-decoration: none;
   color: ${({ theme }) =>
     theme === "dark" ? colors.darkText : colors.lightText};
@@ -29,7 +26,7 @@ export const StyledLink = styled(Link)<PageProps>`
   }
 `;
 
-export const RightContainer = styled.div<PageProps>`
+export const RightContainer = styled.div<StyleThemeProps>`
   align-self: flex-end;
   display: flex;
 `;
@@ -60,7 +57,7 @@ export const GridButton = styled.div`
   width: 400px;
 `;
 
-export const Footer = styled.footer<PageProps>`
+export const Footer = styled.footer<StyleThemeProps>`
   position: absolute;
   bottom: 12px;
   right: 16px;

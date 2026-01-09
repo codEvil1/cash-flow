@@ -1,11 +1,8 @@
 import styled from "styled-components";
 import { colors } from "../Style/theme";
+import type { StyleThemeProps } from "../../type/type";
 
-interface CashierCardStyleProps {
-  theme: "light" | "dark";
-}
-
-export const RowItem = styled.div<CashierCardStyleProps>`
+export const RowItem = styled.div<StyleThemeProps>`
   display: flex;
   align-items: center;
   gap: 8px;
