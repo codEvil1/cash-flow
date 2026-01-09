@@ -1,11 +1,8 @@
 import styled from "styled-components";
 import { colors } from "../../components/Style/theme";
+import type { StyleThemeProps } from "../../type/type";
 
-interface PageProps {
-  theme: "light" | "dark";
-}
-
-export const SummaryLabel = styled.label<PageProps>`
+export const SummaryLabel = styled.label<StyleThemeProps>`
   margin-top: 12px;
   padding: 14px;
   border-radius: 12px;

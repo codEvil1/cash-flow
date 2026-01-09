@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../Style/theme";
-
-interface SelectStyleProps {
-  theme: "light" | "dark";
-}
+import type { StyleThemeProps } from "../../type/type";
 
 export const Container = styled.div`
   width: 100%;
@@ -17,7 +14,7 @@ export const Container = styled.div`
   }
 `;
 
-export const StyledSelect = styled.select<SelectStyleProps>`
+export const StyledSelect = styled.select<StyleThemeProps>`
   width: 100%;
   height: 48px;
 

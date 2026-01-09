@@ -1,11 +1,8 @@
 import styled from "styled-components";
 import { colors } from "../../components/Style/theme";
+import type { StyleThemeProps } from "../../type/type";
 
-interface PageProps {
-  theme: "light" | "dark";
-}
-
-export const CardProduct = styled.div<PageProps>`
+export const CardProduct = styled.div<StyleThemeProps>`
   display: flex;
 
   display: flex;

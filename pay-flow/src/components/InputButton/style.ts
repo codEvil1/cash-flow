@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../Style/theme";
-
-interface InputButtonStyleProps {
-  theme: "light" | "dark";
-}
+import type { StyleThemeProps } from "../../type/type";
 
 export const InputWrapper = styled.div`
   position: relative;
@@ -16,7 +13,7 @@ export const StyledInput = styled.input`
   padding: 10px 44px 10px 12px;
 `;
 
-export const ActionButton = styled.button<InputButtonStyleProps>`
+export const ActionButton = styled.button<StyleThemeProps>`
   position: absolute;
   right: 10px;
   top: 50%;
