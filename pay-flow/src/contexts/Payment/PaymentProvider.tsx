@@ -8,11 +8,14 @@ import {
 import { useProductList } from "../ProductList/useProductList";
 import { useShipping } from "../Shipping/useShipping";
 import { useDiscount } from "../Discount/useDiscount";
+import { PaymentMethod } from "../../config/enum";
 
 export function PaymentProvider({ children }: { children: ReactNode }) {
-  const [paymentMethod, setPaymentMethod] = useState<string>("");
   const [brand, setBrand] = useState<string>("");
   const [installmentCount, setInstallmentCount] = useState<number>(1);
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | undefined>(
+    undefined
+  );
 
   const { productList } = useProductList();
   const { freight } = useShipping();

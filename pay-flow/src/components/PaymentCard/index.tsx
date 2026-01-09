@@ -16,6 +16,7 @@ import { useCurrency } from "../../contexts/Currency/useCurrency";
 import { usePayment } from "../../contexts/Payment/usePayment";
 import { useDiscount } from "../../contexts/Discount/useDiscount";
 import { useShipping } from "../../contexts/Shipping/useShipping";
+import { PaymentMethod } from "../../config/enum";
 
 function PaymentCard() {
   const { t } = useTranslation();
@@ -43,7 +44,7 @@ function PaymentCard() {
         <Label>{t("payment.paymentMethod")}</Label>
         <Value>
           {paymentMethod
-            ? paymentMethod === "card"
+            ? paymentMethod === PaymentMethod.CREDIT
               ? `${paymentMethod} (${brand})`
               : paymentMethod
             : "-"}
@@ -71,7 +72,7 @@ function PaymentCard() {
         <Label>{t("payment.total")}</Label>
         <Value>{formatCurrency(netTotal, locale, currency)}</Value>
       </RowItem>
-      {paymentMethod === "card" && (
+      {paymentMethod === PaymentMethod.CREDIT && (
         <RowItem theme={theme}>
           <Repeat size={16} />
           <Label>{t("payment.installments")}</Label>

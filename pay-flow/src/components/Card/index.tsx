@@ -4,11 +4,12 @@ import { useTheme } from "../../contexts/Theme/useTheme";
 
 interface CardProps {
   title?: string;
+  titlePadding?: number;
   onClick?: () => void;
   children: ReactNode;
 }
 
-function Card({ title, children, onClick }: CardProps) {
+function Card({ title, titlePadding, children, onClick }: CardProps) {
   const { theme } = useTheme();
 
   const handleClick = (event: MouseEvent<HTMLDivElement>) => {
@@ -29,7 +30,11 @@ function Card({ title, children, onClick }: CardProps) {
 
   return (
     <CardContainer theme={theme} onClick={handleClick} clickable={!!onClick}>
-      {title && <CardTitle theme={theme}>{title}</CardTitle>}
+      {title && (
+        <CardTitle theme={theme} titlePadding={titlePadding}>
+          {title}
+        </CardTitle>
+      )}
       <CardContent>{children}</CardContent>
     </CardContainer>
   );

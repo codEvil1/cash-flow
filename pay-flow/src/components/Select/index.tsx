@@ -32,7 +32,7 @@ function Select<T>({
     <>
       {label && <StyledLabel theme={theme}>{label}</StyledLabel>}
       <Container>
-        <StyledSelect theme={theme} onChange={handleChange} {...props}>
+        <StyledSelect theme={theme} {...props} onChange={handleChange}>
           {options.map((option) => (
             <option
               key={String(option.value)}
