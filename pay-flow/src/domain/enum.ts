@@ -1,6 +1,6 @@
 // @ts-expect-error aaa
 export enum PaymentMethod {
-  CASH,
+  CASH = 1,
   CREDIT,
   DEBIT,
   PIX,

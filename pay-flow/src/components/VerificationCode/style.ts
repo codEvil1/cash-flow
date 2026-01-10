@@ -32,7 +32,7 @@ export const CodeInput = styled.input<CodeInputProps>`
   border: 1px solid
     ${({ hasError, theme }) =>
       hasError
-        ? colors.error
+        ? colors.red
         : theme === "dark"
         ? colors.darkBorder
         : colors.lightBorder};
@@ -50,7 +50,7 @@ export const CodeInput = styled.input<CodeInputProps>`
   &:focus {
     border-color: ${({ hasError, theme }) =>
       hasError
-        ? colors.error
+        ? colors.red
         : theme === "dark"
         ? colors.darkBorder
         : colors.lightBorder};

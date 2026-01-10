@@ -8,14 +8,13 @@ import {
 import { useProductList } from "../ProductList/useProductList";
 import { useShipping } from "../Shipping/useShipping";
 import { useDiscount } from "../Discount/useDiscount";
-import { PaymentMethod } from "../../config/enum";
+import { PaymentMethod } from "../../domain/enum";
 
 export function PaymentProvider({ children }: { children: ReactNode }) {
-  const [brand, setBrand] = useState<string>("");
   const [installmentCount, setInstallmentCount] = useState<number>(1);
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | undefined>(
-    undefined
-  );
+  const [paymentMethod, setPaymentMethod] = useState<
+    PaymentMethod | undefined
+  >();
 
   const { productList } = useProductList();
   const { freight } = useShipping();
@@ -37,11 +36,9 @@ export function PaymentProvider({ children }: { children: ReactNode }) {
         subTotal,
         netTotal,
         paymentMethod,
-        brand,
         installmentCount,
         installmentAmount,
         setPaymentMethod,
-        setBrand,
         setInstallmentCount,
       }}
     >
