@@ -16,7 +16,7 @@ function DiscountCard() {
   const { theme } = useTheme();
   const { couponCode, discountPercentage, discountValue, totalWithDiscount } =
     useDiscount();
-  const { netTotal } = usePayment();
+  const { subTotal } = usePayment();
   const navigate = useNavigate();
 
   return (
@@ -37,7 +37,7 @@ function DiscountCard() {
       <RowItem theme={theme}>
         <DollarSign size={16} />
         <Label>{t("discount.originalValue")}</Label>
-        <Value>{formatCurrency(netTotal, locale, currency)}</Value>
+        <Value>{formatCurrency(subTotal, locale, currency)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <ArrowDown size={16} />
