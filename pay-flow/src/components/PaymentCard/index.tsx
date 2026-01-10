@@ -6,6 +6,7 @@ import {
   CreditCard,
   DollarSign,
   Repeat,
+  TrendingUp,
   Truck,
 } from "lucide-react";
 import { useTheme } from "../../contexts/Theme/useTheme";
@@ -28,9 +29,10 @@ function PaymentCard() {
   const {
     subTotal,
     netTotal,
+    paymentMethod,
     installmentAmount,
     installmentCount,
-    paymentMethod,
+    interest,
   } = usePayment();
   const navigate = useNavigate();
 
@@ -42,14 +44,19 @@ function PaymentCard() {
       <RowItem theme={theme}>
         <CreditCard size={16} />
         <Label>{t("payment.paymentMethod")}</Label>
-        <Value>
-          {paymentMethod
-            ? paymentMethod === PaymentMethod.CREDIT
-              ? `${getPaymentMethodLabel(paymentMethod, t)}`
-              : paymentMethod
-            : "-"}
-        </Value>
+        <Value>{getPaymentMethodLabel(paymentMethod, t)}</Value>
       </RowItem>
+      {paymentMethod === PaymentMethod.CREDIT && (
+        <RowItem theme={theme}>
+          <Repeat size={16} />
+          <Label>{t("payment.installments")}</Label>
+          <Value>{`${installmentCount}x de ${formatCurrency(
+            installmentAmount,
+            locale,
+            currency
+          )}`}</Value>
+        </RowItem>
+      )}
       <RowItem theme={theme}>
         <DollarSign size={16} />
         <Label>{t("payment.value")}</Label>
@@ -68,21 +75,15 @@ function PaymentCard() {
         <Value>{formatCurrency(freight, locale, currency, "plus")}</Value>
       </RowItem>
       <RowItem theme={theme}>
+        <TrendingUp size={16} />
+        <Label>{t("payment.interest")}</Label>
+        <Value>{formatCurrency(interest, locale, currency, "plus")}</Value>
+      </RowItem>
+      <RowItem theme={theme}>
         <Check size={16} />
         <Label>{t("payment.total")}</Label>
         <Value>{formatCurrency(netTotal, locale, currency)}</Value>
       </RowItem>
-      {paymentMethod === PaymentMethod.CREDIT && (
-        <RowItem theme={theme}>
-          <Repeat size={16} />
-          <Label>{t("payment.installments")}</Label>
-          <Value>{`${installmentCount}x de ${formatCurrency(
-            installmentAmount,
-            locale,
-            currency
-          )}`}</Value>
-        </RowItem>
-      )}
     </Card>
   );
 }

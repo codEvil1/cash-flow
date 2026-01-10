@@ -4,10 +4,11 @@ import type { PaymentMethod } from "../../domain/enum";
 export interface PaymentContextData {
   subTotal: number;
   netTotal: number;
-  paymentMethod: PaymentMethod | undefined;
+  paymentMethod: PaymentMethod;
   installmentCount: number;
   installmentAmount: number;
-  setPaymentMethod: (paymentMethod: PaymentMethod | undefined) => void;
+  interest: number;
+  setPaymentMethod: (paymentMethod: PaymentMethod) => void;
   setInstallmentCount: (installmentCount: number) => void;
 }
 

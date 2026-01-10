@@ -140,12 +140,15 @@ function ProductCard() {
                 />
               </Col>
             </Row>
-            <Row>
+            <Row> 
               <Col>
                 <Button
                   icon={PackagePlus}
                   text={t("productList.addProduct")}
                   type="submit"
+                  onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
+                    event.stopPropagation()
+                  }
                 >
                   {t("productList.addProduct")}
                 </Button>

@@ -94,7 +94,9 @@
     "pix": "PIX",
     "cash": "Dinheiro",
     "debit": "Débito",
-    "confirmPayment": "Confirmar Pagamento"
+    "confirmPayment": "Confirmar Pagamento",
+    "onTime": "À vista",
+    "interest": "Juros"
   },
   "shipping": {
     "shipping": "Frete",
