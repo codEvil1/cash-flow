@@ -24,12 +24,27 @@ export function ProductListProvider({ children }: { children: ReactNode }) {
     setProductList((prev) => prev.filter((item) => item.item !== product.item));
   };
 
+  const updateProductQuantity = (product: string, quantity: number) => {
+    setProductList((prev) =>
+      prev.map((p) =>
+        p.item === product
+          ? {
+              ...p,
+              price: p.unitPrice * quantity,
+              quantity,
+            }
+          : p
+      )
+    );
+  };
+
   return (
     <ProductListContext.Provider
       value={{
         productList,
         addProduct,
         removeProduct,
+        updateProductQuantity,
       }}
     >
       {children}

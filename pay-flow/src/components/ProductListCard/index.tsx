@@ -15,7 +15,8 @@ import { useCurrency } from "../../contexts/Currency/useCurrency";
 function ProductListCard() {
   const { t } = useTranslation();
   const { currency, locale } = useCurrency();
-  const { productList, removeProduct } = useProductList();
+  const { productList, removeProduct, updateProductQuantity } =
+    useProductList();
 
   const navigate = useNavigate();
 
@@ -41,14 +42,14 @@ function ProductListCard() {
       label: t("checkout.quantity"),
       align: "center",
       width: "10%",
-      render: (value) => (
+      render: (_, row) => (
         <Input
-          placeholder="aa"
-          text="aa"
-          // type="number"
-          value={value}
-          readOnly
+          text={t("checkout.quantity")}
+          value={(row.quantity ?? 0).toString()}
           center
+          onChange={(event) => {
+            updateProductQuantity(row.item, Number(event.target.value));
+          }}
         />
       ),
     },
@@ -71,7 +72,7 @@ function ProductListCard() {
       render: (value) => formatCurrency(Number(value), locale, currency),
     },
     {
-      key: "item",
+      key: "actions",
       label: "",
       align: "center",
       width: "8%",
