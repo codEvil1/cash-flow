@@ -1,18 +1,17 @@
 import type { ButtonHTMLAttributes, ElementType } from "react";
 import { Content, IconWrapper, StyledButton } from "./style";
-import { useTheme } from "../../contexts/Theme/useTheme";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
+  color?: string;
   icon?: ElementType;
 }
 
-function Button({ children, icon, text, ...props }: ButtonProps) {
-  const { theme } = useTheme();
+function Button({ children, icon, text, color, ...props }: ButtonProps) {
   const Icon = icon;
 
   return (
-    <StyledButton theme={theme} title={text} {...props}>
+    <StyledButton title={text} color={color} {...props}>
       <Content>
         {Icon && (
           <IconWrapper>

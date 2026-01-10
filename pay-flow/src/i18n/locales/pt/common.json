@@ -19,7 +19,9 @@
     "passwordNoSpaces": "Senha Não Pode Conter Espaços em Branco",
     "passwordRequired": "Senha é Obrigatória",
     "quantityRequired": "Quantidade é Obrigatória",
-    "quantityMin": "Quantidade Inválida"
+    "quantityMin": "Quantidade Inválida",
+    "paymentMethodRequired": "Informe o Método de Pagamento",
+    "installmentsRequired": "Informe a Quantidade de Parcelas"
   },
   "resetPassword": {
     "sendCode": "Enviar Código",
@@ -91,7 +93,8 @@
     "credit": "Crédito",
     "pix": "PIX",
     "cash": "Dinheiro",
-    "debit": "Débito"
+    "debit": "Débito",
+    "confirmPayment": "Confirmar Pagamento"
   },
   "shipping": {
     "shipping": "Frete",
@@ -99,5 +102,6 @@
     "deliveryTime": "Prazo de Entrega",
     "cost": "Valor",
     "address": "Endereço"
-  }
+  },
+  "utils": { "cancel": "Cancelar" }
 }

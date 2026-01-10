@@ -1,14 +1,18 @@
 import styled from "styled-components";
 import { colors } from "../Style/theme";
 
-export const StyledButton = styled.button`
+interface StyledButtonProps {
+  color?: string;
+}
+
+export const StyledButton = styled.button<StyledButtonProps>`
   width: 100%;
   height: 48px;
 
   border-radius: 14px;
   border: none;
 
-  background: ${colors.primary};
+  background: ${({ color }) => (color ? color : colors.primary)};
   color: ${colors.white};
 
   font-size: 15px;

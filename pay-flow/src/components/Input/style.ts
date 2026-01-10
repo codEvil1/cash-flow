@@ -39,7 +39,7 @@ export const StyledInput = styled.input<InputStyleProps>`
   border: 1px solid
     ${({ hasError, theme }) =>
       hasError
-        ? colors.error
+        ? colors.red
         : theme === "dark"
         ? colors.darkBorder
         : colors.lightBorder};
@@ -60,7 +60,7 @@ export const StyledInput = styled.input<InputStyleProps>`
   &:focus {
     border-color: ${({ hasError, theme }) =>
       hasError
-        ? colors.error
+        ? colors.red
         : theme === "dark"
         ? colors.darkBorder
         : colors.lightBorder};
@@ -81,7 +81,7 @@ export const ErrorIcon = styled.span`
   display: flex;
   align-items: center;
 
-  color: ${colors.error};
+  color: ${colors.red};
   cursor: help;
 
   &:hover span {

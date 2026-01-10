@@ -13,7 +13,7 @@ import Card from "../Card";
 import { useNavigate } from "react-router-dom";
 import { useProductList } from "../../contexts/ProductList/useProductList";
 import { useCallback, useEffect, useState } from "react";
-import { PRODUCT_CODE_LENGTH } from "../../config/constants";
+import { PRODUCT_CODE_LENGTH } from "../../domain/constants";
 
 export interface ProductFormData {
   item: string;

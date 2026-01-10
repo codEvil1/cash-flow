@@ -60,7 +60,7 @@ export const StyledSelect = styled.select<StyleThemeProps>`
   }
 `;
 
-export const Arrow = styled.span<SelectStyleProps>`
+export const Arrow = styled.span<StyleThemeProps>`
   position: absolute;
   right: 16px;
   top: 50%;
@@ -77,7 +77,7 @@ export const Arrow = styled.span<SelectStyleProps>`
     ${({ theme }) => (theme === "dark" ? colors.darkText : colors.lightText)};
 `;
 
-export const StyledLabel = styled.label<SelectStyleProps>`
+export const StyledLabel = styled.label<StyleThemeProps>`
   margin-bottom: 10px;
   font-size: 16px;
   font-weight: 600;

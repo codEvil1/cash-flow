@@ -6,7 +6,7 @@ import HeaderControls from "../../components/HeaderControls";
 import { Footer, Page } from "../Login/style";
 import { Body } from "../Checkout/style";
 import Input from "../../components/Input";
-import { APP_VERSION } from "../../config/constants";
+import { APP_VERSION } from "../../domain/constants";
 
 interface ShippingFormData {
   product: string;

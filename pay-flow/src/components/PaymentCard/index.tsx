@@ -16,7 +16,8 @@ import { useCurrency } from "../../contexts/Currency/useCurrency";
 import { usePayment } from "../../contexts/Payment/usePayment";
 import { useDiscount } from "../../contexts/Discount/useDiscount";
 import { useShipping } from "../../contexts/Shipping/useShipping";
-import { PaymentMethod } from "../../config/enum";
+import { PaymentMethod } from "../../domain/enum";
+import { getPaymentMethodLabel } from "../../domain/mappers";
 
 function PaymentCard() {
   const { t } = useTranslation();
@@ -30,7 +31,6 @@ function PaymentCard() {
     installmentAmount,
     installmentCount,
     paymentMethod,
-    brand,
   } = usePayment();
   const navigate = useNavigate();
 
@@ -45,7 +45,7 @@ function PaymentCard() {
         <Value>
           {paymentMethod
             ? paymentMethod === PaymentMethod.CREDIT
-              ? `${paymentMethod} (${brand})`
+              ? `${getPaymentMethodLabel(paymentMethod, t)}`
               : paymentMethod
             : "-"}
         </Value>
