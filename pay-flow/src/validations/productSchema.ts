@@ -8,5 +8,6 @@ export const productSchema = (t: TFunction) =>
       .number()
       .required(t("validation.required"))
       .min(1, t("validation.minQuantity")),
+    unitPrice: yup.number().required(t("validation.required")),
     price: yup.number().required(t("validation.required")),
   });

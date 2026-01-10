@@ -19,8 +19,9 @@ export interface ProductFormData {
   item: string;
   description?: string;
   quantity: number;
-  unitPrice?: number;
+  unitPrice: number;
   price: number;
+  actions?: string;
 }
 
 function ProductCard() {
@@ -140,7 +141,7 @@ function ProductCard() {
                 />
               </Col>
             </Row>
-            <Row> 
+            <Row>
               <Col>
                 <Button
                   icon={PackagePlus}
