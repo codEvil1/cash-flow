@@ -8,12 +8,14 @@ import { formatCurrency } from "../../utils/formatCurrency";
 import { useCurrency } from "../../contexts/Currency/useCurrency";
 import { useShipping } from "../../contexts/Shipping/useShipping";
 import { formatEmpty } from "../../utils/formatEmpty";
+import { useCustomer } from "../../contexts/Customer/useCustomer";
 
 function ShippingCard() {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { currency, locale } = useCurrency();
-  const { type, deliveryTime, freight, adress } = useShipping();
+  const { type, deliveryTime, freight } = useShipping();
+  const { customer } = useCustomer();
   const navigate = useNavigate();
 
   return (
@@ -39,7 +41,7 @@ function ShippingCard() {
       <RowItem theme={theme}>
         <MapPin size={16} />
         <Label>{t("shipping.address")}</Label>
-        <Value>{formatEmpty(adress)}</Value>
+        <Value>{formatEmpty(customer?.adress)}</Value>
       </RowItem>
     </Card>
   );

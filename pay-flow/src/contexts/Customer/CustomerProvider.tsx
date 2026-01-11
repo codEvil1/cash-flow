@@ -9,12 +9,13 @@ export interface Customer {
   email: string;
   country: string;
   lastPurchase: Date;
+  adress: string;
 }
 
 export function CustomerProvider({ children }: { children: ReactNode }) {
   const { t } = useTranslation();
 
-  const [identifier, setIdentifier] = useState<string| undefined>("");
+  const [identifier, setIdentifier] = useState<string | undefined>("");
   const [customer, setCustomer] = useState<Customer>();
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -26,6 +27,7 @@ export function CustomerProvider({ children }: { children: ReactNode }) {
         email: "brunoviniciuspaese@gmail.com",
         country: "BR",
         lastPurchase: new Date("2024-11-22"),
+        adress: "Andrea Pontin, 172, Centro, Carlos Barbosa",
       });
     } catch {
       toast.error(t("resetPassword.sentEmail"));
