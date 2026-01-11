@@ -82,7 +82,9 @@
     "name": "Nome",
     "identifier": "Identificador",
     "phone": "Telefone",
-    "email": "E-mail"
+    "email": "E-mail",
+    "confirmCustomer": "Confirmar Cliente",
+    "lastPurchase": "Última Compra"
   },
   "payment": {
     "payment": "Pagamento",

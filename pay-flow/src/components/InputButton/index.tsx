@@ -3,8 +3,8 @@ import { ActionButton, InputWrapper } from "./style";
 import Input from "../Input";
 import { useTheme } from "../../contexts/Theme/useTheme";
 
-export interface InputButtonProps {
-  value: string;
+export interface InputButtonProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   placeholder: string;
   text: string;
   error?: string;
@@ -13,23 +13,18 @@ export interface InputButtonProps {
 }
 
 function InputButton({
-  value,
   placeholder,
   text,
   error,
   icon: Icon,
   onClick,
+  ...rest
 }: InputButtonProps) {
   const { theme } = useTheme();
 
   return (
     <InputWrapper>
-      <Input
-        placeholder={placeholder}
-        text={text}
-        error={error}
-        value={value}
-      />
+      <Input placeholder={placeholder} text={text} error={error} {...rest} />
       <ActionButton type="button" onClick={onClick} theme={theme}>
         <Icon size={16} />
       </ActionButton>

@@ -22,8 +22,8 @@ import { colors } from "../../components/Style/theme";
 import { useNavigate } from "react-router-dom";
 import { getPaymentMethodLabel } from "../../domain/mappers";
 
-interface PaymentFormData {
-  paymentMethod: number;
+export interface PaymentFormData {
+  paymentMethod: PaymentMethod;
   installmentsCount?: number;
 }
 
@@ -124,11 +124,7 @@ function Payment() {
         ]}
       />
       <Body>
-        <Card
-          title={t("payment.payment")}
-          titlePadding={16}
-          onClick={() => console.log("aaaaaaaaaaaaaaa")}
-        >
+        <Card title={t("payment.payment")} titlePadding={16}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Row>
               <Col>

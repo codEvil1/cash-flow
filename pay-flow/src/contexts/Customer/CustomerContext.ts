@@ -1,16 +1,13 @@
 import { createContext } from "react";
+import type { Customer } from "./CustomerProvider";
 
 export interface CustomerContextData {
-  name: string;
-  identifier: string;
-  phone: string;
-  email: string;
-  country: string;
-  setName: (name: string) => void;
-  setIdentifier: (identifier: string) => void;
-  setPhone: (phone: string) => void;
-  setEmail: (email: string) => void;
-  setCountry: (country: string) => void;
+  identifier?: string;
+  customer?: Customer;
+  loading: boolean;
+  setIdentifier: (identifier?: string) => void;
+  getCustomer: () => void;
+  setCustomer: (custumer?: Customer) => void;
 }
 
 export const CustomerContext = createContext<CustomerContextData>(

@@ -11,7 +11,7 @@ import { formatEmpty } from "../../utils/formatEmpty";
 function CustomerCard() {
   const { t } = useTranslation();
   const { theme } = useTheme();
-  const { name, identifier, phone, country, email } = useCustomer();
+  const { customer, identifier } = useCustomer();
   const navigate = useNavigate();
 
   return (
@@ -22,7 +22,7 @@ function CustomerCard() {
       <RowItem theme={theme}>
         <User size={16} />
         <Label>{t("customer.name")}</Label>
-        <Value>{formatEmpty(name)}</Value>
+        <Value>{formatEmpty(customer?.name)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <CreditCard size={16} />
@@ -32,12 +32,14 @@ function CustomerCard() {
       <RowItem theme={theme}>
         <Phone size={16} />
         <Label>{t("customer.phone")}</Label>
-        <Value>{formatPhoneInternational(phone, country)}</Value>
+        <Value>
+          {formatPhoneInternational(customer?.phone, customer?.country)}
+        </Value>
       </RowItem>
       <RowItem theme={theme}>
         <Mail size={16} />
         <Label>{t("customer.email")}</Label>
-        <Value>{formatEmpty(email)}</Value>
+        <Value>{formatEmpty(customer?.email)}</Value>
       </RowItem>
     </Card>
   );

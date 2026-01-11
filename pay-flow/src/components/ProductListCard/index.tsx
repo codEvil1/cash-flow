@@ -11,7 +11,13 @@ import Button from "../Button";
 import { Trash } from "lucide-react";
 import { useProductList } from "../../contexts/ProductList/useProductList";
 import { useCurrency } from "../../contexts/Currency/useCurrency";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { productListSchema } from "../../validations/productListSchema";
 
+export interface ProductListFormData {
+  quantity: number;
+}
 function ProductListCard() {
   const { t } = useTranslation();
   const { currency, locale } = useCurrency();
@@ -20,8 +26,25 @@ function ProductListCard() {
 
   const navigate = useNavigate();
 
+  const {
+    setValue,
+    formState: { errors },
+  } = useForm<ProductListFormData>({
+    resolver: yupResolver(productListSchema(t)),
+  });
+
   const handleRemove = (product: ProductFormData) => {
     removeProduct(product);
+  };
+
+  const handleChangeQuantity = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    row: ProductFormData
+  ) => {
+    updateProductQuantity(row.item, Number(event.target.value));
+    setValue("quantity", Number(event.target.value), {
+      shouldValidate: true,
+    });
   };
 
   const columns: Column<ProductFormData>[] = [
@@ -46,10 +69,10 @@ function ProductListCard() {
         <Input
           text={t("checkout.quantity")}
           value={(row.quantity ?? 0).toString()}
+          error={errors.quantity?.message}
+          type="number"
+          onChange={(event) => handleChangeQuantity(event, row)}
           center
-          onChange={(event) => {
-            updateProductQuantity(row.item, Number(event.target.value));
-          }}
         />
       ),
     },
