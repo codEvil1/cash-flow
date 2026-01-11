@@ -31,9 +31,10 @@ function Customer() {
     useCustomer();
   const navigate = useNavigate();
 
-  const [inputIdentifier, setInputIdentifier] = useState(identifier);
+  const [inputIdentifier, setInputIdentifier] = useState<string>(
+    identifier ?? ""
+  );
 
-  // const navigate = useNavigate();
   const {
     setValue,
     handleSubmit,
@@ -58,10 +59,6 @@ function Customer() {
     setIdentifier(undefined);
   };
 
-  const handleGetCustomer = () => {
-    getCustomer();
-  };
-
   return (
     <Page theme={theme}>
       <HeaderControls
@@ -82,7 +79,7 @@ function Customer() {
                   value={inputIdentifier}
                   maxLength={18}
                   icon={Search}
-                  onClick={handleGetCustomer}
+                  onClick={getCustomer}
                   onChange={(event) => {
                     handleChangeIdentifier(event);
                   }}

@@ -71,7 +71,8 @@
     "cashier": "Atendente",
     "id": "ID",
     "name": "Nome",
-    "rating": "Avaliação"
+    "rating": "Avaliação",
+    "confirmCashier": "Confirmar Atendente"
   },
   "productList": {
     "emptyList": "Lista Vazia",

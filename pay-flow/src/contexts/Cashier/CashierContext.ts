@@ -1,12 +1,13 @@
 import { createContext } from "react";
+import type { Cashier } from "./CashierProvider";
 
 export interface CashierContextData {
-  id: number;
-  name: string;
-  ratings: number[];
-  setId: (id: number) => void;
-  setName: (name: string) => void;
-  setRatings: (ratings: number[]) => void;
+  id?: number;
+  cashier?: Cashier;
+  loading: boolean;
+  setId: (id?: number) => void;
+  getCashier: () => void;
+  setCashier: (cashier?: Cashier) => void;
 }
 
 export const CashierContext = createContext<CashierContextData>(
