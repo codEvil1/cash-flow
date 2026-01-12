@@ -3,10 +3,19 @@ import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { useTheme } from "../../contexts/Theme/useTheme";
 import HeaderControls from "../../components/HeaderControls";
-import { Footer, Page } from "../Login/style";
-import { Body } from "../Checkout/style";
-import Input from "../../components/Input";
+import { Body, Footer, Page } from "../Login/style";
 import { APP_VERSION } from "../../domain/constants";
+import Card from "../../components/Card";
+import { Row } from "../../components/Row";
+import { Col } from "../../components/Col";
+import Checkbox from "../../components/Checkbox";
+import ShippingCard from "../../components/ShippingCard";
+import { useState } from "react";
+import { useShipping } from "../../contexts/Shipping/useShipping";
+import Button from "../../components/Button";
+import { CheckCircle, XCircle } from "lucide-react";
+import { colors } from "../../components/Style/theme";
+import { useNavigate } from "react-router-dom";
 
 interface ShippingFormData {
   product: string;
@@ -15,23 +24,22 @@ interface ShippingFormData {
 function Shipping() {
   const { t } = useTranslation();
   const { theme } = useTheme();
+  const { shipping, setShipping, getShipping } = useShipping();
+  const navigate = useNavigate();
 
-  // const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ShippingFormData>({
-    // resolver: yupResolver(checkoutSchema(t)),
-  });
+  const [hasFreight, setHasFreight] = useState<boolean>(!!shipping);
 
-  const onSubmit = (data: ShippingFormData) => {
-    // chamada login backend
+  const { handleSubmit } = useForm<ShippingFormData>({});
+
+  const onSubmit = () => {
     toast.success("Sucesso");
-    toast.error("Erro");
-    toast.warning("Atenção");
-    console.log(data);
-    // navigate("/dashboard");
+    navigate("/checkout");
+  };
+
+  const handleChangeFreight = () => {
+    getShipping();
+    setHasFreight(!hasFreight);
+    if (!hasFreight) setShipping(undefined);
   };
 
   return (
@@ -39,19 +47,54 @@ function Shipping() {
       <HeaderControls
         breadcrumbs={[
           { label: "checkout.checkout", path: "/checkout" },
-          { label: "checkout.promotions", path: "/checkout/promotions" },
+          { label: "checkout.shipping", path: "/checkout/shipping" },
         ]}
       />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Body>
-          <Input
-            placeholder={t("checkout.product")}
-            text={t("checkout.enterProduct")}
-            error={errors.product?.message}
-            {...register("product")}
-          />
-        </Body>
-      </form>
+      <Body>
+        <Card title={t("shipping.shipping")} titlePadding={16}>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Row>
+              <Col>
+                <Checkbox
+                  text={t("shipping.shipping")}
+                  onClick={handleChangeFreight}
+                  checked={!!shipping}
+                />
+              </Col>
+            </Row>
+            {(hasFreight || shipping) && (
+              <Row>
+                <Col>
+                  <ShippingCard />
+                </Col>
+              </Row>
+            )}
+            <Row>
+              <Col xs={10}>
+                <Button
+                  text={t("shipping.confirmShipping")}
+                  icon={CheckCircle}
+                  type="submit"
+                  disabled={!shipping && hasFreight}
+                  onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
+                    event.stopPropagation()
+                  }
+                >
+                  {t("shipping.confirmShipping")}
+                </Button>
+              </Col>
+              <Col xs={2}>
+                <Button
+                  text={t("utils.cancel")}
+                  icon={XCircle}
+                  color={colors.red}
+                  onClick={() => navigate("/checkout")}
+                />
+              </Col>
+            </Row>
+          </form>
+        </Card>
+      </Body>
       <Footer theme={theme}>
         {t("app.version")} v{APP_VERSION}
       </Footer>

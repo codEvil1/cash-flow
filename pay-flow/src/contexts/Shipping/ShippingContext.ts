@@ -1,12 +1,11 @@
 import { createContext } from "react";
+import type { Shipping } from "./ShippingProvider";
 
 export interface ShippingContextData {
-  type: string;
-  deliveryTime: string;
-  freight: number;
-  setType: (type: string) => void;
-  setDeliveryTime: (deliveryTime: string) => void;
-  setFreight: (freight: number) => void;
+  shipping?: Shipping;
+  loading: boolean;
+  setShipping: (shipping?: Shipping) => void;
+  getShipping: () => void;
 }
 
 export const ShippingContext = createContext<ShippingContextData>(
