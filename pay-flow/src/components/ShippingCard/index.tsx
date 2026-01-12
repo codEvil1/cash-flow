@@ -10,33 +10,36 @@ import { useShipping } from "../../contexts/Shipping/useShipping";
 import { formatEmpty } from "../../utils/formatEmpty";
 import { useCustomer } from "../../contexts/Customer/useCustomer";
 
-function ShippingCard() {
+interface ShippingCardProps {
+  title?: string;
+}
+
+function ShippingCard({ title }: ShippingCardProps) {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { currency, locale } = useCurrency();
-  const { type, deliveryTime, freight } = useShipping();
+  const { shipping } = useShipping();
   const { customer } = useCustomer();
   const navigate = useNavigate();
 
   return (
-    <Card
-      title={t("shipping.shipping")}
-      onClick={() => navigate("/checkout/shipping")}
-    >
+    <Card title={title} onClick={() => navigate("/checkout/shipping")}>
       <RowItem theme={theme}>
         <Package size={16} />
         <Label>{t("shipping.type")}</Label>
-        <Value>{formatEmpty(type)}</Value>
+        <Value>{formatEmpty(shipping?.type)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <Calendar size={16} />
         <Label>{t("shipping.deliveryTime")}</Label>
-        <Value>{formatEmpty(deliveryTime)}</Value>
+        <Value>{formatEmpty(shipping?.deliveryTime)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <DollarSign size={16} />
         <Label>{t("shipping.cost")}</Label>
-        <Value>{formatCurrency(freight, locale, currency)}</Value>
+        <Value>
+          {formatCurrency(shipping?.freight ?? 0, locale, currency)}
+        </Value>
       </RowItem>
       <RowItem theme={theme}>
         <MapPin size={16} />

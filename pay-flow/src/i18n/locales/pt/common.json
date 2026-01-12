@@ -106,7 +106,8 @@
     "type": "Tipo",
     "deliveryTime": "Prazo de Entrega",
     "cost": "Valor",
-    "address": "Endereço"
+    "address": "Endereço",
+    "confirmShipping": "Confirmar Frete"
   },
   "utils": { "cancel": "Cancelar" }
 }
