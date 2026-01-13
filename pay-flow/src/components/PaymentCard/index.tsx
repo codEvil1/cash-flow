@@ -25,7 +25,7 @@ function PaymentCard() {
   const { theme } = useTheme();
   const { currency, locale } = useCurrency();
   const { discountValue } = useDiscount();
-  const { freight } = useShipping();
+  const { shipping } = useShipping();
   const {
     subTotal,
     netTotal,
@@ -35,6 +35,8 @@ function PaymentCard() {
     interest,
   } = usePayment();
   const navigate = useNavigate();
+
+  console.log(netTotal);
 
   return (
     <Card
@@ -72,7 +74,9 @@ function PaymentCard() {
       <RowItem theme={theme}>
         <Truck size={16} />
         <Label>{t("shipping.shipping")}</Label>
-        <Value>{formatCurrency(freight, locale, currency, "plus")}</Value>
+        <Value>
+          {formatCurrency(shipping?.freight, locale, currency, "plus")}
+        </Value>
       </RowItem>
       <RowItem theme={theme}>
         <TrendingUp size={16} />
