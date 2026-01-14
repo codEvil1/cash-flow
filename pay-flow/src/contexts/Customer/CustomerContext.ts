@@ -2,11 +2,9 @@ import { createContext } from "react";
 import type { Customer } from "./CustomerProvider";
 
 export interface CustomerContextData {
-  identifier?: string;
   customer?: Customer;
   loading: boolean;
-  setIdentifier: (identifier?: string) => void;
-  getCustomer: () => void;
+  getCustomer: (identifier: string) => Promise<Customer | undefined>;
   setCustomer: (custumer?: Customer) => void;
 }
 

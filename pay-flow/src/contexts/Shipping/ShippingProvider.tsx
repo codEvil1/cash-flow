@@ -12,14 +12,14 @@ export interface Shipping {
 
 export function ShippingProvider({ children }: { children: ReactNode }) {
   const { t } = useTranslation();
-  const { identifier } = useCustomer();
+  const { customer } = useCustomer();
 
   const [shipping, setShipping] = useState<Shipping>();
   const [loading, setLoading] = useState<boolean>(false);
 
   const getShipping = async () => {
     try {
-      console.log(identifier);
+      console.log(customer);
       setShipping({
         type: "Sedex",
         deliveryTime: "7 dias Úteis",

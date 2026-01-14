@@ -1,15 +1,18 @@
 import { useTranslation } from "react-i18next";
-import { useCustomer } from "../../contexts/Customer/useCustomer";
 import Card from "../Card";
 import { Label, RowItem, Value } from "../DiscountCard/style";
 import { useTheme } from "../../contexts/Theme/useTheme";
 import { History, User } from "lucide-react";
 import { formatDate, formatEmpty } from "../../utils/formatEmpty";
+import type { Customer } from "../../contexts/Customer/CustomerProvider";
 
-function CustomerSummaryCard() {
+interface CustomerSummaryCardProps {
+  customer: Customer;
+}
+
+function CustomerSummaryCard({ customer }: CustomerSummaryCardProps) {
   const { t } = useTranslation();
   const { theme } = useTheme();
-  const { customer } = useCustomer();
 
   return (
     <Card>

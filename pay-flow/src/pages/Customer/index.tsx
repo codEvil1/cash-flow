@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../contexts/Theme/useTheme";
 import { toast } from "react-toastify";
@@ -19,6 +19,7 @@ import { useCustomer } from "../../contexts/Customer/useCustomer";
 import { useState } from "react";
 import InputButton from "../../components/InputButton";
 import CustomerSummaryCard from "../../components/CustomerSummaryCard";
+import type { Customer } from "../../contexts/Customer/CustomerProvider";
 
 interface CustomerFormData {
   identifier: string;
@@ -27,36 +28,54 @@ interface CustomerFormData {
 function Customer() {
   const { t } = useTranslation();
   const { theme } = useTheme();
-  const { identifier, customer, setIdentifier, getCustomer, setCustomer } =
-    useCustomer();
+  const { customer, getCustomer, setCustomer } = useCustomer();
   const navigate = useNavigate();
-
-  const [inputIdentifier, setInputIdentifier] = useState<string>(
-    identifier ?? ""
-  );
-
   const {
-    setValue,
+    control,
     handleSubmit,
+    register,
+    setValue,
     formState: { errors },
   } = useForm<CustomerFormData>({
     resolver: yupResolver(customerSchema(t)),
+    defaultValues: {
+      identifier: customer?.identifier,
+    },
   });
 
+  const inputIdentifier = useWatch({
+    control,
+    name: "identifier",
+  });
+
+  const [previewCustomer, setPreviewCustomer] = useState<Customer | undefined>(
+    customer
+  );
+
   const onSubmit = (data: CustomerFormData) => {
-    setIdentifier(data.identifier);
+    setCustomer({
+      identifier: data.identifier,
+      name: previewCustomer?.name,
+      phone: previewCustomer?.phone,
+      email: previewCustomer?.email,
+      country: previewCustomer?.country,
+      lastPurchase: previewCustomer?.lastPurchase,
+      adress: previewCustomer?.adress,
+    });
     toast.success("Sucesso");
     navigate("/checkout");
   };
 
-  const handleChangeIdentifier = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const masked = maskCpfCnpj(event.target.value);
-    setInputIdentifier(masked);
+  const handleGetCustomer = async () => {
+    if (!inputIdentifier) return;
+    const result = await getCustomer(inputIdentifier);
+    setPreviewCustomer(result);
+  };
+
+  const handleChangeCustomer = (value: string) => {
+    const masked = maskCpfCnpj(value);
     setValue("identifier", masked);
-    setCustomer(undefined);
-    setIdentifier(undefined);
+    setPreviewCustomer(undefined);
   };
 
   return (
@@ -79,17 +98,18 @@ function Customer() {
                   value={inputIdentifier}
                   maxLength={18}
                   icon={Search}
-                  onClick={getCustomer}
-                  onChange={(event) => {
-                    handleChangeIdentifier(event);
-                  }}
+                  onClick={handleGetCustomer}
+                  {...register("identifier", {
+                    onChange: (event) =>
+                      handleChangeCustomer(event.target.value),
+                  })}
                 />
               </Col>
             </Row>
-            {customer && (
+            {previewCustomer && (
               <Row>
                 <Col>
-                  <CustomerSummaryCard />
+                  <CustomerSummaryCard customer={previewCustomer} />
                 </Col>
               </Row>
             )}
@@ -99,10 +119,8 @@ function Customer() {
                   text={t("customer.confirmCustomer")}
                   icon={CheckCircle}
                   type="submit"
-                  disabled={!customer}
-                  onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
-                    event.stopPropagation()
-                  }
+                  disabled={!previewCustomer}
+                  onClick={(event) => event.stopPropagation()}
                 >
                   {t("customer.confirmCustomer")}
                 </Button>

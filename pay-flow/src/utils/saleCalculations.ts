@@ -15,11 +15,11 @@ export function calculateInterest(
 
 export function calculateNetTotal(
   products: ProductFormData[],
-  freight: number,
+  freight: number | undefined,
   discount: number,
   installmentCount: number
 ): number {
-  const baseTotal = calculateSubTotal(products) + freight - discount;
+  const baseTotal = calculateSubTotal(products) + (freight ?? 0) - discount;
   const interest = installmentCount > 1 ? baseTotal * INTEREST_RATE : 0;
   return baseTotal + interest;
 }

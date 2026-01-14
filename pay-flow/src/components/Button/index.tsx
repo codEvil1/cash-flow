@@ -7,11 +7,18 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: ElementType;
 }
 
-function Button({ children, icon, text, color, ...props }: ButtonProps) {
+function Button({
+  children,
+  icon,
+  text,
+  color,
+  type = "button",
+  ...props
+}: ButtonProps) {
   const Icon = icon;
 
   return (
-    <StyledButton title={text} color={color} {...props}>
+    <StyledButton title={text} color={color} type={type} {...props}>
       <Content>
         {Icon && (
           <IconWrapper>

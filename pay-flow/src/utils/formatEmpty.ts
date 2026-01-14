@@ -1,5 +1,5 @@
-export function formatEmpty(value?: string, fallback = "–"): string {
-  value = value?.trim();
+export function formatEmpty(value?: string | number, fallback = "–"): string {
+  value = value?.toString().trim();
   if (!value) return fallback;
 
   return value;

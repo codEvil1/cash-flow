@@ -12,7 +12,7 @@ import { formatEmpty } from "../../utils/formatEmpty";
 function CashierCard() {
   const { t } = useTranslation();
   const { theme } = useTheme();
-  const { id, cashier } = useCashier();
+  const { cashier } = useCashier();
   const navigate = useNavigate();
 
   return (
@@ -23,7 +23,7 @@ function CashierCard() {
       <RowItem theme={theme}>
         <Hash size={16} />
         <Label>{t("cashier.id")}</Label>
-        <Value>{id}</Value>
+        <Value>{formatEmpty(cashier?.id)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <User size={16} />
@@ -36,7 +36,7 @@ function CashierCard() {
         <Value>
           <RatingStars value={calculateAverageRating(cashier?.ratings)} />
           {calculateAverageRating(cashier?.ratings).toFixed(1)}
-          <span>({cashier?.ratings.length})</span>
+          <span>({cashier?.ratings?.length})</span>
         </Value>
       </RowItem>
     </Card>

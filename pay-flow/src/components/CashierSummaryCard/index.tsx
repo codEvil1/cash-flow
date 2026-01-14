@@ -4,12 +4,15 @@ import { Label, RowItem, Value } from "../DiscountCard/style";
 import { useTheme } from "../../contexts/Theme/useTheme";
 import { Hash, User } from "lucide-react";
 import { formatEmpty } from "../../utils/formatEmpty";
-import { useCashier } from "../../contexts/Cashier/useCashier";
+import type { Cashier } from "../../contexts/Cashier/CashierProvider";
 
-function CashierSummaryCard() {
+interface CashierSummaryCardProps {
+  cashier: Cashier | undefined;
+}
+
+function CashierSummaryCard({ cashier }: CashierSummaryCardProps) {
   const { t } = useTranslation();
   const { theme } = useTheme();
-  const { cashier } = useCashier();
 
   return (
     <Card>

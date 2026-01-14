@@ -79,7 +79,6 @@ function CreateAccount() {
               {...register("email")}
             />
             <Button
-              type="button"
               icon={Mail}
               text={t("resetPassword.sendCode")}
               onClick={goToNextStep}
@@ -112,7 +111,6 @@ function CreateAccount() {
             />
             <GridButton>
               <Button
-                type="button"
                 icon={ArrowLeft}
                 text={t("common.back")}
                 onClick={() => setStep("email")}
@@ -120,7 +118,6 @@ function CreateAccount() {
                 {t("common.back")}
               </Button>
               <Button
-                type="button"
                 icon={UserPlus}
                 text={t("createAccount.createAccount")}
                 onClick={handleResetPassword}

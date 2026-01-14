@@ -2,11 +2,9 @@ import { createContext } from "react";
 import type { Cashier } from "./CashierProvider";
 
 export interface CashierContextData {
-  id?: number;
   cashier?: Cashier;
   loading: boolean;
-  setId: (id?: number) => void;
-  getCashier: () => void;
+  getCashier: (id: number) => Promise<Cashier | undefined>;
   setCashier: (cashier?: Cashier) => void;
 }
 
