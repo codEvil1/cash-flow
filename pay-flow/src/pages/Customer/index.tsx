@@ -55,7 +55,7 @@ function Customer() {
   const onSubmit = (data: CustomerFormData) => {
     setCustomer({
       identifier: data.identifier,
-      name: data.identifier,
+      name: previewCustomer?.name,
       phone: previewCustomer?.phone,
       email: previewCustomer?.email,
       country: previewCustomer?.country,

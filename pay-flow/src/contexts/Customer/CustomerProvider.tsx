@@ -28,7 +28,7 @@ export function CustomerProvider({ children }: { children: ReactNode }) {
       return {
         identifier,
         name: "Bruno Paese",
-        phone: "5499999999",
+        phone: "54999999999",
         email: "bruno@gmail.com",
         country: "BR",
         lastPurchase: new Date("2024-11-22"),

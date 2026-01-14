@@ -4,11 +4,11 @@ import ResetPassword from "../pages/Shipping";
 import CreateAccount from "../pages/CreateAccount";
 import Checkout from "../pages/Checkout";
 import Product from "../pages/Product";
-import Customer from "../pages/Customer";
 import Promotions from "../pages/Promotions";
-import Cashier from "../pages/Cashier";
 import Payment from "../pages/Payment";
 import Shipping from "../pages/Shipping";
+import Cashier from "../pages/Cashier";
+import Customer from "../pages/Customer";
 
 function AppRoutes() {
   return (
