@@ -15,17 +15,18 @@ export function CashierProvider({ children }: { children: ReactNode }) {
   const [cashier, setCashier] = useState<Cashier>();
   const [loading, setLoading] = useState<boolean>(false);
 
-  const getCashier = async (id: number) => {
+  const getCashier = async (id: number): Promise<Cashier | undefined> => {
     try {
       // carrega o atendente pelo id
       // mock
-      setCashier({
+      return {
         id,
         name: "Ana Silva",
         ratings: [5, 4.7, 4.8, 5],
-      });
+      };
     } catch {
       toast.error(t("resetPassword.sentEmail"));
+      return undefined;
     } finally {
       setLoading(false);
     }

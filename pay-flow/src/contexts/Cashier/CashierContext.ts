@@ -4,7 +4,7 @@ import type { Cashier } from "./CashierProvider";
 export interface CashierContextData {
   cashier?: Cashier;
   loading: boolean;
-  getCashier: (id: number) => void;
+  getCashier: (id: number) => Promise<Cashier | undefined>;
   setCashier: (cashier?: Cashier) => void;
 }
 

@@ -23,7 +23,7 @@ function CashierCard() {
       <RowItem theme={theme}>
         <Hash size={16} />
         <Label>{t("cashier.id")}</Label>
-        <Value>{cashier?.id}</Value>
+        <Value>{formatEmpty(cashier?.id)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <User size={16} />

@@ -18,6 +18,7 @@ import { useCashier } from "../../contexts/Cashier/useCashier";
 import CashierSummaryCard from "../../components/CashierSummaryCard";
 import { cashierSchema } from "../../validations/cashierSchema";
 import { useState } from "react";
+import type { Cashier } from "../../contexts/Cashier/CashierProvider";
 
 interface CashierFormData {
   id: number;
@@ -38,7 +39,9 @@ function Cashier() {
   });
   const navigate = useNavigate();
 
-  const [hasSearched, setHasSearched] = useState<boolean>(!!cashier);
+  const [previewCashier, setPreviewCashier] = useState<Cashier | undefined>(
+    cashier
+  );
 
   const inputId = useWatch({
     control,
@@ -46,15 +49,19 @@ function Cashier() {
   });
 
   const onSubmit = (data: CashierFormData) => {
-    setCashier({ id: data.id, name: cashier?.name, ratings: cashier?.ratings });
+    setCashier({
+      id: data.id,
+      name: previewCashier?.name,
+      ratings: previewCashier?.ratings,
+    });
     toast.success("Sucesso");
     navigate("/checkout");
   };
 
-  const handleGetCashier = () => {
+  const handleGetCashier = async () => {
     if (!inputId) return;
-    getCashier(inputId);
-    setHasSearched(true);
+    const result = await getCashier(inputId);
+    setPreviewCashier(result);
   };
 
   return (
@@ -79,17 +86,15 @@ function Cashier() {
                   icon={Search}
                   onClick={handleGetCashier}
                   {...register("id", {
-                    onChange: () => {
-                      setHasSearched(false);
-                    },
+                    onChange: () => setPreviewCashier(undefined),
                   })}
                 />
               </Col>
             </Row>
-            {cashier && hasSearched && (
+            {previewCashier && (
               <Row>
                 <Col>
-                  <CashierSummaryCard />
+                  <CashierSummaryCard cashier={previewCashier} />
                 </Col>
               </Row>
             )}
@@ -99,7 +104,7 @@ function Cashier() {
                   text={t("cashier.confirmCashier")}
                   icon={CheckCircle}
                   type="submit"
-                  disabled={!cashier}
+                  disabled={!previewCashier}
                   onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
                     event.stopPropagation()
                   }
