@@ -4,33 +4,39 @@ import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 
 export interface Customer {
-  name: string;
-  phone: string;
-  email: string;
-  country: string;
-  lastPurchase: Date;
-  adress: string;
+  identifier: string;
+  name?: string;
+  phone?: string;
+  email?: string;
+  country?: string;
+  lastPurchase?: Date;
+  adress?: string;
 }
 
 export function CustomerProvider({ children }: { children: ReactNode }) {
   const { t } = useTranslation();
 
-  const [identifier, setIdentifier] = useState<string | undefined>("");
   const [customer, setCustomer] = useState<Customer>();
   const [loading, setLoading] = useState<boolean>(false);
 
-  const getCustomer = async () => {
+  const getCustomer = async (
+    identifier: string
+  ): Promise<Customer | undefined> => {
     try {
-      setCustomer({
+      // carrega o cliente pelo identificador
+      // mock
+      return {
+        identifier,
         name: "Bruno Paese",
-        phone: "54994057272",
-        email: "brunoviniciuspaese@gmail.com",
+        phone: "5499999999",
+        email: "bruno@gmail.com",
         country: "BR",
         lastPurchase: new Date("2024-11-22"),
-        adress: "Andrea Pontin, 172, Centro, Carlos Barbosa",
-      });
+        adress: "Menos foco mais ansiedade, 999, Centro, Carlos Barbosa",
+      };
     } catch {
       toast.error(t("resetPassword.sentEmail"));
+      return undefined;
     } finally {
       setLoading(false);
     }
@@ -39,10 +45,8 @@ export function CustomerProvider({ children }: { children: ReactNode }) {
   return (
     <CustomerContext.Provider
       value={{
-        identifier,
         customer,
         loading,
-        setIdentifier,
         getCustomer,
         setCustomer,
       }}
