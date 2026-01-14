@@ -36,8 +36,6 @@ function PaymentCard() {
   } = usePayment();
   const navigate = useNavigate();
 
-  console.log(netTotal);
-
   return (
     <Card
       title={t("payment.payment")}

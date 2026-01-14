@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../contexts/Theme/useTheme";
 import { toast } from "react-toastify";
@@ -13,11 +13,11 @@ import { CheckCircle, Search, XCircle } from "lucide-react";
 import { colors } from "../../components/Style/theme";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
 import InputButton from "../../components/InputButton";
 import { useCashier } from "../../contexts/Cashier/useCashier";
 import CashierSummaryCard from "../../components/CashierSummaryCard";
 import { cashierSchema } from "../../validations/cashierSchema";
+import { useState } from "react";
 
 interface CashierFormData {
   id: number;
@@ -26,32 +26,35 @@ interface CashierFormData {
 function Cashier() {
   const { t } = useTranslation();
   const { theme } = useTheme();
-  const { id, cashier, setId, getCashier, setCashier } = useCashier();
-  const navigate = useNavigate();
-
-  const [inputId, setInputId] = useState<number>(id ?? 0);
-
+  const { cashier, getCashier, setCashier } = useCashier();
   const {
-    setValue,
+    register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm<CashierFormData>({
     resolver: yupResolver(cashierSchema(t)),
+    defaultValues: { id: cashier?.id },
+  });
+  const navigate = useNavigate();
+
+  const [hasSearched, setHasSearched] = useState<boolean>(!!cashier);
+
+  const inputId = useWatch({
+    control,
+    name: "id",
   });
 
   const onSubmit = (data: CashierFormData) => {
-    console.log(data);
-    setId(data.id);
+    setCashier({ id: data.id, name: cashier?.name, ratings: cashier?.ratings });
     toast.success("Sucesso");
     navigate("/checkout");
   };
 
-  const handleChangeId = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number(event.target.value);
-    setInputId(value);
-    setValue("id", value);
-    setCashier(undefined);
-    setId(undefined);
+  const handleGetCashier = () => {
+    if (!inputId) return;
+    getCashier(inputId);
+    setHasSearched(true);
   };
 
   return (
@@ -74,14 +77,16 @@ function Cashier() {
                   value={inputId}
                   maxLength={3}
                   icon={Search}
-                  onClick={getCashier}
-                  onChange={(event) => {
-                    handleChangeId(event);
-                  }}
+                  onClick={handleGetCashier}
+                  {...register("id", {
+                    onChange: () => {
+                      setHasSearched(false);
+                    },
+                  })}
                 />
               </Col>
             </Row>
-            {cashier && (
+            {cashier && hasSearched && (
               <Row>
                 <Col>
                   <CashierSummaryCard />
