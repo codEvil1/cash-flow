@@ -10,7 +10,7 @@ import { CurrencyProvider } from "./contexts/Currency/CurrencyProvider";
 import { ProductListProvider } from "./contexts/ProductList/ProductListProvider.tsx";
 import { PaymentProvider } from "./contexts/Payment/PaymentProvider.tsx";
 import { ShippingProvider } from "./contexts/Shipping/ShippingProvider.tsx";
-import { DiscountProvider } from "./contexts/Discount/ShippingProvider.tsx";
+import { DiscountProvider } from "./contexts/Discount/DiscountProvider.tsx";
 import { CustomerProvider } from "./contexts/Customer/CustomerProvider.tsx";
 import { CashierProvider } from "./contexts/Cashier/CashierProvider.tsx";
 

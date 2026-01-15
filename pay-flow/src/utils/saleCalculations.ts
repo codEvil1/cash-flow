@@ -16,10 +16,11 @@ export function calculateInterest(
 export function calculateNetTotal(
   products: ProductFormData[],
   freight: number | undefined,
-  discount: number,
+  discount: number | undefined,
   installmentCount: number
 ): number {
-  const baseTotal = calculateSubTotal(products) + (freight ?? 0) - discount;
+  const baseTotal =
+    calculateSubTotal(products) + (freight ?? 0) - (discount ?? 0);
   const interest = installmentCount > 1 ? baseTotal * INTEREST_RATE : 0;
   return baseTotal + interest;
 }
@@ -30,4 +31,20 @@ export function calculateInstallments(
 ): number {
   if (installmentCount <= 0) return 0;
   return netTotal / installmentCount;
+}
+
+export function calculateDiscountValue(
+  netTotal: number,
+  discountPercentage: number
+): number {
+  if (netTotal <= 0) return 0;
+  return (netTotal / netTotal) * (discountPercentage / 100);
+}
+
+export function calculateTotalWithDiscount(
+  netTotal: number,
+  discountValue: number | undefined
+): number {
+  if (!discountValue) return 0;
+  return netTotal - discountValue;
 }

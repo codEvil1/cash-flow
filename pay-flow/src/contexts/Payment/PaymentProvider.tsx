@@ -19,7 +19,7 @@ export function PaymentProvider({ children }: { children: ReactNode }) {
 
   const { productList } = useProductList();
   const { shipping } = useShipping();
-  const { discountValue } = useDiscount();
+  const { discount } = useDiscount();
 
   const subTotal = useMemo(() => calculateSubTotal(productList), [productList]);
 
@@ -28,10 +28,10 @@ export function PaymentProvider({ children }: { children: ReactNode }) {
       calculateNetTotal(
         productList,
         shipping?.freight,
-        discountValue,
+        discount?.discountValue,
         installmentCount
       ),
-    [discountValue, installmentCount, productList, shipping?.freight]
+    [discount?.discountValue, installmentCount, productList, shipping?.freight]
   );
 
   const installmentAmount = useMemo(

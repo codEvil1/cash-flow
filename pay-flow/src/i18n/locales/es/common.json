@@ -47,7 +47,7 @@
     "checkout": "Checkout",
     "product": "Producto",
     "enterProduct": "Ingrese Código del Producto",
-    "promotions": "Promociones",
+    "discount": "Descuento",
     "noImage": "Producto sin Imagen",
     "description": "Descripción",
     "quantity": "Cantidad",
