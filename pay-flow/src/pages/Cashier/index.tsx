@@ -28,6 +28,8 @@ function Cashier() {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { cashier, getCashier, setCashier } = useCashier();
+  const navigate = useNavigate();
+
   const {
     register,
     control,
@@ -37,7 +39,6 @@ function Cashier() {
     resolver: yupResolver(cashierSchema(t)),
     defaultValues: { id: cashier?.id },
   });
-  const navigate = useNavigate();
 
   const [previewCashier, setPreviewCashier] = useState<Cashier | undefined>(
     cashier
