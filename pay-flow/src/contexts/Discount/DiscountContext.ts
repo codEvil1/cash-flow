@@ -1,13 +1,11 @@
 import { createContext } from "react";
+import type { Discount } from "./DiscountProvider";
 
 export interface DiscountContextData {
-  couponCode: string;
-  discountPercentage: number;
-  discountValue: number;
-  totalWithDiscount: number;
-  setCouponCode: (cuponCode: string) => void;
-  setDiscountPercentage: (discountPercentage: number) => void;
-  setDiscountValue: (discountValue: number) => void;
+  discount?: Discount;
+  loading: boolean;
+  setDiscount: (discount: Discount) => void;
+  getDiscount: (couponCode?: string) => Promise<Discount | undefined>;
 }
 
 export const DiscountContext = createContext<DiscountContextData>(

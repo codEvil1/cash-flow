@@ -11,11 +11,9 @@ import CashierCard from "../../components/CashierCard";
 import CustomerCard from "../../components/CustomerCard";
 import PaymentCard from "../../components/PaymentCard";
 import ShippingCard from "../../components/ShippingCard";
-import { useTranslation } from "react-i18next";
 
 function Checkout() {
   const { theme } = useTheme();
-  const { t } = useTranslation();
 
   return (
     <Page theme={theme}>
@@ -40,7 +38,7 @@ function Checkout() {
               <CustomerCard />
             </Row>
             <Row>
-              <ShippingCard title={t("shipping.shipping")} />
+              <ShippingCard />
             </Row>
             <Row>
               <DiscountCard />

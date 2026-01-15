@@ -24,7 +24,7 @@ function PaymentCard() {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { currency, locale } = useCurrency();
-  const { discountValue } = useDiscount();
+  const { discount } = useDiscount();
   const { shipping } = useShipping();
   const {
     subTotal,
@@ -66,7 +66,7 @@ function PaymentCard() {
         <ArrowDown size={16} />
         <Label>{t("discount.discount")}</Label>
         <Value>
-          {formatCurrency(discountValue, locale, currency, "minus")}
+          {formatCurrency(discount?.discountValue, locale, currency, "minus")}
         </Value>
       </RowItem>
       <RowItem theme={theme}>
