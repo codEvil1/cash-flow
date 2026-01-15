@@ -32,7 +32,7 @@ export function CustomerProvider({ children }: { children: ReactNode }) {
         email: "bruno@gmail.com",
         country: "BR",
         lastPurchase: new Date("2024-11-22"),
-        adress: "Menos foco mais ansiedade, 999, Centro, Carlos Barbosa",
+        adress: "Faria Lima, 999, Pinheiros, São Paulo",
       };
     } catch {
       toast.error(t("resetPassword.sentEmail"));

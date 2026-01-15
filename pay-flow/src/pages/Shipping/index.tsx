@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { useTheme } from "../../contexts/Theme/useTheme";
@@ -16,30 +16,54 @@ import Button from "../../components/Button";
 import { CheckCircle, XCircle } from "lucide-react";
 import { colors } from "../../components/Style/theme";
 import { useNavigate } from "react-router-dom";
+import type { Shipping } from "../../contexts/Shipping/ShippingProvider";
+import { useCustomer } from "../../contexts/Customer/useCustomer";
 
 interface ShippingFormData {
-  product: string;
+  hasShipping: boolean;
 }
 
 function Shipping() {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { shipping, setShipping, getShipping } = useShipping();
+  const { customer } = useCustomer();
+  const { handleSubmit, register, control } = useForm<ShippingFormData>({
+    defaultValues: {
+      hasShipping: shipping?.hasShipping,
+    },
+  });
+
   const navigate = useNavigate();
 
-  const [hasFreight, setHasFreight] = useState<boolean>(!!shipping);
+  const [previewShipping, setPreviewShipping] = useState<Shipping | undefined>(
+    shipping
+  );
 
-  const { handleSubmit } = useForm<ShippingFormData>({});
+  const hasShipping = useWatch({
+    control,
+    name: "hasShipping",
+  });
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
+    setShipping({
+      hasShipping,
+      type: previewShipping?.type,
+      freight: previewShipping?.freight,
+      deliveryTime: previewShipping?.deliveryTime,
+    });
     toast.success("Sucesso");
     navigate("/checkout");
   };
 
-  const handleChangeFreight = () => {
-    getShipping();
-    setHasFreight(!hasFreight);
-    if (!hasFreight) setShipping(undefined);
+  const handleChangeFreight = async () => {
+    if (hasShipping) {
+      setPreviewShipping(undefined);
+      return;
+    }
+    const result = await getShipping(customer?.identifier);
+    console.log(result);
+    setPreviewShipping(result);
   };
 
   return (
@@ -58,14 +82,15 @@ function Shipping() {
                 <Checkbox
                   text={t("shipping.shipping")}
                   onClick={handleChangeFreight}
-                  checked={!!shipping}
+                  checked={hasShipping}
+                  {...register("hasShipping")}
                 />
               </Col>
             </Row>
-            {(hasFreight || shipping) && (
+            {hasShipping && previewShipping && (
               <Row>
                 <Col>
-                  <ShippingCard />
+                  <ShippingCard previewShipping={previewShipping} />
                 </Col>
               </Row>
             )}
@@ -75,7 +100,6 @@ function Shipping() {
                   text={t("shipping.confirmShipping")}
                   icon={CheckCircle}
                   type="submit"
-                  disabled={!shipping && hasFreight}
                   onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
                     event.stopPropagation()
                   }

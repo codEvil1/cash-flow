@@ -6,15 +6,17 @@ import Card from "../Card";
 import { useNavigate } from "react-router-dom";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { useCurrency } from "../../contexts/Currency/useCurrency";
-import { useShipping } from "../../contexts/Shipping/useShipping";
 import { formatEmpty } from "../../utils/formatEmpty";
 import { useCustomer } from "../../contexts/Customer/useCustomer";
+import type { Shipping } from "../../contexts/Shipping/ShippingProvider";
+import { useShipping } from "../../contexts/Shipping/useShipping";
 
 interface ShippingCardProps {
   title?: string;
+  previewShipping?: Shipping;
 }
 
-function ShippingCard({ title }: ShippingCardProps) {
+function ShippingCard({ title, previewShipping }: ShippingCardProps) {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { currency, locale } = useCurrency();
@@ -27,18 +29,25 @@ function ShippingCard({ title }: ShippingCardProps) {
       <RowItem theme={theme}>
         <Package size={16} />
         <Label>{t("shipping.type")}</Label>
-        <Value>{formatEmpty(shipping?.type)}</Value>
+        <Value>{previewShipping?.type ?? formatEmpty(shipping?.type)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <Calendar size={16} />
         <Label>{t("shipping.deliveryTime")}</Label>
-        <Value>{formatEmpty(shipping?.deliveryTime)}</Value>
+        <Value>
+          {previewShipping?.deliveryTime ?? formatEmpty(shipping?.deliveryTime)}
+        </Value>
       </RowItem>
       <RowItem theme={theme}>
         <DollarSign size={16} />
         <Label>{t("shipping.cost")}</Label>
         <Value>
-          {formatCurrency(shipping?.freight ?? 0, locale, currency)}
+          {formatCurrency(
+            previewShipping?.freight ?? 0,
+            locale,
+            currency,
+            "plus"
+          ) ?? formatCurrency(shipping?.freight ?? 0, locale, currency, "plus")}
         </Value>
       </RowItem>
       <RowItem theme={theme}>
