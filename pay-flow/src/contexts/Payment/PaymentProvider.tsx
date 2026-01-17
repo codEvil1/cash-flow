@@ -40,7 +40,7 @@ export function PaymentProvider({ children }: { children: ReactNode }) {
   );
 
   const interest = useMemo(
-    () => calculateInterest(subTotal, installmentCount),
+    () => calculateInterest(subTotal, installmentCount), 
     [installmentCount, subTotal]
   );
 

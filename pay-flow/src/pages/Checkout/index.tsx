@@ -11,7 +11,7 @@ import CashierCard from "../../components/CashierCard";
 import CustomerCard from "../../components/CustomerCard";
 import PaymentCard from "../../components/PaymentCard";
 import ShippingCard from "../../components/ShippingCard";
-
+  
 function Checkout() {
   const { theme } = useTheme();
 

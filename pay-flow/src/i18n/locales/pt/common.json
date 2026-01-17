@@ -65,7 +65,7 @@
     "discount": "Desconto",
     "originalValue": "Valor Original",
     "economy": "Economia",
-    "total": "Total Desconto"
+    "total": "Total com Desconto"
   },
   "cashier": {
     "cashier": "Atendente",

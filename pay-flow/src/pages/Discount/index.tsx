@@ -50,6 +50,8 @@ function Discount() {
   });
 
   const onSubmit = (data: DiscountFormData) => {
+    console.log(data);
+    console.log(previewDiscount);
     setDiscount({
       couponCode: data.couponCode,
       discountPercentage: previewDiscount?.discountPercentage,
@@ -59,7 +61,7 @@ function Discount() {
     navigate("/checkout");
   };
 
-  const handleGetCashier = async () => {
+  const handleGetDiscount = async () => {
     if (!couponCode) return;
     const result = await getDiscount(couponCode);
     setPreviewDiscount(result);
@@ -84,7 +86,7 @@ function Discount() {
                   error={errors.couponCode?.message}
                   value={couponCode}
                   icon={Search}
-                  onClick={handleGetCashier}
+                  onClick={handleGetDiscount}
                   {...register("couponCode", {
                     onChange: () => setPreviewDiscount(undefined),
                   })}
