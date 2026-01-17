@@ -62,7 +62,6 @@ function Shipping() {
       return;
     }
     const result = await getShipping(customer?.identifier);
-    console.log(result);
     setPreviewShipping(result);
   };
 

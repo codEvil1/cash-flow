@@ -38,7 +38,7 @@ export function calculateDiscountValue(
   discountPercentage: number
 ): number {
   if (netTotal <= 0) return 0;
-  return (netTotal / netTotal) * (discountPercentage / 100);
+  return netTotal * (discountPercentage / 100);
 }
 
 export function calculateTotalWithDiscount(

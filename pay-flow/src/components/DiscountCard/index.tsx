@@ -49,7 +49,9 @@ function DiscountCard({ previewDiscount }: DiscountCardProps) {
         <Percent size={16} />
         <Label>{t("discount.discount")}</Label>
         <Value>
-          {previewDiscount?.discountPercentage ?? discount?.discountPercentage}%
+          {previewDiscount?.discountPercentage ??
+            formatEmpty(discount?.discountPercentage)}
+          %
         </Value>
       </RowItem>
       <RowItem theme={theme}>
@@ -61,13 +63,19 @@ function DiscountCard({ previewDiscount }: DiscountCardProps) {
         <ArrowDown size={16} />
         <Label>{t("discount.economy")}</Label>
         <Value>
-          {formatCurrency(
-            previewDiscount?.discountValue,
-            locale,
-            currency,
-            "minus"
-          ) ??
-            formatCurrency(discount?.discountValue, locale, currency, "minus")}
+          {previewDiscount?.discountValue
+            ? formatCurrency(
+                previewDiscount?.discountValue,
+                locale,
+                currency,
+                "minus"
+              )
+            : formatCurrency(
+                discount?.discountValue,
+                locale,
+                currency,
+                "minus"
+              )}
         </Value>
       </RowItem>
       <RowItem theme={theme}>

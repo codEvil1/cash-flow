@@ -22,10 +22,10 @@ createRoot(document.getElementById("root")!).render(
       <ThemeProvider>
         <ProductListProvider>
           <ShippingProvider>
-            <DiscountProvider>
-              <CustomerProvider>
-                <CashierProvider>
-                  <PaymentProvider>
+            <PaymentProvider>
+              <DiscountProvider>
+                <CustomerProvider>
+                  <CashierProvider>
                     <GlobalStyle />
                     <AppRoutes />
                     <ToastContainer
@@ -36,10 +36,10 @@ createRoot(document.getElementById("root")!).render(
                       draggable
                       theme="dark"
                     />
-                  </PaymentProvider>
-                </CashierProvider>
-              </CustomerProvider>
-            </DiscountProvider>
+                  </CashierProvider>
+                </CustomerProvider>
+              </DiscountProvider>
+            </PaymentProvider>
           </ShippingProvider>
         </ProductListProvider>
       </ThemeProvider>
