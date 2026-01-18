@@ -15,10 +15,10 @@ import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import InputButton from "../../components/InputButton";
 import { useCashier } from "../../contexts/Cashier/useCashier";
-import CashierSummaryCard from "../../components/CashierSummaryCard";
 import { cashierSchema } from "../../validations/cashierSchema";
 import { useState } from "react";
 import type { Cashier } from "../../contexts/Cashier/CashierProvider";
+import CashierCard from "../../components/CashierCard";
 
 interface CashierFormData {
   id: number;
@@ -41,7 +41,7 @@ function Cashier() {
   });
 
   const [previewCashier, setPreviewCashier] = useState<Cashier | undefined>(
-    cashier
+    cashier,
   );
 
   const inputId = useWatch({
@@ -95,7 +95,7 @@ function Cashier() {
             {previewCashier && (
               <Row>
                 <Col>
-                  <CashierSummaryCard cashier={previewCashier} />
+                  <CashierCard previewCashier={previewCashier} />
                 </Col>
               </Row>
             )}
