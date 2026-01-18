@@ -9,3 +9,8 @@ export function formatDate(value?: Date | null, fallback = "–"): string {
   if (!value) return fallback;
   return value.toLocaleDateString();
 }
+
+export function formatValueEmpty(value?: number): number {
+  if (!value) return 0;
+  return value;
+}

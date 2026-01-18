@@ -8,16 +8,17 @@ import Card from "../Card";
 import { useNavigate } from "react-router-dom";
 import { useDiscount } from "../../contexts/Discount/useDiscount";
 import { usePayment } from "../../contexts/Payment/usePayment";
-import { formatEmpty } from "../../utils/formatEmpty";
+import { formatEmpty, formatValueEmpty } from "../../utils/formatEmpty";
 import { calculateTotalWithDiscount } from "../../utils/saleCalculations";
 import { useMemo } from "react";
 import type { Discount } from "../../contexts/Discount/DiscountProvider";
 
 interface DiscountCardProps {
   previewDiscount?: Discount;
+  title?: string;
 }
 
-function DiscountCard({ previewDiscount }: DiscountCardProps) {
+function DiscountCard({ previewDiscount, title }: DiscountCardProps) {
   const { t } = useTranslation();
   const { currency, locale } = useCurrency();
   const { theme } = useTheme();
@@ -25,34 +26,27 @@ function DiscountCard({ previewDiscount }: DiscountCardProps) {
   const { subTotal, netTotal } = usePayment();
   const navigate = useNavigate();
 
+  const activeDiscount = previewDiscount ?? discount;
+
   const handleCalculateTotalWithDiscount = useMemo(() => {
     const totalWithDiscount = calculateTotalWithDiscount(
       netTotal,
-      discount?.discountValue
+      activeDiscount?.discountValue,
     );
     return formatCurrency(totalWithDiscount, locale, currency);
-  }, [currency, discount?.discountValue, locale, netTotal]);
+  }, [activeDiscount?.discountValue, currency, locale, netTotal]);
 
   return (
-    <Card
-      title={t("discount.discount")}
-      onClick={() => navigate("/checkout/discount")}
-    >
+    <Card title={title} onClick={() => navigate("/checkout/discount")}>
       <RowItem theme={theme}>
         <Tag size={16} />
         <Label>{t("discount.cupom")}</Label>
-        <Value>
-          {previewDiscount?.couponCode ?? formatEmpty(discount?.couponCode)}
-        </Value>
+        <Value>{formatEmpty(activeDiscount?.couponCode)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <Percent size={16} />
         <Label>{t("discount.discount")}</Label>
-        <Value>
-          {previewDiscount?.discountPercentage ??
-            formatEmpty(discount?.discountPercentage)}
-          %
-        </Value>
+        <Value>{formatValueEmpty(activeDiscount?.discountPercentage)}%</Value>
       </RowItem>
       <RowItem theme={theme}>
         <DollarSign size={16} />
@@ -63,19 +57,12 @@ function DiscountCard({ previewDiscount }: DiscountCardProps) {
         <ArrowDown size={16} />
         <Label>{t("discount.economy")}</Label>
         <Value>
-          {previewDiscount?.discountValue
-            ? formatCurrency(
-                previewDiscount?.discountValue,
-                locale,
-                currency,
-                "minus"
-              )
-            : formatCurrency(
-                discount?.discountValue,
-                locale,
-                currency,
-                "minus"
-              )}
+          {formatCurrency(
+            activeDiscount?.discountValue,
+            locale,
+            currency,
+            "minus",
+          )}
         </Value>
       </RowItem>
       <RowItem theme={theme}>

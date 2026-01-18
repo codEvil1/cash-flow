@@ -11,8 +11,10 @@ import CashierCard from "../../components/CashierCard";
 import CustomerCard from "../../components/CustomerCard";
 import PaymentCard from "../../components/PaymentCard";
 import ShippingCard from "../../components/ShippingCard";
-  
+import { useTranslation } from "react-i18next";
+
 function Checkout() {
+  const { t } = useTranslation();
   const { theme } = useTheme();
 
   return (
@@ -32,23 +34,23 @@ function Checkout() {
           </Col>
           <Col lg={3}>
             <Row>
-              <CashierCard />
+              <CashierCard title={t("cashier.cashier")} />
             </Row>
             <Row>
-              <CustomerCard />
+              <CustomerCard title={t("customer.customer")} />
             </Row>
             <Row>
-              <ShippingCard />
+              <ShippingCard title={t("shipping.shipping")} />
             </Row>
             <Row>
-              <DiscountCard />
+              <DiscountCard title={t("discount.discount")} />
             </Row>
             <Row>
-              <PaymentCard />
+              <PaymentCard title={t("payment.payment")} />
             </Row>
           </Col>
         </Row>
-      </Body>
+      </Body>''
     </Page>
   );
 }

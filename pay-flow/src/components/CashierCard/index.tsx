@@ -8,35 +8,40 @@ import { Hash, Star, User } from "lucide-react";
 import { calculateAverageRating } from "../../utils/rating";
 import { useCashier } from "../../contexts/Cashier/useCashier";
 import { formatEmpty } from "../../utils/formatEmpty";
+import type { Cashier } from "../../contexts/Cashier/CashierProvider";
 
-function CashierCard() {
+interface CashierCardProps {
+  previewCashier?: Cashier;
+  title?: string;
+}
+
+function CashierCard({ previewCashier, title }: CashierCardProps) {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { cashier } = useCashier();
   const navigate = useNavigate();
 
+  const activeCashier = previewCashier ?? cashier;
+
   return (
-    <Card
-      title={t("cashier.cashier")}
-      onClick={() => navigate("/checkout/cashier")}
-    >
+    <Card title={title} onClick={() => navigate("/checkout/cashier")}>
       <RowItem theme={theme}>
         <Hash size={16} />
         <Label>{t("cashier.id")}</Label>
-        <Value>{formatEmpty(cashier?.id)}</Value>
+        <Value>{formatEmpty(activeCashier?.id)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <User size={16} />
         <Label>{t("cashier.name")}</Label>
-        <Value>{formatEmpty(cashier?.name)}</Value>
+        <Value>{formatEmpty(activeCashier?.name)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <Star size={16} />
         <Label>{t("cashier.rating")}</Label>
         <Value>
-          <RatingStars value={calculateAverageRating(cashier?.ratings)} />
-          {calculateAverageRating(cashier?.ratings).toFixed(1)}
-          <span>({cashier?.ratings?.length})</span>
+          <RatingStars value={calculateAverageRating(activeCashier?.ratings)} />
+          {calculateAverageRating(activeCashier?.ratings).toFixed(1)}
+          <span>({activeCashier?.ratings?.length})</span>
         </Value>
       </RowItem>
     </Card>

@@ -28,7 +28,10 @@ export const StyledInput = styled.input<InputStyleProps>`
   border-radius: 14px;
 
   font-size: 15px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont;
 
   background: ${({ theme }) =>
     theme === "dark" ? colors.darkComponentBg : colors.lightComponentBg};
@@ -41,8 +44,8 @@ export const StyledInput = styled.input<InputStyleProps>`
       hasError
         ? colors.red
         : theme === "dark"
-        ? colors.darkBorder
-        : colors.lightBorder};
+          ? colors.darkBorder
+          : colors.lightBorder};
 
   color: ${({ theme }) =>
     theme === "dark" ? colors.darkText : colors.lightText};
@@ -57,13 +60,19 @@ export const StyledInput = styled.input<InputStyleProps>`
       theme === "dark" ? colors.darkText : colors.lightText};
   }
 
+  text-transform: uppercase;
+
+  &::placeholder {
+    text-transform: none;
+  }
+
   &:focus {
     border-color: ${({ hasError, theme }) =>
       hasError
         ? colors.red
         : theme === "dark"
-        ? colors.darkBorder
-        : colors.lightBorder};
+          ? colors.darkBorder
+          : colors.lightBorder};
 
     box-shadow: ${({ theme }) =>
       theme === "dark"

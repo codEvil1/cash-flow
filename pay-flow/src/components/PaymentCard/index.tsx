@@ -20,7 +20,11 @@ import { useShipping } from "../../contexts/Shipping/useShipping";
 import { PaymentMethod } from "../../domain/enum";
 import { getPaymentMethodLabel } from "../../domain/mappers";
 
-function PaymentCard() {
+interface PaymentCardProps {
+  title?: string;
+}
+
+function PaymentCard({ title }: PaymentCardProps) {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { currency, locale } = useCurrency();
@@ -37,10 +41,7 @@ function PaymentCard() {
   const navigate = useNavigate();
 
   return (
-    <Card
-      title={t("payment.payment")}
-      onClick={() => navigate("/checkout/payment")}
-    >
+    <Card title={title} onClick={() => navigate("/checkout/payment")}>
       <RowItem theme={theme}>
         <CreditCard size={16} />
         <Label>{t("payment.paymentMethod")}</Label>
@@ -53,7 +54,7 @@ function PaymentCard() {
           <Value>{`${installmentCount}x de ${formatCurrency(
             installmentAmount,
             locale,
-            currency
+            currency,
           )}`}</Value>
         </RowItem>
       )}
@@ -73,7 +74,10 @@ function PaymentCard() {
         <Truck size={16} />
         <Label>{t("shipping.shipping")}</Label>
         <Value>
-          {formatCurrency(shipping?.freight, locale, currency, "plus")}
+          {
+            (console.log(shipping),
+            formatCurrency(shipping?.freight, locale, currency, "plus"))
+          }
         </Value>
       </RowItem>
       <RowItem theme={theme}>

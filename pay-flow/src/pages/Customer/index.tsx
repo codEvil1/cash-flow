@@ -18,8 +18,8 @@ import { maskCpfCnpj } from "../../utils/mask";
 import { useCustomer } from "../../contexts/Customer/useCustomer";
 import { useState } from "react";
 import InputButton from "../../components/InputButton";
-import CustomerSummaryCard from "../../components/CustomerSummaryCard";
 import type { Customer } from "../../contexts/Customer/CustomerProvider";
+import CustomerCard from "../../components/CustomerCard";
 
 interface CustomerFormData {
   identifier: string;
@@ -49,7 +49,7 @@ function Customer() {
   });
 
   const [previewCustomer, setPreviewCustomer] = useState<Customer | undefined>(
-    customer
+    customer,
   );
 
   const onSubmit = (data: CustomerFormData) => {
@@ -109,7 +109,7 @@ function Customer() {
             {previewCustomer && (
               <Row>
                 <Col>
-                  <CustomerSummaryCard customer={previewCustomer} />
+                  <CustomerCard previewCustomer={previewCustomer} />
                 </Col>
               </Row>
             )}

@@ -7,39 +7,47 @@ import { useNavigate } from "react-router-dom";
 import { formatPhoneInternational } from "../../utils/phone";
 import { useCustomer } from "../../contexts/Customer/useCustomer";
 import { formatEmpty } from "../../utils/formatEmpty";
+import type { Customer } from "../../contexts/Customer/CustomerProvider";
 
-function CustomerCard() {
+interface CustomerCardProps {
+  previewCustomer?: Customer;
+  title?: string;
+}
+
+function CustomerCard({ previewCustomer, title }: CustomerCardProps) {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { customer } = useCustomer();
   const navigate = useNavigate();
 
+  const activeCustumer = previewCustomer ?? customer;
+
   return (
-    <Card
-      title={t("customer.customer")}
-      onClick={() => navigate("/checkout/customer")}
-    >
+    <Card title={title} onClick={() => navigate("/checkout/customer")}>
       <RowItem theme={theme}>
         <User size={16} />
         <Label>{t("customer.name")}</Label>
-        <Value>{formatEmpty(customer?.name)}</Value>
+        <Value>{formatEmpty(activeCustumer?.name)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <CreditCard size={16} />
         <Label>{t("customer.identifier")}</Label>
-        <Value>{formatEmpty(customer?.identifier)}</Value>
+        <Value>{formatEmpty(activeCustumer?.identifier)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <Phone size={16} />
         <Label>{t("customer.phone")}</Label>
         <Value>
-          {formatPhoneInternational(customer?.phone, customer?.country)}
+          {formatPhoneInternational(
+            activeCustumer?.phone,
+            activeCustumer?.country,
+          )}
         </Value>
       </RowItem>
       <RowItem theme={theme}>
         <Mail size={16} />
         <Label>{t("customer.email")}</Label>
-        <Value>{formatEmpty(customer?.email)}</Value>
+        <Value>{formatEmpty(activeCustumer?.email)}</Value>
       </RowItem>
     </Card>
   );
