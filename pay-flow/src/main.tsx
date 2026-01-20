@@ -20,10 +20,10 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <CurrencyProvider>
       <ThemeProvider>
-        <ProductListProvider>
-          <ShippingProvider>
+        <DiscountProvider>
+          <ProductListProvider>
             <PaymentProvider>
-              <DiscountProvider>
+              <ShippingProvider>
                 <CustomerProvider>
                   <CashierProvider>
                     <GlobalStyle />
@@ -38,11 +38,11 @@ createRoot(document.getElementById("root")!).render(
                     />
                   </CashierProvider>
                 </CustomerProvider>
-              </DiscountProvider>
+              </ShippingProvider>
             </PaymentProvider>
-          </ShippingProvider>
-        </ProductListProvider>
+          </ProductListProvider>
+        </DiscountProvider>
       </ThemeProvider>
     </CurrencyProvider>
-  </StrictMode>
+  </StrictMode>,
 );

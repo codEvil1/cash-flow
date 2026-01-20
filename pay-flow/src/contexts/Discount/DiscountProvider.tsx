@@ -19,14 +19,15 @@ export function DiscountProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState<boolean>(false);
 
   const getDiscount = async (
-    couponCode?: string
+    couponCode?: string,
   ): Promise<Discount | undefined> => {
     try {
       // mock
       const discountPercentage = 10;
+      console.log(netTotal, discountPercentage);
       const discountValue = calculateDiscountValue(
         netTotal,
-        discountPercentage
+        discountPercentage,
       );
       return {
         couponCode,

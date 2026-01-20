@@ -41,7 +41,7 @@ function Discount() {
   });
 
   const [previewDiscount, setPreviewDiscount] = useState<Discount | undefined>(
-    discount
+    discount,
   );
 
   const couponCode = useWatch({
@@ -50,8 +50,6 @@ function Discount() {
   });
 
   const onSubmit = (data: DiscountFormData) => {
-    console.log(data);
-    console.log(previewDiscount);
     setDiscount({
       couponCode: data.couponCode,
       discountPercentage: previewDiscount?.discountPercentage,
