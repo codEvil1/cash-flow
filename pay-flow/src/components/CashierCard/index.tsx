@@ -6,9 +6,9 @@ import Card from "../Card";
 import { useNavigate } from "react-router-dom";
 import { Hash, Star, User } from "lucide-react";
 import { calculateAverageRating } from "../../utils/rating";
-import { useCashier } from "../../contexts/Cashier/useCashier";
 import { formatEmpty } from "../../utils/formatEmpty";
 import type { Cashier } from "../../contexts/Cashier/CashierProvider";
+import { useCheckout } from "../../contexts/Checkout/useCheckout";
 
 interface CashierCardProps {
   previewCashier?: Cashier;
@@ -18,10 +18,10 @@ interface CashierCardProps {
 function CashierCard({ previewCashier, title }: CashierCardProps) {
   const { t } = useTranslation();
   const { theme } = useTheme();
-  const { cashier } = useCashier();
+  const { checkout } = useCheckout();
   const navigate = useNavigate();
 
-  const activeCashier = previewCashier ?? cashier;
+  const activeCashier = previewCashier ?? checkout?.cashier;
 
   return (
     <Card title={title} onClick={() => navigate("/checkout/cashier")}>

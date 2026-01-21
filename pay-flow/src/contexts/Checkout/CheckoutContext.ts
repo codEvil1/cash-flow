@@ -3,7 +3,7 @@ import type { Checkout } from "./CheckoutProvider";
 
 export interface CheckoutContext {
   checkout?: Checkout;
-  setCheckout: (checkout: Checkout) => void;
+  setCheckout: React.Dispatch<React.SetStateAction<Checkout>>;
 }
 
 export const CheckoutContext = createContext<CheckoutContext>(

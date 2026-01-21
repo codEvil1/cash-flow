@@ -6,15 +6,15 @@ import type { Discount } from "../Discount/DiscountProvider";
 import { CheckoutContext } from "./CheckoutContext";
 
 export interface Checkout {
-  cashier: Cashier;
-  customer: Customer;
-  shipping: Shipping;
-  discount: Discount;
+  cashier?: Cashier;
+  customer?: Customer;
+  shipping?: Shipping;
+  discount?: Discount;
   // payment: Payment;
 }
 
-export function CashierProvider({ children }: { children: ReactNode }) {
-  const [checkout, setCheckout] = useState<Checkout>();
+export function CheckoutProvider({ children }: { children: ReactNode }) {
+  const [checkout, setCheckout] = useState<Checkout>({});
 
   return (
     <CheckoutContext.Provider
