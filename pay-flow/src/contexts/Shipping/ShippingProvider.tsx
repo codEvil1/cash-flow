@@ -2,6 +2,7 @@ import { useState, type ReactNode } from "react";
 import { ShippingContext } from "./ShippingContext";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import { useCheckout } from "../Checkout/useCheckout";
 
 export interface Shipping {
   hasShipping: boolean;
@@ -12,23 +13,24 @@ export interface Shipping {
 
 export function ShippingProvider({ children }: { children: ReactNode }) {
   const { t } = useTranslation();
+  const { setCheckout } = useCheckout();
 
-  const [shipping, setShipping] = useState<Shipping>();
   const [loading, setLoading] = useState<boolean>(false);
 
   const getShipping = async (
-    identifier?: string
+    identifier?: string,
   ): Promise<Shipping | undefined> => {
     try {
       // carrega o frete pelo identificador do cliente
       console.log(identifier);
       // mock
-      return {
+      const shipping = {
         hasShipping: true,
         type: "Sedex",
         deliveryTime: "7 dias Úteis",
         freight: 39.9,
       };
+      return shipping;
     } catch {
       toast.error(t("resetPassword.sentEmail"));
     } finally {
@@ -36,13 +38,19 @@ export function ShippingProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const confirmShipping = async (shipping: Shipping) => {
+    setCheckout((prev) => ({
+      ...prev,
+      shipping,
+    }));
+  };
+
   return (
     <ShippingContext.Provider
       value={{
-        shipping,
         loading,
-        setShipping,
         getShipping,
+        confirmShipping,
       }}
     >
       {children}

@@ -2,6 +2,7 @@ import { useState, type ReactNode } from "react";
 import { CustomerContext } from "./CustomerContext";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import { useCheckout } from "../Checkout/useCheckout";
 
 export interface Customer {
   identifier: string;
@@ -15,17 +16,17 @@ export interface Customer {
 
 export function CustomerProvider({ children }: { children: ReactNode }) {
   const { t } = useTranslation();
+  const { setCheckout } = useCheckout();
 
-  const [customer, setCustomer] = useState<Customer>();
   const [loading, setLoading] = useState<boolean>(false);
 
   const getCustomer = async (
-    identifier: string
+    identifier: string,
   ): Promise<Customer | undefined> => {
     try {
       // carrega o cliente pelo identificador
       // mock
-      return {
+      const customer = {
         identifier,
         name: "Bruno Paese",
         phone: "54999999999",
@@ -34,21 +35,27 @@ export function CustomerProvider({ children }: { children: ReactNode }) {
         lastPurchase: new Date("2024-11-22"),
         adress: "Faria Lima, 999, Pinheiros, São Paulo",
       };
+      return customer;
     } catch {
       toast.error(t("resetPassword.sentEmail"));
-      return undefined;
     } finally {
       setLoading(false);
     }
   };
 
+  const confirmCustomer = async (customer: Customer) => {
+    setCheckout((prev) => ({
+      ...prev,
+      customer,
+    }));
+  };
+
   return (
     <CustomerContext.Provider
       value={{
-        customer,
         loading,
         getCustomer,
-        setCustomer,
+        confirmCustomer,
       }}
     >
       {children}

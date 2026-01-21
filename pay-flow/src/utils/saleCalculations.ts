@@ -1,13 +1,13 @@
 import type { ProductFormData } from "../components/ProductCard";
 import { INTEREST_RATE } from "../domain/constants";
 
-export function calculateSubTotal(products: ProductFormData[]): number {
+export function calculateSubTotal(products: ProductFormData[] = []): number {
   return products.reduce((total, item) => total + item.price, 0);
 }
 
 export function calculateInterest(
   baseTotal: number,
-  installmentCount: number
+  installmentCount: number,
 ): number {
   if (baseTotal <= 0 || installmentCount <= 1) return 0;
   return baseTotal * INTEREST_RATE;
@@ -17,7 +17,7 @@ export function calculateNetTotal(
   products: ProductFormData[],
   freight: number | undefined,
   discount: number | undefined,
-  installmentCount: number
+  installmentCount: number,
 ): number {
   const baseTotal =
     calculateSubTotal(products) + (freight ?? 0) - (discount ?? 0);
@@ -27,7 +27,7 @@ export function calculateNetTotal(
 
 export function calculateInstallments(
   netTotal: number,
-  installmentCount: number
+  installmentCount: number,
 ): number {
   if (installmentCount <= 0) return 0;
   return netTotal / installmentCount;
@@ -35,15 +35,15 @@ export function calculateInstallments(
 
 export function calculateDiscountValue(
   netTotal: number,
-  discountPercentage: number
+  discountPercentage: number,
 ): number {
-  if (netTotal <= 0) return 0;
+  if (!netTotal) return 0;
   return netTotal * (discountPercentage / 100);
 }
 
 export function calculateTotalWithDiscount(
   netTotal: number,
-  discountValue: number | undefined
+  discountValue: number | undefined,
 ): number {
   if (!discountValue) return 0;
   return netTotal - discountValue;

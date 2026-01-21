@@ -6,12 +6,11 @@ import { formatCurrency } from "../../utils/formatCurrency";
 import { useTheme } from "../../contexts/Theme/useTheme";
 import Card from "../Card";
 import { useNavigate } from "react-router-dom";
-import { useDiscount } from "../../contexts/Discount/useDiscount";
-import { usePayment } from "../../contexts/Payment/usePayment";
 import { formatEmpty, formatValueEmpty } from "../../utils/formatEmpty";
 import { calculateTotalWithDiscount } from "../../utils/saleCalculations";
 import { useMemo } from "react";
 import type { Discount } from "../../contexts/Discount/DiscountProvider";
+import { useCheckout } from "../../contexts/Checkout/useCheckout";
 
 interface DiscountCardProps {
   previewDiscount?: Discount;
@@ -22,19 +21,24 @@ function DiscountCard({ previewDiscount, title }: DiscountCardProps) {
   const { t } = useTranslation();
   const { currency, locale } = useCurrency();
   const { theme } = useTheme();
-  const { discount } = useDiscount();
-  const { subTotal, netTotal } = usePayment();
+  const { checkout } = useCheckout();
   const navigate = useNavigate();
 
-  const activeDiscount = previewDiscount ?? discount;
+  const activeDiscount = previewDiscount ?? checkout?.discount;
 
+  //TODO: inicializar objeto com zero
   const handleCalculateTotalWithDiscount = useMemo(() => {
     const totalWithDiscount = calculateTotalWithDiscount(
-      netTotal,
+      checkout?.payment?.netTotal ?? 0,
       activeDiscount?.discountValue,
     );
     return formatCurrency(totalWithDiscount, locale, currency);
-  }, [activeDiscount?.discountValue, currency, locale, netTotal]);
+  }, [
+    activeDiscount?.discountValue,
+    checkout?.payment?.netTotal,
+    currency,
+    locale,
+  ]);
 
   return (
     <Card title={title} onClick={() => navigate("/checkout/discount")}>
@@ -51,7 +55,9 @@ function DiscountCard({ previewDiscount, title }: DiscountCardProps) {
       <RowItem theme={theme}>
         <DollarSign size={16} />
         <Label>{t("discount.originalValue")}</Label>
-        <Value>{formatCurrency(subTotal, locale, currency)}</Value>
+        <Value>
+          {formatCurrency(checkout?.payment?.subTotal, locale, currency)}
+        </Value>
       </RowItem>
       <RowItem theme={theme}>
         <ArrowDown size={16} />

@@ -14,11 +14,9 @@ import Card from "../Card";
 import { useNavigate } from "react-router-dom";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { useCurrency } from "../../contexts/Currency/useCurrency";
-import { usePayment } from "../../contexts/Payment/usePayment";
-import { useDiscount } from "../../contexts/Discount/useDiscount";
-import { useShipping } from "../../contexts/Shipping/useShipping";
 import { PaymentMethod } from "../../domain/enum";
 import { getPaymentMethodLabel } from "../../domain/mappers";
+import { useCheckout } from "../../contexts/Checkout/useCheckout";
 
 interface PaymentCardProps {
   title?: string;
@@ -28,16 +26,7 @@ function PaymentCard({ title }: PaymentCardProps) {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { currency, locale } = useCurrency();
-  const { discount } = useDiscount();
-  const { shipping } = useShipping();
-  const {
-    subTotal,
-    netTotal,
-    paymentMethod,
-    installmentAmount,
-    installmentCount,
-    interest,
-  } = usePayment();
+  const { checkout } = useCheckout();
   const navigate = useNavigate();
 
   return (
@@ -45,14 +34,16 @@ function PaymentCard({ title }: PaymentCardProps) {
       <RowItem theme={theme}>
         <CreditCard size={16} />
         <Label>{t("payment.paymentMethod")}</Label>
-        <Value>{getPaymentMethodLabel(paymentMethod, t)}</Value>
+        <Value>
+          {getPaymentMethodLabel(checkout?.payment?.paymentMethod, t)}
+        </Value>
       </RowItem>
-      {paymentMethod === PaymentMethod.CREDIT && (
+      {checkout?.payment?.paymentMethod === PaymentMethod.CREDIT && (
         <RowItem theme={theme}>
           <Repeat size={16} />
           <Label>{t("payment.installments")}</Label>
-          <Value>{`${installmentCount}x de ${formatCurrency(
-            installmentAmount,
+          <Value>{`${checkout.payment.installment.count}x de ${formatCurrency(
+            checkout.payment.installment.value,
             locale,
             currency,
           )}`}</Value>
@@ -61,34 +52,52 @@ function PaymentCard({ title }: PaymentCardProps) {
       <RowItem theme={theme}>
         <DollarSign size={16} />
         <Label>{t("payment.value")}</Label>
-        <Value>{formatCurrency(subTotal, locale, currency)}</Value>
+        <Value>
+          {formatCurrency(checkout?.payment?.subTotal, locale, currency)}
+        </Value>
       </RowItem>
       <RowItem theme={theme}>
         <ArrowDown size={16} />
         <Label>{t("discount.discount")}</Label>
         <Value>
-          {formatCurrency(discount?.discountValue, locale, currency, "minus")}
+          {formatCurrency(
+            checkout?.discount?.discountValue,
+            locale,
+            currency,
+            "minus",
+          )}
         </Value>
       </RowItem>
       <RowItem theme={theme}>
         <Truck size={16} />
         <Label>{t("shipping.shipping")}</Label>
         <Value>
-          {
-            (console.log(shipping),
-            formatCurrency(shipping?.freight, locale, currency, "plus"))
-          }
+          {formatCurrency(
+            checkout?.shipping?.freight,
+            locale,
+            currency,
+            "plus",
+          )}
         </Value>
       </RowItem>
       <RowItem theme={theme}>
         <TrendingUp size={16} />
         <Label>{t("payment.interest")}</Label>
-        <Value>{formatCurrency(interest, locale, currency, "plus")}</Value>
+        <Value>
+          {formatCurrency(
+            checkout?.payment?.installment.interest,
+            locale,
+            currency,
+            "plus",
+          )}
+        </Value>
       </RowItem>
       <RowItem theme={theme}>
         <Check size={16} />
         <Label>{t("payment.total")}</Label>
-        <Value>{formatCurrency(netTotal, locale, currency)}</Value>
+        <Value>
+          {formatCurrency(checkout?.payment?.netTotal, locale, currency)}
+        </Value>
       </RowItem>
     </Card>
   );

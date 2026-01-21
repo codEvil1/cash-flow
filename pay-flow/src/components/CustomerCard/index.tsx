@@ -5,9 +5,9 @@ import { useTheme } from "../../contexts/Theme/useTheme";
 import Card from "../Card";
 import { useNavigate } from "react-router-dom";
 import { formatPhoneInternational } from "../../utils/phone";
-import { useCustomer } from "../../contexts/Customer/useCustomer";
 import { formatEmpty } from "../../utils/formatEmpty";
 import type { Customer } from "../../contexts/Customer/CustomerProvider";
+import { useCheckout } from "../../contexts/Checkout/useCheckout";
 
 interface CustomerCardProps {
   previewCustomer?: Customer;
@@ -17,10 +17,10 @@ interface CustomerCardProps {
 function CustomerCard({ previewCustomer, title }: CustomerCardProps) {
   const { t } = useTranslation();
   const { theme } = useTheme();
-  const { customer } = useCustomer();
+  const { checkout } = useCheckout();
   const navigate = useNavigate();
 
-  const activeCustumer = previewCustomer ?? customer;
+  const activeCustumer = previewCustomer ?? checkout?.customer;
 
   return (
     <Card title={title} onClick={() => navigate("/checkout/customer")}>

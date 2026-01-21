@@ -19,6 +19,7 @@ import { cashierSchema } from "../../validations/cashierSchema";
 import { useState } from "react";
 import type { Cashier } from "../../contexts/Cashier/CashierProvider";
 import CashierCard from "../../components/CashierCard";
+import { useCheckout } from "../../contexts/Checkout/useCheckout";
 
 interface CashierFormData {
   id: number;
@@ -27,7 +28,8 @@ interface CashierFormData {
 function Cashier() {
   const { t } = useTranslation();
   const { theme } = useTheme();
-  const { cashier, getCashier, setCashier } = useCashier();
+  const { getCashier, confirmCashier } = useCashier();
+  const { checkout } = useCheckout();
   const navigate = useNavigate();
 
   const {
@@ -37,11 +39,11 @@ function Cashier() {
     formState: { errors },
   } = useForm<CashierFormData>({
     resolver: yupResolver(cashierSchema(t)),
-    defaultValues: { id: cashier?.id },
+    defaultValues: { id: checkout?.cashier?.id },
   });
 
   const [previewCashier, setPreviewCashier] = useState<Cashier | undefined>(
-    cashier,
+    checkout?.cashier,
   );
 
   const inputId = useWatch({
@@ -50,7 +52,7 @@ function Cashier() {
   });
 
   const onSubmit = (data: CashierFormData) => {
-    setCashier({
+    confirmCashier({
       id: data.id,
       name: previewCashier?.name,
       ratings: previewCashier?.ratings,

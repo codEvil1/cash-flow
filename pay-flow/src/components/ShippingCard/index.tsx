@@ -7,9 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { useCurrency } from "../../contexts/Currency/useCurrency";
 import { formatEmpty } from "../../utils/formatEmpty";
-import { useCustomer } from "../../contexts/Customer/useCustomer";
 import type { Shipping } from "../../contexts/Shipping/ShippingProvider";
-import { useShipping } from "../../contexts/Shipping/useShipping";
+import { useCheckout } from "../../contexts/Checkout/useCheckout";
 
 interface ShippingCardProps {
   previewShipping?: Shipping;
@@ -20,8 +19,7 @@ function ShippingCard({ previewShipping, title }: ShippingCardProps) {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { currency, locale } = useCurrency();
-  const { shipping } = useShipping();
-  const { customer } = useCustomer();
+  const { checkout } = useCheckout();
   const navigate = useNavigate();
 
   return (
@@ -29,13 +27,16 @@ function ShippingCard({ previewShipping, title }: ShippingCardProps) {
       <RowItem theme={theme}>
         <Package size={16} />
         <Label>{t("shipping.type")}</Label>
-        <Value>{previewShipping?.type ?? formatEmpty(shipping?.type)}</Value>
+        <Value>
+          {previewShipping?.type ?? formatEmpty(checkout?.shipping?.type)}
+        </Value>
       </RowItem>
       <RowItem theme={theme}>
         <Calendar size={16} />
         <Label>{t("shipping.deliveryTime")}</Label>
         <Value>
-          {previewShipping?.deliveryTime ?? formatEmpty(shipping?.deliveryTime)}
+          {previewShipping?.deliveryTime ??
+            formatEmpty(checkout?.shipping?.deliveryTime)}
         </Value>
       </RowItem>
       <RowItem theme={theme}>
@@ -47,13 +48,19 @@ function ShippingCard({ previewShipping, title }: ShippingCardProps) {
             locale,
             currency,
             "plus",
-          ) ?? formatCurrency(shipping?.freight ?? 0, locale, currency, "plus")}
+          ) ??
+            formatCurrency(
+              checkout?.shipping?.freight ?? 0,
+              locale,
+              currency,
+              "plus",
+            )}
         </Value>
       </RowItem>
       <RowItem theme={theme}>
         <MapPin size={16} />
         <Label>{t("shipping.address")}</Label>
-        <Value>{formatEmpty(customer?.adress)}</Value>
+        <Value>{formatEmpty(checkout?.customer?.adress)}</Value>
       </RowItem>
     </Card>
   );
