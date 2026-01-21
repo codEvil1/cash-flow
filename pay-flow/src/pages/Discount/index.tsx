@@ -19,6 +19,7 @@ import Button from "../../components/Button";
 import { colors } from "../../components/Style/theme";
 import type { Discount } from "../../contexts/Discount/DiscountProvider";
 import DiscountCard from "../../components/DiscountCard";
+import { useCheckout } from "../../contexts/Checkout/useCheckout";
 
 interface DiscountFormData {
   couponCode: string;
@@ -27,7 +28,8 @@ interface DiscountFormData {
 function Discount() {
   const { t } = useTranslation();
   const { theme } = useTheme();
-  const { discount, setDiscount, getDiscount } = useDiscount();
+  const { checkout } = useCheckout();
+  const { getDiscount, confirmDiscount } = useDiscount();
   const navigate = useNavigate();
 
   const {
@@ -37,11 +39,11 @@ function Discount() {
     formState: { errors },
   } = useForm<DiscountFormData>({
     resolver: yupResolver(discountSchema(t)),
-    defaultValues: { couponCode: discount?.couponCode },
+    defaultValues: { couponCode: checkout?.discount?.couponCode },
   });
 
   const [previewDiscount, setPreviewDiscount] = useState<Discount | undefined>(
-    discount,
+    checkout?.discount,
   );
 
   const couponCode = useWatch({
@@ -50,7 +52,7 @@ function Discount() {
   });
 
   const onSubmit = (data: DiscountFormData) => {
-    setDiscount({
+    confirmDiscount({
       couponCode: data.couponCode,
       discountPercentage: previewDiscount?.discountPercentage,
       discountValue: previewDiscount?.discountValue,

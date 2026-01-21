@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { useCurrency } from "../../contexts/Currency/useCurrency";
 import { usePayment } from "../../contexts/Payment/usePayment";
-import { useDiscount } from "../../contexts/Discount/useDiscount";
 import { PaymentMethod } from "../../domain/enum";
 import { getPaymentMethodLabel } from "../../domain/mappers";
 import { useCheckout } from "../../contexts/Checkout/useCheckout";
@@ -28,7 +27,6 @@ function PaymentCard({ title }: PaymentCardProps) {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { currency, locale } = useCurrency();
-  const { discount } = useDiscount();
   const { checkout } = useCheckout();
   const {
     subTotal,
@@ -67,14 +65,24 @@ function PaymentCard({ title }: PaymentCardProps) {
         <ArrowDown size={16} />
         <Label>{t("discount.discount")}</Label>
         <Value>
-          {formatCurrency(discount?.discountValue, locale, currency, "minus")}
+          {formatCurrency(
+            checkout?.discount?.discountValue,
+            locale,
+            currency,
+            "minus",
+          )}
         </Value>
       </RowItem>
       <RowItem theme={theme}>
         <Truck size={16} />
         <Label>{t("shipping.shipping")}</Label>
         <Value>
-          {formatCurrency(checkout?.shipping?.freight, locale, currency, "plus")}
+          {formatCurrency(
+            checkout?.shipping?.freight,
+            locale,
+            currency,
+            "plus",
+          )}
         </Value>
       </RowItem>
       <RowItem theme={theme}>

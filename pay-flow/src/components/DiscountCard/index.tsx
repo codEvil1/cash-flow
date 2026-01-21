@@ -6,12 +6,12 @@ import { formatCurrency } from "../../utils/formatCurrency";
 import { useTheme } from "../../contexts/Theme/useTheme";
 import Card from "../Card";
 import { useNavigate } from "react-router-dom";
-import { useDiscount } from "../../contexts/Discount/useDiscount";
 import { usePayment } from "../../contexts/Payment/usePayment";
 import { formatEmpty, formatValueEmpty } from "../../utils/formatEmpty";
 import { calculateTotalWithDiscount } from "../../utils/saleCalculations";
 import { useMemo } from "react";
 import type { Discount } from "../../contexts/Discount/DiscountProvider";
+import { useCheckout } from "../../contexts/Checkout/useCheckout";
 
 interface DiscountCardProps {
   previewDiscount?: Discount;
@@ -22,11 +22,11 @@ function DiscountCard({ previewDiscount, title }: DiscountCardProps) {
   const { t } = useTranslation();
   const { currency, locale } = useCurrency();
   const { theme } = useTheme();
-  const { discount } = useDiscount();
+  const { checkout } = useCheckout();
   const { subTotal, netTotal } = usePayment();
   const navigate = useNavigate();
 
-  const activeDiscount = previewDiscount ?? discount;
+  const activeDiscount = previewDiscount ?? checkout?.discount;
 
   const handleCalculateTotalWithDiscount = useMemo(() => {
     const totalWithDiscount = calculateTotalWithDiscount(

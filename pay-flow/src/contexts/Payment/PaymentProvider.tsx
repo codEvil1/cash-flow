@@ -7,14 +7,12 @@ import {
   calculateSubTotal,
 } from "../../utils/saleCalculations";
 import { useProductList } from "../ProductList/useProductList";
-import { useDiscount } from "../Discount/useDiscount";
 import { PaymentMethod } from "../../domain/enum";
 import { useCheckout } from "../Checkout/useCheckout";
 
 export function PaymentProvider({ children }: { children: ReactNode }) {
   const { productList } = useProductList();
   const { checkout } = useCheckout();
-  const { discount } = useDiscount();
 
   const [installmentCount, setInstallmentCount] = useState<number>(1);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(
@@ -28,12 +26,12 @@ export function PaymentProvider({ children }: { children: ReactNode }) {
       calculateNetTotal(
         productList,
         checkout?.shipping?.freight,
-        discount?.discountValue,
+        checkout?.discount?.discountValue,
         installmentCount,
       ),
     [
+      checkout?.discount?.discountValue,
       checkout?.shipping?.freight,
-      discount?.discountValue,
       installmentCount,
       productList,
     ],
