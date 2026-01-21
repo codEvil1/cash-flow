@@ -29,6 +29,8 @@ function PaymentCard({ title }: PaymentCardProps) {
   const { checkout } = useCheckout();
   const navigate = useNavigate();
 
+  console.log(checkout);
+
   return (
     <Card title={title} onClick={() => navigate("/checkout/payment")}>
       <RowItem theme={theme}>

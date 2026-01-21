@@ -75,17 +75,19 @@ export function PaymentProvider({ children }: { children: ReactNode }) {
             value: installmentAmount,
             interest,
           },
+          subTotal,
           netTotal,
         },
       };
     });
   }, [
-    paymentMethod,
     installment.count,
     installmentAmount,
     interest,
     netTotal,
+    paymentMethod,
     setCheckout,
+    subTotal,
   ]);
 
   const setInstallmentCount = (count: number) => {
