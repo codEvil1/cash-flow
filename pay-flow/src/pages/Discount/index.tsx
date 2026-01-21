@@ -53,7 +53,7 @@ function Discount() {
 
   const onSubmit = (data: DiscountFormData) => {
     confirmDiscount({
-      couponCode: data.couponCode,
+      couponCode: data.couponCode.toUpperCase(),
       discountPercentage: previewDiscount?.discountPercentage,
       discountValue: previewDiscount?.discountValue,
     });

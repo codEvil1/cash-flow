@@ -6,23 +6,22 @@ export function calculateSubTotal(products: ProductFormData[] = []): number {
 }
 
 export function calculateInterest(
-  baseTotal: number,
+  netTotal: number,
   installmentCount: number,
 ): number {
-  if (baseTotal <= 0 || installmentCount <= 1) return 0;
-  return baseTotal * INTEREST_RATE;
+  if (netTotal <= 0 || installmentCount <= 1) return 0;
+  console.log(netTotal, netTotal * INTEREST_RATE);
+  return netTotal * INTEREST_RATE;
 }
 
 export function calculateNetTotal(
   products: ProductFormData[],
   freight: number | undefined,
   discount: number | undefined,
-  installmentCount: number,
 ): number {
   const baseTotal =
     calculateSubTotal(products) + (freight ?? 0) - (discount ?? 0);
-  const interest = installmentCount > 1 ? baseTotal * INTEREST_RATE : 0;
-  return baseTotal + interest;
+  return baseTotal;
 }
 
 export function calculateInstallments(

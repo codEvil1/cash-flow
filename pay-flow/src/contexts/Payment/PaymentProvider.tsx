@@ -37,30 +37,30 @@ export function PaymentProvider({ children }: { children: ReactNode }) {
 
   const subTotal = useMemo(() => calculateSubTotal(productList), [productList]);
 
-  const netTotal = useMemo(
+  const baseTotal = useMemo(
     () =>
       calculateNetTotal(
         productList,
         checkout?.shipping?.freight,
         checkout?.discount?.discountValue,
-        installment.count,
       ),
     [
       checkout?.discount?.discountValue,
       checkout?.shipping?.freight,
-      installment.count,
       productList,
     ],
   );
 
+  const interest = useMemo(
+    () => calculateInterest(baseTotal, installment.count),
+    [baseTotal, installment.count],
+  );
+
+  const netTotal = useMemo(() => baseTotal + interest, [baseTotal, interest]);
+
   const installmentAmount = useMemo(
     () => calculateInstallments(netTotal, installment.count),
     [netTotal, installment.count],
-  );
-
-  const interest = useMemo(
-    () => calculateInterest(subTotal, installment.count),
-    [subTotal, installment.count],
   );
 
   useEffect(() => {

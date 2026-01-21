@@ -15,17 +15,17 @@ export function Providers({ children }: { children: ReactNode }) {
     <ThemeProvider>
       <CurrencyProvider>
         <CheckoutProvider>
-          <ProductListProvider>
-            <CashierProvider>
-              <CustomerProvider>
-                <PaymentProvider>
-                  <DiscountProvider>
+          <DiscountProvider>
+            <ProductListProvider>
+              <CashierProvider>
+                <CustomerProvider>
+                  <PaymentProvider>
                     <ShippingProvider>{children}</ShippingProvider>
-                  </DiscountProvider>
-                </PaymentProvider>
-              </CustomerProvider>
-            </CashierProvider>
-          </ProductListProvider>
+                  </PaymentProvider>
+                </CustomerProvider>
+              </CashierProvider>
+            </ProductListProvider>
+          </DiscountProvider>
         </CheckoutProvider>
       </CurrencyProvider>
     </ThemeProvider>

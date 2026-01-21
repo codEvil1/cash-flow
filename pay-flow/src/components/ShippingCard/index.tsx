@@ -22,39 +22,30 @@ function ShippingCard({ previewShipping, title }: ShippingCardProps) {
   const { checkout } = useCheckout();
   const navigate = useNavigate();
 
+  const activeShipping = previewShipping ?? checkout?.shipping;
+
   return (
     <Card title={title} onClick={() => navigate("/checkout/shipping")}>
       <RowItem theme={theme}>
         <Package size={16} />
         <Label>{t("shipping.type")}</Label>
-        <Value>
-          {previewShipping?.type ?? formatEmpty(checkout?.shipping?.type)}
-        </Value>
+        <Value>{formatEmpty(activeShipping?.type)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <Calendar size={16} />
         <Label>{t("shipping.deliveryTime")}</Label>
-        <Value>
-          {previewShipping?.deliveryTime ??
-            formatEmpty(checkout?.shipping?.deliveryTime)}
-        </Value>
+        <Value>{formatEmpty(activeShipping?.deliveryTime)}</Value>
       </RowItem>
       <RowItem theme={theme}>
         <DollarSign size={16} />
         <Label>{t("shipping.cost")}</Label>
         <Value>
           {formatCurrency(
-            previewShipping?.freight ?? 0,
+            activeShipping?.freight ?? 0,
             locale,
             currency,
             "plus",
-          ) ??
-            formatCurrency(
-              checkout?.shipping?.freight ?? 0,
-              locale,
-              currency,
-              "plus",
-            )}
+          )}
         </Value>
       </RowItem>
       <RowItem theme={theme}>

@@ -26,7 +26,7 @@ function DiscountCard({ previewDiscount, title }: DiscountCardProps) {
 
   const activeDiscount = previewDiscount ?? checkout?.discount;
 
-  //TODO: inicializar objeto com zero
+  //TODO: inicializar subtotal com zero
   const handleCalculateTotalWithDiscount = useMemo(() => {
     const totalWithDiscount = calculateTotalWithDiscount(
       checkout?.payment?.subTotal ?? 0,
