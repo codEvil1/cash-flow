@@ -5,10 +5,8 @@ import type { Shipping } from "../Shipping/ShippingProvider";
 import type { Discount } from "../Discount/DiscountProvider";
 import { CheckoutContext } from "./CheckoutContext";
 import type { Payment } from "../Payment/PaymentProvider";
-import type { ProductList } from "../ProductList/ProductListProvider";
 
 export interface Checkout {
-  productList?: ProductList[];
   cashier?: Cashier;
   customer?: Customer;
   shipping?: Shipping;
