@@ -16,9 +16,9 @@ import { formatCurrency } from "../../utils/formatCurrency";
 import { useCurrency } from "../../contexts/Currency/useCurrency";
 import { usePayment } from "../../contexts/Payment/usePayment";
 import { useDiscount } from "../../contexts/Discount/useDiscount";
-import { useShipping } from "../../contexts/Shipping/useShipping";
 import { PaymentMethod } from "../../domain/enum";
 import { getPaymentMethodLabel } from "../../domain/mappers";
+import { useCheckout } from "../../contexts/Checkout/useCheckout";
 
 interface PaymentCardProps {
   title?: string;
@@ -29,7 +29,7 @@ function PaymentCard({ title }: PaymentCardProps) {
   const { theme } = useTheme();
   const { currency, locale } = useCurrency();
   const { discount } = useDiscount();
-  const { shipping } = useShipping();
+  const { checkout } = useCheckout();
   const {
     subTotal,
     netTotal,
@@ -74,10 +74,7 @@ function PaymentCard({ title }: PaymentCardProps) {
         <Truck size={16} />
         <Label>{t("shipping.shipping")}</Label>
         <Value>
-          {
-            (console.log(shipping),
-            formatCurrency(shipping?.freight, locale, currency, "plus"))
-          }
+          {formatCurrency(checkout?.shipping?.freight, locale, currency, "plus")}
         </Value>
       </RowItem>
       <RowItem theme={theme}>

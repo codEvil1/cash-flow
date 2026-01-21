@@ -26,18 +26,18 @@ interface ShippingFormData {
 function Shipping() {
   const { t } = useTranslation();
   const { theme } = useTheme();
-  const { shipping, setShipping, getShipping } = useShipping();
+  const { getShipping, confirmShipping } = useShipping();
   const { checkout } = useCheckout();
   const { handleSubmit, register, control } = useForm<ShippingFormData>({
     defaultValues: {
-      hasShipping: shipping?.hasShipping,
+      hasShipping: checkout?.shipping?.hasShipping,
     },
   });
 
   const navigate = useNavigate();
 
   const [previewShipping, setPreviewShipping] = useState<Shipping | undefined>(
-    shipping,
+    checkout?.shipping,
   );
 
   const hasShipping = useWatch({
@@ -46,7 +46,7 @@ function Shipping() {
   });
 
   const onSubmit = async () => {
-    setShipping({
+    confirmShipping({
       hasShipping,
       type: previewShipping?.type,
       freight: previewShipping?.freight,

@@ -7,19 +7,19 @@ import {
   calculateSubTotal,
 } from "../../utils/saleCalculations";
 import { useProductList } from "../ProductList/useProductList";
-import { useShipping } from "../Shipping/useShipping";
 import { useDiscount } from "../Discount/useDiscount";
 import { PaymentMethod } from "../../domain/enum";
+import { useCheckout } from "../Checkout/useCheckout";
 
 export function PaymentProvider({ children }: { children: ReactNode }) {
+  const { productList } = useProductList();
+  const { checkout } = useCheckout();
+  const { discount } = useDiscount();
+
   const [installmentCount, setInstallmentCount] = useState<number>(1);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(
-    PaymentMethod.CASH
+    PaymentMethod.CASH,
   );
-
-  const { productList } = useProductList();
-  const { shipping } = useShipping();
-  const { discount } = useDiscount();
 
   const subTotal = useMemo(() => calculateSubTotal(productList), [productList]);
 
@@ -27,21 +27,26 @@ export function PaymentProvider({ children }: { children: ReactNode }) {
     () =>
       calculateNetTotal(
         productList,
-        shipping?.freight,
+        checkout?.shipping?.freight,
         discount?.discountValue,
-        installmentCount
+        installmentCount,
       ),
-    [discount?.discountValue, installmentCount, productList, shipping?.freight]
+    [
+      checkout?.shipping?.freight,
+      discount?.discountValue,
+      installmentCount,
+      productList,
+    ],
   );
 
   const installmentAmount = useMemo(
     () => calculateInstallments(netTotal, installmentCount),
-    [installmentCount, netTotal]
+    [installmentCount, netTotal],
   );
 
   const interest = useMemo(
-    () => calculateInterest(subTotal, installmentCount), 
-    [installmentCount, subTotal]
+    () => calculateInterest(subTotal, installmentCount),
+    [installmentCount, subTotal],
   );
 
   return (
