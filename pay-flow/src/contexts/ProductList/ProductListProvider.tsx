@@ -2,22 +2,35 @@ import { useState, type ReactNode } from "react";
 import type { ProductFormData } from "../../components/ProductCard";
 import { ProductListContext } from "./ProductListContext";
 
+export interface ProductList {
+  item: string;
+  description?: string;
+  quantity: number;
+  unitPrice: number;
+  price: number;
+}
+
 export function ProductListProvider({ children }: { children: ReactNode }) {
-  const [productList, setProductList] = useState<ProductFormData[]>([]);
+  const [productList, setProductList] = useState<ProductList[]>([]);
 
   const addProduct = (product: ProductFormData) => {
-    const exists = productList.some((p) => p.item === product.item);
-    if (exists) {
-      setProductList(
-        productList.map((product) =>
-          product.item === product.item
-            ? { ...product, quantity: product.quantity + product.quantity }
-            : product
-        )
-      );
-    } else {
-      setProductList((prev) => [...prev, product]);
-    }
+    setProductList((prev) => {
+      const exists = prev.some((p) => p.item === product.item);
+
+      if (exists) {
+        return prev.map((p) =>
+          p.item === product.item
+            ? {
+                ...p,
+                quantity: p.quantity + product.quantity,
+                price: p.unitPrice * (p.quantity + product.quantity),
+              }
+            : p,
+        );
+      }
+
+      return [...prev, product];
+    });
   };
 
   const removeProduct = (product: ProductFormData) => {
@@ -30,11 +43,11 @@ export function ProductListProvider({ children }: { children: ReactNode }) {
         p.item === product
           ? {
               ...p,
-              price: p.unitPrice * quantity,
+              price: p.unitPrice * p.quantity,
               quantity,
             }
-          : p
-      )
+          : p,
+      ),
     );
   };
 
