@@ -29,13 +29,13 @@ function DiscountCard({ previewDiscount, title }: DiscountCardProps) {
   //TODO: inicializar objeto com zero
   const handleCalculateTotalWithDiscount = useMemo(() => {
     const totalWithDiscount = calculateTotalWithDiscount(
-      checkout?.payment?.netTotal ?? 0,
+      checkout?.payment?.subTotal ?? 0,
       activeDiscount?.discountValue,
     );
     return formatCurrency(totalWithDiscount, locale, currency);
   }, [
     activeDiscount?.discountValue,
-    checkout?.payment?.netTotal,
+    checkout?.payment?.subTotal,
     currency,
     locale,
   ]);
