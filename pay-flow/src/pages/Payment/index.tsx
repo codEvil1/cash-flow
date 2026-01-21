@@ -21,6 +21,7 @@ import { CheckCircle, XCircle } from "lucide-react";
 import { colors } from "../../components/Style/theme";
 import { useNavigate } from "react-router-dom";
 import { getPaymentMethodLabel } from "../../domain/mappers";
+import { useCheckout } from "../../contexts/Checkout/useCheckout";
 
 export interface PaymentFormData {
   paymentMethod: PaymentMethod;
@@ -31,15 +32,11 @@ function Payment() {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { theme } = useTheme();
+  const { checkout } = useCheckout();
   const { currency, locale } = useCurrency();
-  const {
-    netTotal,
-    paymentMethod,
-    installmentCount,
-    installmentAmount,
-    setPaymentMethod,
-    setInstallmentCount,
-  } = usePayment();
+  const { setPaymentMethod, setInstallmentCount } = usePayment();
+
+  const payment = checkout?.payment;
 
   const { handleSubmit, setValue } = useForm<PaymentFormData>({
     resolver: yupResolver(paymentSchema(t)),
@@ -52,31 +49,26 @@ function Payment() {
     navigate("/checkout");
   };
 
-  const paymentSummary: string = useMemo(() => {
-    if (paymentMethod === PaymentMethod.CREDIT && installmentCount) {
-      return `${installmentCount}x de ${formatCurrency(
-        installmentAmount,
+  const paymentSummary = useMemo(() => {
+    if (
+      payment?.paymentMethod === PaymentMethod.CREDIT &&
+      payment.installment?.value
+    ) {
+      return `${payment.installment.count}x de ${formatCurrency(
+        payment.installment.value,
         locale,
-        currency
+        currency,
       )}`;
     }
-    if (netTotal) {
+    if (payment?.netTotal) {
       return `${t("payment.onTime")}: ${formatCurrency(
-        netTotal,
+        payment.netTotal,
         locale,
-        currency
+        currency,
       )}`;
     }
     return "";
-  }, [
-    currency,
-    installmentAmount,
-    installmentCount,
-    locale,
-    netTotal,
-    paymentMethod,
-    t,
-  ]);
+  }, [payment, currency, locale, t]);
 
   const paymentMethods = useMemo(
     () => [
@@ -101,13 +93,12 @@ function Payment() {
         icon: null,
       },
     ],
-    [t]
+    [t],
   );
 
   const handlePaymentMethodChange = (value: PaymentMethod) => {
     setPaymentMethod(value);
     setValue("paymentMethod", value);
-    setInstallmentCount(1);
   };
 
   const handleInstallmentCountChange = (value: number) => {
@@ -131,19 +122,19 @@ function Payment() {
                 <Select
                   label={t("payment.paymentMethod")}
                   text={t("payment.paymentMethod")}
-                  value={paymentMethod}
+                  value={payment?.paymentMethod}
                   onChange={(value) => handlePaymentMethodChange(value)}
                   options={paymentMethods}
                 />
               </Col>
             </Row>
-            {paymentMethod === PaymentMethod.CREDIT && (
+            {payment?.paymentMethod === PaymentMethod.CREDIT && (
               <Row>
                 <Col>
                   <Select
                     label={t("payment.installments")}
                     text={t("payment.installments")}
-                    value={installmentCount}
+                    value={payment.installment.count}
                     onChange={(value) => handleInstallmentCountChange(value)}
                     options={[
                       { label: "1x", value: 1, icon: null },

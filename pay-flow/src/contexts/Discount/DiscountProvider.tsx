@@ -1,6 +1,5 @@
 import { useState, type ReactNode } from "react";
 import { DiscountContext } from "./DiscountContext";
-import { usePayment } from "../Payment/usePayment";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { calculateDiscountValue } from "../../utils/saleCalculations";
@@ -14,8 +13,7 @@ export interface Discount {
 
 export function DiscountProvider({ children }: { children: ReactNode }) {
   const { t } = useTranslation();
-  const { netTotal } = usePayment();
-  const { setCheckout } = useCheckout();
+  const { checkout, setCheckout } = useCheckout();
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -24,9 +22,10 @@ export function DiscountProvider({ children }: { children: ReactNode }) {
   ): Promise<Discount | undefined> => {
     try {
       // mock
+      //TODO: inicialiizar netTotal zero
       const discountPercentage = 10;
       const discountValue = calculateDiscountValue(
-        netTotal,
+        checkout?.payment?.netTotal ?? 0,
         discountPercentage,
       );
       const discount = {

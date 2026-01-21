@@ -4,13 +4,14 @@ import type { Customer } from "../Customer/CustomerProvider";
 import type { Shipping } from "../Shipping/ShippingProvider";
 import type { Discount } from "../Discount/DiscountProvider";
 import { CheckoutContext } from "./CheckoutContext";
+import type { Payment } from "../Payment/PaymentProvider";
 
 export interface Checkout {
   cashier?: Cashier;
   customer?: Customer;
   shipping?: Shipping;
   discount?: Discount;
-  // payment: Payment;
+  payment?: Payment;
 }
 
 export function CheckoutProvider({ children }: { children: ReactNode }) {

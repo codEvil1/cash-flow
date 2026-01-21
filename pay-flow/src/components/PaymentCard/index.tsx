@@ -14,7 +14,6 @@ import Card from "../Card";
 import { useNavigate } from "react-router-dom";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { useCurrency } from "../../contexts/Currency/useCurrency";
-import { usePayment } from "../../contexts/Payment/usePayment";
 import { PaymentMethod } from "../../domain/enum";
 import { getPaymentMethodLabel } from "../../domain/mappers";
 import { useCheckout } from "../../contexts/Checkout/useCheckout";
@@ -28,14 +27,6 @@ function PaymentCard({ title }: PaymentCardProps) {
   const { theme } = useTheme();
   const { currency, locale } = useCurrency();
   const { checkout } = useCheckout();
-  const {
-    subTotal,
-    netTotal,
-    paymentMethod,
-    installmentAmount,
-    installmentCount,
-    interest,
-  } = usePayment();
   const navigate = useNavigate();
 
   return (
@@ -43,14 +34,16 @@ function PaymentCard({ title }: PaymentCardProps) {
       <RowItem theme={theme}>
         <CreditCard size={16} />
         <Label>{t("payment.paymentMethod")}</Label>
-        <Value>{getPaymentMethodLabel(paymentMethod, t)}</Value>
+        <Value>
+          {getPaymentMethodLabel(checkout?.payment?.paymentMethod, t)}
+        </Value>
       </RowItem>
-      {paymentMethod === PaymentMethod.CREDIT && (
+      {checkout?.payment?.paymentMethod === PaymentMethod.CREDIT && (
         <RowItem theme={theme}>
           <Repeat size={16} />
           <Label>{t("payment.installments")}</Label>
-          <Value>{`${installmentCount}x de ${formatCurrency(
-            installmentAmount,
+          <Value>{`${checkout.payment.installment.count}x de ${formatCurrency(
+            checkout.payment.installment.value,
             locale,
             currency,
           )}`}</Value>
@@ -59,7 +52,9 @@ function PaymentCard({ title }: PaymentCardProps) {
       <RowItem theme={theme}>
         <DollarSign size={16} />
         <Label>{t("payment.value")}</Label>
-        <Value>{formatCurrency(subTotal, locale, currency)}</Value>
+        <Value>
+          {formatCurrency(checkout?.payment?.subTotal, locale, currency)}
+        </Value>
       </RowItem>
       <RowItem theme={theme}>
         <ArrowDown size={16} />
@@ -88,12 +83,21 @@ function PaymentCard({ title }: PaymentCardProps) {
       <RowItem theme={theme}>
         <TrendingUp size={16} />
         <Label>{t("payment.interest")}</Label>
-        <Value>{formatCurrency(interest, locale, currency, "plus")}</Value>
+        <Value>
+          {formatCurrency(
+            checkout?.payment?.installment.interest,
+            locale,
+            currency,
+            "plus",
+          )}
+        </Value>
       </RowItem>
       <RowItem theme={theme}>
         <Check size={16} />
         <Label>{t("payment.total")}</Label>
-        <Value>{formatCurrency(netTotal, locale, currency)}</Value>
+        <Value>
+          {formatCurrency(checkout?.payment?.netTotal, locale, currency)}
+        </Value>
       </RowItem>
     </Card>
   );

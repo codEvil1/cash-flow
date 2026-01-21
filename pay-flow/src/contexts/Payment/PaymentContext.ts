@@ -1,17 +1,16 @@
 import { createContext } from "react";
 import type { PaymentMethod } from "../../domain/enum";
+import type { Installment } from "./PaymentProvider";
 
 export interface PaymentContextData {
+  paymentMethod: PaymentMethod;
   subTotal: number;
   netTotal: number;
-  paymentMethod: PaymentMethod;
-  installmentCount: number;
-  installmentAmount: number;
-  interest: number;
+  installment: Installment;
   setPaymentMethod: (paymentMethod: PaymentMethod) => void;
   setInstallmentCount: (installmentCount: number) => void;
 }
 
 export const PaymentContext = createContext<PaymentContextData>(
-  {} as PaymentContextData
+  {} as PaymentContextData,
 );
