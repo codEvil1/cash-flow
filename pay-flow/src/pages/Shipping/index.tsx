@@ -17,7 +17,7 @@ import { CheckCircle, XCircle } from "lucide-react";
 import { colors } from "../../components/Style/theme";
 import { useNavigate } from "react-router-dom";
 import type { Shipping } from "../../contexts/Shipping/ShippingProvider";
-import { useCustomer } from "../../contexts/Customer/useCustomer";
+import { useCheckout } from "../../contexts/Checkout/useCheckout";
 
 interface ShippingFormData {
   hasShipping: boolean;
@@ -27,7 +27,7 @@ function Shipping() {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const { shipping, setShipping, getShipping } = useShipping();
-  const { customer } = useCustomer();
+  const { checkout } = useCheckout();
   const { handleSubmit, register, control } = useForm<ShippingFormData>({
     defaultValues: {
       hasShipping: shipping?.hasShipping,
@@ -37,7 +37,7 @@ function Shipping() {
   const navigate = useNavigate();
 
   const [previewShipping, setPreviewShipping] = useState<Shipping | undefined>(
-    shipping
+    shipping,
   );
 
   const hasShipping = useWatch({
@@ -61,7 +61,7 @@ function Shipping() {
       setPreviewShipping(undefined);
       return;
     }
-    const result = await getShipping(customer?.identifier);
+    const result = await getShipping(checkout?.customer?.identifier);
     setPreviewShipping(result);
   };
 

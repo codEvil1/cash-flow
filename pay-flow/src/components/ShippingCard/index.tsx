@@ -7,9 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { useCurrency } from "../../contexts/Currency/useCurrency";
 import { formatEmpty } from "../../utils/formatEmpty";
-import { useCustomer } from "../../contexts/Customer/useCustomer";
 import type { Shipping } from "../../contexts/Shipping/ShippingProvider";
 import { useShipping } from "../../contexts/Shipping/useShipping";
+import { useCheckout } from "../../contexts/Checkout/useCheckout";
 
 interface ShippingCardProps {
   previewShipping?: Shipping;
@@ -21,7 +21,7 @@ function ShippingCard({ previewShipping, title }: ShippingCardProps) {
   const { theme } = useTheme();
   const { currency, locale } = useCurrency();
   const { shipping } = useShipping();
-  const { customer } = useCustomer();
+  const { checkout } = useCheckout();
   const navigate = useNavigate();
 
   return (
@@ -53,7 +53,7 @@ function ShippingCard({ previewShipping, title }: ShippingCardProps) {
       <RowItem theme={theme}>
         <MapPin size={16} />
         <Label>{t("shipping.address")}</Label>
-        <Value>{formatEmpty(customer?.adress)}</Value>
+        <Value>{formatEmpty(checkout?.customer?.adress)}</Value>
       </RowItem>
     </Card>
   );

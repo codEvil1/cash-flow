@@ -20,6 +20,7 @@ import { useState } from "react";
 import InputButton from "../../components/InputButton";
 import type { Customer } from "../../contexts/Customer/CustomerProvider";
 import CustomerCard from "../../components/CustomerCard";
+import { useCheckout } from "../../contexts/Checkout/useCheckout";
 
 interface CustomerFormData {
   identifier: string;
@@ -28,7 +29,8 @@ interface CustomerFormData {
 function Customer() {
   const { t } = useTranslation();
   const { theme } = useTheme();
-  const { customer, getCustomer, setCustomer } = useCustomer();
+  const { getCustomer, confirmCustomer } = useCustomer();
+  const { checkout } = useCheckout();
   const navigate = useNavigate();
   const {
     control,
@@ -39,7 +41,7 @@ function Customer() {
   } = useForm<CustomerFormData>({
     resolver: yupResolver(customerSchema(t)),
     defaultValues: {
-      identifier: customer?.identifier,
+      identifier: checkout?.customer?.identifier,
     },
   });
 
@@ -49,11 +51,11 @@ function Customer() {
   });
 
   const [previewCustomer, setPreviewCustomer] = useState<Customer | undefined>(
-    customer,
+    checkout?.customer,
   );
 
   const onSubmit = (data: CustomerFormData) => {
-    setCustomer({
+    confirmCustomer({
       identifier: data.identifier,
       name: previewCustomer?.name,
       phone: previewCustomer?.phone,
