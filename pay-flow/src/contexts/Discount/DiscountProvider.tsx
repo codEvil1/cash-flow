@@ -41,7 +41,7 @@ export function DiscountProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const confirmDiscount = async (discount: Discount) => {
+  const confirmDiscount = async (discount?: Discount) => {
     setCheckout((prev) => ({
       ...prev,
       discount,

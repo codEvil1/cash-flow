@@ -14,12 +14,11 @@ import Card from "../../components/Card";
 import { Row } from "../../components/Row";
 import { Col } from "../../components/Col";
 import InputButton from "../../components/InputButton";
-import { CheckCircle, Search, XCircle } from "lucide-react";
-import Button from "../../components/Button";
-import { colors } from "../../components/Style/theme";
+import { Search } from "lucide-react";
 import type { Discount } from "../../contexts/Discount/DiscountProvider";
 import DiscountCard from "../../components/DiscountCard";
 import { useCheckout } from "../../contexts/Checkout/useCheckout";
+import { ActionFooter } from "../../components/ActionFooter";
 
 interface DiscountFormData {
   couponCode: string;
@@ -33,6 +32,7 @@ function Discount() {
   const navigate = useNavigate();
 
   const {
+    reset,
     register,
     control,
     handleSubmit,
@@ -65,6 +65,12 @@ function Discount() {
     if (!couponCode) return;
     const result = await getDiscount(couponCode);
     setPreviewDiscount(result);
+  };
+
+  const handleClear = () => {
+    reset();
+    setPreviewDiscount(undefined);
+    confirmDiscount(undefined);
   };
 
   return (
@@ -100,29 +106,11 @@ function Discount() {
                 </Col>
               </Row>
             )}
-            <Row>
-              <Col xs={10}>
-                <Button
-                  text={t("cashier.confirmCashier")}
-                  icon={CheckCircle}
-                  type="submit"
-                  disabled={!previewDiscount}
-                  onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
-                    event.stopPropagation()
-                  }
-                >
-                  {t("cashier.confirmCashier")}
-                </Button>
-              </Col>
-              <Col xs={2}>
-                <Button
-                  text={t("utils.cancel")}
-                  icon={XCircle}
-                  color={colors.red}
-                  onClick={() => navigate("/checkout")}
-                />
-              </Col>
-            </Row>
+            <ActionFooter
+              confirmText={t("cashier.confirmCashier")}
+              disabled={!previewDiscount}
+              onClear={handleClear}
+            />
           </form>
         </Card>
       </Body>

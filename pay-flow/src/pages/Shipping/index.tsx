@@ -12,12 +12,10 @@ import Checkbox from "../../components/Checkbox";
 import ShippingCard from "../../components/ShippingCard";
 import { useState } from "react";
 import { useShipping } from "../../contexts/Shipping/useShipping";
-import Button from "../../components/Button";
-import { CheckCircle, XCircle } from "lucide-react";
-import { colors } from "../../components/Style/theme";
 import { useNavigate } from "react-router-dom";
 import type { Shipping } from "../../contexts/Shipping/ShippingProvider";
 import { useCheckout } from "../../contexts/Checkout/useCheckout";
+import { ActionFooter } from "../../components/ActionFooter";
 
 interface ShippingFormData {
   hasShipping: boolean;
@@ -93,28 +91,10 @@ function Shipping() {
                 </Col>
               </Row>
             )}
-            <Row>
-              <Col xs={10}>
-                <Button
-                  text={t("shipping.confirmShipping")}
-                  icon={CheckCircle}
-                  type="submit"
-                  onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
-                    event.stopPropagation()
-                  }
-                >
-                  {t("shipping.confirmShipping")}
-                </Button>
-              </Col>
-              <Col xs={2}>
-                <Button
-                  text={t("utils.cancel")}
-                  icon={XCircle}
-                  color={colors.red}
-                  onClick={() => navigate("/checkout")}
-                />
-              </Col>
-            </Row>
+            <ActionFooter
+              confirmText={t("shipping.confirmShipping")}
+              onClear={handleChangeFreight}
+            />
           </form>
         </Card>
       </Body>

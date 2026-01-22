@@ -8,9 +8,7 @@ import { APP_VERSION } from "../../domain/constants";
 import Card from "../../components/Card";
 import { Row } from "../../components/Row";
 import { Col } from "../../components/Col";
-import Button from "../../components/Button";
-import { CheckCircle, Search, XCircle } from "lucide-react";
-import { colors } from "../../components/Style/theme";
+import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { customerSchema } from "../../validations/customerSchema";
@@ -21,6 +19,7 @@ import InputButton from "../../components/InputButton";
 import type { Customer } from "../../contexts/Customer/CustomerProvider";
 import CustomerCard from "../../components/CustomerCard";
 import { useCheckout } from "../../contexts/Checkout/useCheckout";
+import { ActionFooter } from "../../components/ActionFooter";
 
 interface CustomerFormData {
   identifier: string;
@@ -34,6 +33,7 @@ function Customer() {
   const navigate = useNavigate();
   const {
     control,
+    reset,
     handleSubmit,
     register,
     setValue,
@@ -80,6 +80,12 @@ function Customer() {
     setPreviewCustomer(undefined);
   };
 
+  const handleClear = () => {
+    reset();
+    setPreviewCustomer(undefined);
+    confirmCustomer(undefined);
+  };
+
   return (
     <Page theme={theme}>
       <HeaderControls
@@ -115,27 +121,11 @@ function Customer() {
                 </Col>
               </Row>
             )}
-            <Row>
-              <Col xs={10}>
-                <Button
-                  text={t("customer.confirmCustomer")}
-                  icon={CheckCircle}
-                  type="submit"
-                  disabled={!previewCustomer}
-                  onClick={(event) => event.stopPropagation()}
-                >
-                  {t("customer.confirmCustomer")}
-                </Button>
-              </Col>
-              <Col xs={2}>
-                <Button
-                  text={t("utils.cancel")}
-                  icon={XCircle}
-                  color={colors.red}
-                  onClick={() => navigate("/checkout")}
-                />
-              </Col>
-            </Row>
+            <ActionFooter
+              confirmText={t("customer.confirmCustomer")}
+              disabled={!previewCustomer}
+              onClear={handleClear}
+            />
           </form>
         </Card>
       </Body>

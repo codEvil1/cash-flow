@@ -43,7 +43,7 @@ export function CustomerProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const confirmCustomer = async (customer: Customer) => {
+  const confirmCustomer = async (customer?: Customer) => {
     setCheckout((prev) => ({
       ...prev,
       customer,
