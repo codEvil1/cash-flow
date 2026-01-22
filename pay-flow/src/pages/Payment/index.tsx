@@ -12,16 +12,14 @@ import { usePayment } from "../../contexts/Payment/usePayment";
 import { useCurrency } from "../../contexts/Currency/useCurrency";
 import { SummaryLabel } from "./style";
 import { useMemo } from "react";
-import Button from "../../components/Button";
 import { PaymentMethod } from "../../domain/enum";
 import { APP_VERSION } from "../../domain/constants";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { paymentSchema } from "../../validations/paymentSchema";
-import { CheckCircle, XCircle } from "lucide-react";
-import { colors } from "../../components/Style/theme";
 import { useNavigate } from "react-router-dom";
 import { getPaymentMethodLabel } from "../../domain/mappers";
 import { useCheckout } from "../../contexts/Checkout/useCheckout";
+import { ActionFooter } from "../../components/ActionFooter";
 
 export interface PaymentFormData {
   paymentMethod: PaymentMethod;
@@ -38,7 +36,7 @@ function Payment() {
 
   const payment = checkout?.payment;
 
-  const { handleSubmit, setValue } = useForm<PaymentFormData>({
+  const { handleSubmit, setValue, reset } = useForm<PaymentFormData>({
     resolver: yupResolver(paymentSchema(t)),
   });
 
@@ -106,6 +104,12 @@ function Payment() {
     setValue("installmentsCount", value);
   };
 
+  const handleClear = () => {
+    reset();
+    // setPreviewPayment(undefined);
+    // confirmPayment(undefined);
+  };
+
   return (
     <Page theme={theme}>
       <HeaderControls
@@ -153,28 +157,10 @@ function Payment() {
                 </Col>
               </Row>
             )}
-            <Row>
-              <Col xs={10}>
-                <Button
-                  text={t("payment.confirmPayment")}
-                  icon={CheckCircle}
-                  type="submit"
-                  onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
-                    event.stopPropagation()
-                  }
-                >
-                  {t("payment.confirmPayment")}
-                </Button>
-              </Col>
-              <Col xs={2}>
-                <Button
-                  text={t("utils.cancel")}
-                  icon={XCircle}
-                  color={colors.red}
-                  onClick={() => navigate("/checkout")}
-                />
-              </Col>
-            </Row>
+            <ActionFooter
+              confirmText={t("payment.confirmPayment")}
+              onClear={handleClear}
+            />
           </form>
         </Card>
       </Body>

@@ -38,17 +38,6 @@ function PaymentCard({ title }: PaymentCardProps) {
           {getPaymentMethodLabel(checkout?.payment?.paymentMethod, t)}
         </Value>
       </RowItem>
-      {checkout?.payment?.paymentMethod === PaymentMethod.CREDIT && (
-        <RowItem theme={theme}>
-          <Repeat size={16} />
-          <Label>{t("payment.installments")}</Label>
-          <Value>{`${checkout.payment.installment.count}x de ${formatCurrency(
-            checkout.payment.installment.value,
-            locale,
-            currency,
-          )}`}</Value>
-        </RowItem>
-      )}
       <RowItem theme={theme}>
         <DollarSign size={16} />
         <Label>{t("payment.value")}</Label>
@@ -80,18 +69,21 @@ function PaymentCard({ title }: PaymentCardProps) {
           )}
         </Value>
       </RowItem>
-      <RowItem theme={theme}>
-        <TrendingUp size={16} />
-        <Label>{t("payment.interest")}</Label>
-        <Value>
-          {formatCurrency(
-            checkout?.payment?.installment.interest,
-            locale,
-            currency,
-            "plus",
-          )}
-        </Value>
-      </RowItem>
+      {checkout?.payment?.installment.interest !== undefined &&
+        checkout?.payment?.installment.interest > 0 && (
+          <RowItem theme={theme}>
+            <TrendingUp size={16} />
+            <Label>{t("payment.interest")}</Label>
+            <Value>
+              {formatCurrency(
+                checkout?.payment?.installment.interest,
+                locale,
+                currency,
+                "plus",
+              )}
+            </Value>
+          </RowItem>
+        )}
       <RowItem theme={theme}>
         <Check size={16} />
         <Label>{t("payment.total")}</Label>
@@ -99,6 +91,17 @@ function PaymentCard({ title }: PaymentCardProps) {
           {formatCurrency(checkout?.payment?.netTotal, locale, currency)}
         </Value>
       </RowItem>
+      {checkout?.payment?.paymentMethod === PaymentMethod.CREDIT && (
+        <RowItem theme={theme}>
+          <Repeat size={16} />
+          <Label>{t("payment.installments")}</Label>
+          <Value>{`${checkout.payment.installment.count}x de ${formatCurrency(
+            checkout.payment.installment.value,
+            locale,
+            currency,
+          )}`}</Value>
+        </RowItem>
+      )}
     </Card>
   );
 }

@@ -22,10 +22,10 @@ export function DiscountProvider({ children }: { children: ReactNode }) {
   ): Promise<Discount | undefined> => {
     try {
       // mock
-      //TODO: inicialiizar netTotal zero
+      //TODO: inicialiizar subTotal zero
       const discountPercentage = 10;
       const discountValue = calculateDiscountValue(
-        checkout?.payment?.netTotal ?? 0,
+        checkout?.payment?.subTotal ?? 0,
         discountPercentage,
       );
       const discount = {
@@ -41,7 +41,7 @@ export function DiscountProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const confirmDiscount = async (discount: Discount) => {
+  const confirmDiscount = async (discount?: Discount) => {
     setCheckout((prev) => ({
       ...prev,
       discount,

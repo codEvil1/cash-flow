@@ -33,7 +33,7 @@ export function CashierProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const confirmCashier = async (cashier: Cashier) => {
+  const confirmCashier = async (cashier?: Cashier) => {
     setCheckout((prev) => ({
       ...prev,
       cashier,

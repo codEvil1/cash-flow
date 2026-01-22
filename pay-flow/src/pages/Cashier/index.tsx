@@ -8,9 +8,7 @@ import { APP_VERSION } from "../../domain/constants";
 import Card from "../../components/Card";
 import { Row } from "../../components/Row";
 import { Col } from "../../components/Col";
-import Button from "../../components/Button";
-import { CheckCircle, Search, XCircle } from "lucide-react";
-import { colors } from "../../components/Style/theme";
+import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import InputButton from "../../components/InputButton";
@@ -20,6 +18,7 @@ import { useState } from "react";
 import type { Cashier } from "../../contexts/Cashier/CashierProvider";
 import CashierCard from "../../components/CashierCard";
 import { useCheckout } from "../../contexts/Checkout/useCheckout";
+import { ActionFooter } from "../../components/ActionFooter";
 
 interface CashierFormData {
   id: number;
@@ -33,9 +32,10 @@ function Cashier() {
   const navigate = useNavigate();
 
   const {
-    register,
     control,
+    register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<CashierFormData>({
     resolver: yupResolver(cashierSchema(t)),
@@ -65,6 +65,12 @@ function Cashier() {
     if (!inputId) return;
     const result = await getCashier(inputId);
     setPreviewCashier(result);
+  };
+
+  const handleClear = () => {
+    reset();
+    setPreviewCashier(undefined);
+    confirmCashier(undefined);
   };
 
   return (
@@ -101,29 +107,11 @@ function Cashier() {
                 </Col>
               </Row>
             )}
-            <Row>
-              <Col xs={10}>
-                <Button
-                  text={t("cashier.confirmCashier")}
-                  icon={CheckCircle}
-                  type="submit"
-                  disabled={!previewCashier}
-                  onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
-                    event.stopPropagation()
-                  }
-                >
-                  {t("cashier.confirmCashier")}
-                </Button>
-              </Col>
-              <Col xs={2}>
-                <Button
-                  text={t("utils.cancel")}
-                  icon={XCircle}
-                  color={colors.red}
-                  onClick={() => navigate("/checkout")}
-                />
-              </Col>
-            </Row>
+            <ActionFooter
+              confirmText={t("cashier.confirmCashier")}
+              disabled={!previewCashier}
+              onClear={handleClear}
+            />
           </form>
         </Card>
       </Body>
