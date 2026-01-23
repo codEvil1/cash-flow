@@ -35,7 +35,7 @@ export function DiscountProvider({ children }: { children: ReactNode }) {
       };
       return discount;
     } catch {
-      toast.error(t("resetPassword.sentEmail"));
+      toast.error(t("discount.errorGetDiscount"));
     } finally {
       setLoading(false);
     }

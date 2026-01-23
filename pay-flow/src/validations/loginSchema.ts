@@ -7,12 +7,12 @@ export const loginSchema = (t: TFunction) =>
       .string()
       .trim()
       .lowercase()
-      .email(t("validation.emailInvalid"))
-      .required(t("validation.emailRequired")),
+      .email(t("login.emailInvalid"))
+      .required(t("login.emailRequired")),
 
     password: yup
       .string()
-      .min(12, t("validation.passwordMin"))
-      .matches(/^\S+$/, t("validation.passwordNoSpaces"))
-      .required(t("validation.passwordRequired")),
+      .min(12, t("login.passwordMin"))
+      .matches(/^\S+$/, t("login.passwordNoSpaces"))
+      .required(t("login.passwordRequired")),
   });

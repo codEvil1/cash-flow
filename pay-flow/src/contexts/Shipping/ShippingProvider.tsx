@@ -32,7 +32,7 @@ export function ShippingProvider({ children }: { children: ReactNode }) {
       };
       return shipping;
     } catch {
-      toast.error(t("resetPassword.sentEmail"));
+      toast.error(t("shipping.errorGetShipping"));
     } finally {
       setLoading(false);
     }

@@ -49,7 +49,7 @@ function Login() {
 
   return (
     <Page theme={theme}>
-      <HeaderControls breadcrumbs={[{ label: "login.login", path: "/" }]} />
+      <HeaderControls breadcrumbs={[{ label: t("login.login"), path: "/" }]} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Body>
           <img

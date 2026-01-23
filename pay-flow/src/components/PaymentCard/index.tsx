@@ -95,11 +95,16 @@ function PaymentCard({ title }: PaymentCardProps) {
         <RowItem theme={theme}>
           <Repeat size={16} />
           <Label>{t("payment.installments")}</Label>
-          <Value>{`${checkout.payment.installment.count}x de ${formatCurrency(
-            checkout.payment.installment.value,
-            locale,
-            currency,
-          )}`}</Value>
+          <Value>
+            {t("payment.installmentsOf", {
+              count: checkout.payment.installment.count,
+              value: formatCurrency(
+                checkout.payment.installment.value,
+                locale,
+                currency,
+              ),
+            })}
+          </Value>
         </RowItem>
       )}
     </Card>

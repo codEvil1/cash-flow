@@ -77,8 +77,8 @@ function Discount() {
     <Page theme={theme}>
       <HeaderControls
         breadcrumbs={[
-          { label: "checkout.checkout", path: "/checkout" },
-          { label: "discount.discount", path: "/checkout/discount" },
+          { label: t("checkout.checkout"), path: "/checkout" },
+          { label: t("discount.discount"), path: "/checkout/discount" },
         ]}
       />
       <Body>
@@ -87,8 +87,8 @@ function Discount() {
             <Row>
               <Col>
                 <InputButton
-                  text={t("discount.cupom")}
-                  placeholder={t("discount.cupom")}
+                  text={t("discount.coupon")}
+                  placeholder={t("discount.coupon")}
                   error={errors.couponCode?.message}
                   value={couponCode}
                   icon={Search}

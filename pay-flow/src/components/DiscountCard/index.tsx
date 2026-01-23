@@ -44,7 +44,7 @@ function DiscountCard({ previewDiscount, title }: DiscountCardProps) {
     <Card title={title} onClick={() => navigate("/checkout/discount")}>
       <RowItem theme={theme}>
         <Tag size={16} />
-        <Label>{t("discount.cupom")}</Label>
+        <Label>{t("discount.coupon")}</Label>
         <Value>{formatEmpty(activeDiscount?.couponCode)}</Value>
       </RowItem>
       <RowItem theme={theme}>

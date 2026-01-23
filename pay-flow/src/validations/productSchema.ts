@@ -3,11 +3,9 @@ import * as yup from "yup";
 
 export const productSchema = (t: TFunction) =>
   yup.object({
-    item: yup.string().required(t("validation.required")),
+    item: yup.string().required(t("product.productRequired")),
     quantity: yup
       .number()
-      .required(t("validation.required"))
-      .min(1, t("validation.minQuantity")),
-    unitPrice: yup.number().required(t("validation.required")),
-    price: yup.number().required(t("validation.required")),
+      .required(t("product.quantityRequired"))
+      .min(1, t("product.minQuantity")),
   });

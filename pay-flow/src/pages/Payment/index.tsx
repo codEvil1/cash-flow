@@ -114,8 +114,8 @@ function Payment() {
     <Page theme={theme}>
       <HeaderControls
         breadcrumbs={[
-          { label: "checkout.checkout", path: "/checkout" },
-          { label: "payment.payment", path: "/checkout/payment" },
+          { label: t("checkout.checkout"), path: "/checkout" },
+          { label: t("payment.payment"), path: "/checkout/payment" },
         ]}
       />
       <Body>

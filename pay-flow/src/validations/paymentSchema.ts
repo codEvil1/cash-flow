@@ -6,5 +6,5 @@ export const paymentSchema = (t: TFunction) =>
     paymentMethod: yup
       .number()
       .nullable()
-      .required(t("validation.paymentMethodRequired")),
+      .required(t("payment.paymentRequired")),
   });

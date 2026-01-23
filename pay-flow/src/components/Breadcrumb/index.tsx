@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import { ChevronRight } from "lucide-react";
 import { Container, CrumbLink, Item } from "./style";
 import type { InputHTMLAttributes } from "react";
@@ -9,7 +8,6 @@ interface BreadcrumbProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 function Breadcrumb({ items, ...props }: BreadcrumbProps) {
-  const { t } = useTranslation();
   const { theme } = useTheme();
 
   return (
@@ -20,9 +18,9 @@ function Breadcrumb({ items, ...props }: BreadcrumbProps) {
           <Item key={item.path}>
             {index > 0 && <ChevronRight size={14} />}
             {isLast ? (
-              <span>{t(item.label)}</span>
+              <span>{item.label}</span>
             ) : (
-              <CrumbLink to={item.path}>{t(item.label)}</CrumbLink>
+              <CrumbLink to={item.path}>{item.label}</CrumbLink>
             )}
           </Item>
         );

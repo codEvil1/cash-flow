@@ -1,95 +1,119 @@
 {
-  "login": {
-    "forgotPassword": "Forgot Password?",
-    "login": "Login",
-    "createAccount": "Create Account",
-    "email": "Email",
-    "password": "Password",
-    "logo": "Logo",
-    "signIn": "Sign In",
-    "enterEmail": "Enter your Email",
-    "enterPassword": "Enter your Password",
-    "confirmaPassword": "Confirm your Password"
-  },
-  "app": { "version": "Version" },
-  "validation": {
-    "emailInvalid": "Invalid Email",
-    "emailRequired": "Email is Required",
-    "passwordMin": "Password Must Be Twelve Characters",
-    "passwordNoSpaces": "Password Cannot Contain Spaces",
-    "passwordRequired": "Password is Required",
-    "quantityRequired": "Quantity is Required",
-    "quantityMin": "Invalid Quantity"
-  },
-  "resetPassword": {
-    "sendCode": "Send Code",
-    "sentEmail": "Email Sent",
-    "sendCodeEmail": "Send Password Reset Code by Email",
-    "changePassword": "Change Password",
-    "confirmPassword": "Confirm Password",
-    "titleEmail": "Password Recovery",
-    "titleReset": "Create New Password",
-    "recoveryCode": "Recovery Code"
-  },
-  "common": { "back": "Back" },
-  "theme": {
-    "light": "Light",
-    "dark": "Dark",
-    "selectTheme": "Select Theme"
-  },
-  "createAccount": {
-    "titleEmail": "Create Your Account",
-    "titleCreate": "Set Your Password",
-    "verificationCode": "Verification Code",
-    "createAccount": "Create Account"
-  },
-  "checkout": {
-    "checkout": "Checkout",
-    "product": "Product",
-    "enterProduct": "Enter Product Code",
-    "discount": "Discount",
-    "noImage": "Product without Image",
-    "description": "Description",
-    "quantity": "Quantity",
-    "price": "Price",
-    "productList": "Product List"
-  },
-  "discount": {
-    "cupom": "Coupon",
-    "discount": "Discount",
-    "originalValue": "Original Value",
-    "economy": "Savings",
-    "total": "Total Discount"
+  "app": {
+    "version": "Version"
   },
   "cashier": {
     "cashier": "Cashier",
+    "confirmCashier": "Confirm cashier",
+    "errorGetCashier": "Error fetching cashier information",
     "id": "ID",
+    "idRequired": "ID is required",
     "name": "Name",
     "rating": "Rating"
   },
-  "productList": {
-    "emptyList": "Empty List",
-    "addProduct": "Add Product"
+  "checkout": {
+    "checkout": "Checkout"
+  },
+  "common": {
+    "back": "Back",
+    "cancel": "Cancel",
+    "remove": "Remove"
+  },
+  "createAccount": {
+    "createAccount": "Create account",
+    "titleCreate": "Set your password",
+    "titleEmail": "Create your account",
+    "verificationCode": "Verification code"
   },
   "customer": {
+    "confirmCustomer": "Confirm customer",
     "customer": "Customer",
-    "name": "Name",
+    "email": "Email",
+    "errorGetCustomer": "Error fetching customer information",
     "identifier": "Identifier",
-    "phone": "Phone",
-    "email": "Email"
+    "identifierInvalid": "Invalid identifier",
+    "identifierRequired": "Identifier is required",
+    "name": "Name",
+    "phone": "Phone"
+  },
+  "discount": {
+    "coupon": "Coupon",
+    "couponRequired": "Coupon is required",
+    "discount": "Discount",
+    "economy": "Savings",
+    "errorGetDiscount": "Error fetching discount information",
+    "originalValue": "Original value",
+    "total": "Total with discount"
+  },
+  "login": {
+    "codeRequired": "Code is required",
+    "confirmPassword": "Confirm your password",
+    "createAccount": "Create account",
+    "email": "Email",
+    "emailInvalid": "Invalid email",
+    "emailRequired": "Email is required",
+    "enterEmail": "Enter your email",
+    "enterPassword": "Enter your password",
+    "forgotPassword": "Forgot password?",
+    "login": "Login",
+    "logo": "Logo",
+    "password": "Password",
+    "passwordMin": "Password must be at least twelve characters long",
+    "passwordNoSpaces": "Password must not contain spaces",
+    "passwordRequired": "Password is required",
+    "signIn": "Sign in"
   },
   "payment": {
+    "cash": "Cash",
+    "confirmPayment": "Confirm payment",
+    "credit": "Credit",
+    "debit": "Debit",
+    "installments": "Installments",
+    "interest": "Interest",
+    "onTime": "One-time",
     "payment": "Payment",
-    "value": "Original Value",
+    "paymentMethod": "Payment method",
+    "paymentRequired": "Payment is required",
+    "pix": "Pix",
+    "installmentsOf": "x of",
     "total": "Total",
-    "paymentMethod": "Payment Method",
-    "installments": "Installments"
+    "value": "Original value"
+  },
+  "product": {
+    "addProduct": "Add product",
+    "description": "Description",
+    "enterProduct": "Enter product code",
+    "minQuantity": "Minimum quantity is {{count}}",
+    "noImage": "Product without image",
+    "price": "Total price",
+    "product": "Product",
+    "productRequired": "Product is required",
+    "quantity": "Quantity",
+    "quantityRequired": "Quantity is required",
+    "unitPrice": "Unit price"
+  },
+  "productList": {
+    "emptyList": "Empty list",
+    "productList": "Product list"
+  },
+  "resetPassword": {
+    "confirmPassword": "Password confirmation",
+    "passwordChanged": "Password changed",
+    "sendCode": "Send code",
+    "sentEmail": "Email sent"
   },
   "shipping": {
-    "shipping": "Shipping",
-    "type": "Type",
-    "deliveryTime": "Delivery Time",
+    "address": "Address",
+    "confirmShipping": "Confirm shipping",
     "cost": "Cost",
-    "address": "Address"
+    "deliveryTime": "Delivery time",
+    "errorGetShipping": "Error fetching shipping information",
+    "shipping": "Shipping",
+    "type": "Type"
+  },
+  "theme": {
+    "dark": "Dark",
+    "light": "Light",
+    "selectTheme": "Select theme"
   }
 }

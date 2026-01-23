@@ -1,113 +1,119 @@
 {
-  "login": {
-    "forgotPassword": "Esqueceu a Senha?",
-    "login": "Entrar",
-    "createAccount": "Criar Conta",
-    "email": "E-mail",
-    "password": "Senha",
-    "logo": "Logo",
-    "signIn": "Fazer Login",
-    "enterEmail": "Informe seu Email",
-    "enterPassword": "Informe sua Senha",
-    "confirmaPassword": "COnfirme sua Senha"
-  },
-  "app": { "version": "Versão" },
-  "validation": {
-    "emailInvalid": "E-mail Inválido",
-    "emailRequired": "E-mail é Obrigatório",
-    "passwordMin": "Senha Precisa Ter Doze Caracteres",
-    "passwordNoSpaces": "Senha Não Pode Conter Espaços em Branco",
-    "passwordRequired": "Senha é Obrigatória",
-    "quantityRequired": "Quantidade é Obrigatória",
-    "quantityMin": "Quantidade Inválida",
-    "paymentMethodRequired": "Informe o Método de Pagamento",
-    "installmentsRequired": "Informe a Quantidade de Parcelas"
-  },
-  "resetPassword": {
-    "sendCode": "Enviar Código",
-    "sentEmail": "E-mail Enviado",
-    "sendCodeEmail": "Enviar Código de Redefinição de Senha por E-mail",
-    "changePassword": "Alterar Senha",
-    "confirmPassword": "Confirmação da Senha",
-    "titleEmail": "Recuperação de Senha",
-    "titleReset": "Criar Nova Senha",
-    "recoveryCode": "Código de Recuperação"
-  },
-  "common": {
-    "back": "Voltar"
-  },
-  "theme": {
-    "light": "Claro",
-    "dark": "Escuro",
-    "selectTheme": "Selecione o Tema"
-  },
-  "createAccount": {
-    "titleEmail": "Crie Sua Conta",
-    "titleCreate": "Defina Sua Senha",
-    "verificationCode": "Código de Verificação",
-    "createAccount": "Criar Conta"
-  },
-  "checkout": {
-    "checkout": "Checkout",
-    "product": "Produto",
-    "enterProduct": "Informe o Código do Produto",
-    "discount": "Desconto",
-    "noImage": "Produto sem imagem",
-    "description": "Descrição",
-    "quantity": "Quantidade",
-    "price": "Preço Total",
-    "productList": "Lista de Produtos",
-    "unitPrice": "Preço Unitário",
-    "removeProduct": "Remover Produto"
-  },
-  "discount": {
-    "cupom": "Cupom",
-    "discount": "Desconto",
-    "originalValue": "Valor Original",
-    "economy": "Economia",
-    "total": "Total com Desconto"
+  "app": {
+    "version": "Versão"
   },
   "cashier": {
     "cashier": "Atendente",
+    "confirmCashier": "Confirmar atendente",
+    "errorGetCashier": "Erro ao buscar as informações do atendente",
     "id": "ID",
+    "idRequired": "ID é obrigatório",
     "name": "Nome",
-    "rating": "Avaliação",
-    "confirmCashier": "Confirmar Atendente"
+    "rating": "Avaliação"
   },
-  "productList": {
-    "emptyList": "Lista Vazia",
-    "addProduct": "Adicionar Produto"
+  "checkout": {
+    "checkout": "Checkout"
+  },
+  "common": {
+    "back": "Voltar",
+    "cancel": "Cancelar",
+    "remove": "Remover"
+  },
+  "createAccount": {
+    "createAccount": "Criar conta",
+    "titleCreate": "Defina sua senha",
+    "titleEmail": "Crie sua conta",
+    "verificationCode": "Código de verificação"
   },
   "customer": {
+    "confirmCustomer": "Confirmar cliente",
     "customer": "Cliente",
-    "name": "Nome",
-    "identifier": "Identificador",
-    "phone": "Telefone",
     "email": "E-mail",
-    "confirmCustomer": "Confirmar Cliente",
-    "lastPurchase": "Última Compra"
+    "errorGetCustomer": "Erro ao buscar as informações do cliente",
+    "identifier": "Identificador",
+    "identifierInvalid": "Identificador inválido",
+    "identifierRequired": "Identificador é obrigatório",
+    "name": "Nome",
+    "phone": "Telefone"
+  },
+  "discount": {
+    "coupon": "Cupom",
+    "couponRequired": "Cupom é obrigatório",
+    "discount": "Desconto",
+    "economy": "Economia",
+    "errorGetDiscount": "Erro ao buscar as informações do desconto",
+    "originalValue": "Valor original",
+    "total": "Total com desconto"
+  },
+  "login": {
+    "codeRequired": "Código é obrigatório",
+    "confirmPassword": "Confirme sua senha",
+    "createAccount": "Criar conta",
+    "email": "E-mail",
+    "emailInvalid": "E-mail inválido",
+    "emailRequired": "E-mail é obrigatório",
+    "enterEmail": "Informe seu e-mail",
+    "enterPassword": "Informe sua senha",
+    "forgotPassword": "Esqueceu a senha?",
+    "login": "Entrar",
+    "logo": "Logo",
+    "password": "Senha",
+    "passwordMin": "A senha deve ter pelo menos doze caracteres",
+    "passwordNoSpaces": "A senha não pode conter espaços",
+    "passwordRequired": "Senha é obrigatória",
+    "signIn": "Fazer login"
   },
   "payment": {
-    "payment": "Pagamento",
-    "value": "Valor Original",
-    "total": "Total",
-    "paymentMethod": "Método de Pagamento",
-    "installments": "Parcelas",
-    "credit": "Crédito",
-    "pix": "PIX",
     "cash": "Dinheiro",
+    "confirmPayment": "Confirmar pagamento",
+    "credit": "Crédito",
     "debit": "Débito",
-    "confirmPayment": "Confirmar Pagamento",
+    "installments": "Parcelas",
+    "interest": "Juros",
     "onTime": "À vista",
-    "interest": "Juros"
+    "payment": "Pagamento",
+    "paymentMethod": "Método de pagamento",
+    "paymentRequired": "Pagamento é obrigatório",
+    "pix": "Pix",
+    "installmentsOf": "x de",
+    "total": "Total",
+    "value": "Valor original"
+  },
+  "product": {
+    "addProduct": "Adicionar produto",
+    "description": "Descrição",
+    "enterProduct": "Informe o código do produto",
+    "minQuantity": "Quantidade mínima é {{count}}",
+    "noImage": "Produto sem imagem",
+    "price": "Preço total",
+    "product": "Produto",
+    "productRequired": "Produto é obrigatório",
+    "quantity": "Quantidade",
+    "quantityRequired": "Quantidade é obrigatória",
+    "unitPrice": "Preço unitário"
+  },
+  "productList": {
+    "emptyList": "Lista vazia",
+    "productList": "Lista de produtos"
+  },
+  "resetPassword": {
+    "confirmPassword": "Confirmação da senha",
+    "passwordChanged": "Senha alterada",
+    "sendCode": "Enviar código",
+    "sentEmail": "E-mail enviado"
   },
   "shipping": {
-    "shipping": "Frete",
-    "type": "Tipo",
-    "deliveryTime": "Prazo de Entrega",
-    "cost": "Valor",
     "address": "Endereço",
-    "confirmShipping": "Confirmar Frete"
+    "confirmShipping": "Confirmar frete",
+    "cost": "Valor",
+    "deliveryTime": "Prazo de entrega",
+    "errorGetShipping": "Erro ao buscar as informações do frete",
+    "shipping": "Frete",
+    "type": "Tipo"
   },
-  "utils": { "cancel": "Cancelar" }
+  "theme": {
+    "dark": "Escuro",
+    "light": "Claro",
+    "selectTheme": "Selecione o tema"
+  }
 }

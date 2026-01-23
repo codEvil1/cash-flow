@@ -77,8 +77,8 @@ function Cashier() {
     <Page theme={theme}>
       <HeaderControls
         breadcrumbs={[
-          { label: "checkout.checkout", path: "/checkout" },
-          { label: "cashier.cashier", path: "/checkout/cashier" },
+          { label: t("checkout.checkout"), path: "/checkout" },
+          { label: t("cashier.cashier"), path: "/checkout/cashier" },
         ]}
       />
       <Body>

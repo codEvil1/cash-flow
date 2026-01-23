@@ -90,8 +90,8 @@ function Customer() {
     <Page theme={theme}>
       <HeaderControls
         breadcrumbs={[
-          { label: "checkout.checkout", path: "/checkout" },
-          { label: "customer.customer", path: "/checkout/customer" },
+          { label: t("checkout.checkout"), path: "/checkout" },
+          { label: t("customer.customer"), path: "/checkout/customer" },
         ]}
       />
       <Body>

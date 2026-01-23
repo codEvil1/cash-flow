@@ -27,7 +27,7 @@ export function CashierProvider({ children }: { children: ReactNode }) {
       };
       return cashier;
     } catch {
-      toast.error(t("resetPassword.sentEmail"));
+      toast.error(t("cashier.errorGetCashier"));
     } finally {
       setLoading(false);
     }

@@ -3,5 +3,5 @@ import * as yup from "yup";
 
 export const cashierSchema = (t: TFunction) =>
   yup.object({
-    id: yup.number().required(t("validation.required")),
+    id: yup.number().required(t("cashier.idRequired")),
   });

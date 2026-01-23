@@ -26,7 +26,7 @@ function HeaderControls({ breadcrumbs }: HeaderControlsProps) {
   }
 
   const [language, setLanguage] = useState<Language>(() =>
-    getInitialLanguage()
+    getInitialLanguage(),
   );
 
   const changeLanguage = (language: Language) => {
@@ -67,7 +67,7 @@ function HeaderControls({ breadcrumbs }: HeaderControlsProps) {
         <Select
           options={getLanguageOptions()}
           value={language}
-          text={t("login.selectTheme")}
+          text={t("theme.selectTheme")}
           onChange={(value) => changeLanguage(value as Language)}
         />
         <Toggle
