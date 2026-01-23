@@ -37,7 +37,7 @@ export function CustomerProvider({ children }: { children: ReactNode }) {
       };
       return customer;
     } catch {
-      toast.error(t("resetPassword.sentEmail"));
+      toast.error(t("customer.errorGetCustomer"));
     } finally {
       setLoading(false);
     }

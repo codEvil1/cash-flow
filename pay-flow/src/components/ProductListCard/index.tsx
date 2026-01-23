@@ -39,7 +39,7 @@ function ProductListCard() {
 
   const handleChangeQuantity = (
     event: React.ChangeEvent<HTMLInputElement>,
-    row: ProductFormData
+    row: ProductFormData,
   ) => {
     updateProductQuantity(row.item, Number(event.target.value));
     setValue("quantity", Number(event.target.value), {
@@ -50,24 +50,24 @@ function ProductListCard() {
   const columns: Column<ProductFormData>[] = [
     {
       key: "item",
-      label: t("checkout.product"),
+      label: t("product.product"),
       align: "center",
       width: "15%",
     },
     {
       key: "description",
-      label: t("checkout.description"),
+      label: t("product.description"),
       align: "center",
       width: "37%",
     },
     {
       key: "quantity",
-      label: t("checkout.quantity"),
+      label: t("product.quantity"),
       align: "center",
       width: "10%",
       render: (_, row) => (
         <Input
-          text={t("checkout.quantity")}
+          text={t("product.quantity")}
           value={(row.quantity ?? 0).toString()}
           error={errors.quantity?.message}
           type="number"
@@ -78,7 +78,7 @@ function ProductListCard() {
     },
     {
       key: "unitPrice",
-      label: t("checkout.unitPrice"),
+      label: t("product.unitPrice"),
       align: "center",
       width: "15%",
       render: (value, row) => {
@@ -89,7 +89,7 @@ function ProductListCard() {
     },
     {
       key: "price",
-      label: t("checkout.price"),
+      label: t("product.price"),
       align: "center",
       width: "15%",
       render: (value) => formatCurrency(Number(value), locale, currency),
@@ -102,7 +102,7 @@ function ProductListCard() {
       render: (_, row) => (
         <Button
           onClick={() => handleRemove(row)}
-          text={"checkout.removeProduct"}
+          text={"product.removeProduct"}
           icon={Trash}
         />
       ),
@@ -110,7 +110,7 @@ function ProductListCard() {
   ];
 
   return (
-    <Card title={t("checkout.productList")}>
+    <Card title={t("productList.productList")}>
       <Row>
         <Col>
           <Table<ProductFormData>

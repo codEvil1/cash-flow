@@ -20,7 +20,7 @@ function Checkout() {
   return (
     <Page theme={theme}>
       <HeaderControls
-        breadcrumbs={[{ label: "checkout.checkout", path: "/checkout" }]}
+        breadcrumbs={[{ label: t("checkout.checkout"), path: "/checkout" }]}
       />
       <Body>
         <Row>
@@ -50,7 +50,8 @@ function Checkout() {
             </Row>
           </Col>
         </Row>
-      </Body>''
+      </Body>
+      ''
     </Page>
   );
 }

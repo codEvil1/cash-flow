@@ -60,8 +60,8 @@ function CreateAccount() {
     <Page theme={theme}>
       <HeaderControls
         breadcrumbs={[
-          { label: "login.login", path: "/" },
-          { label: "login.createAccount", path: "/create-account" },
+          { label: t("login.login"), path: "/" },
+          { label: t("login.createAccount"), path: "/create-account" },
         ]}
       />
       <Body>
@@ -105,7 +105,7 @@ function CreateAccount() {
             <Input
               type="password"
               placeholder={t("resetPassword.confirmPassword")}
-              text={t("login.confirmaPassword")}
+              text={t("login.confirmPassword")}
               error={errors.confirmPassword?.message}
               {...register("confirmPassword")}
             />

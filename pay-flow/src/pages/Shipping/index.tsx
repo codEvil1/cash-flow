@@ -67,8 +67,8 @@ function Shipping() {
     <Page theme={theme}>
       <HeaderControls
         breadcrumbs={[
-          { label: "checkout.checkout", path: "/checkout" },
-          { label: "checkout.shipping", path: "/checkout/shipping" },
+          { label: t("checkout.checkout"), path: "/checkout" },
+          { label: t("shipping.shipping"), path: "/checkout/shipping" },
         ]}
       />
       <Body>

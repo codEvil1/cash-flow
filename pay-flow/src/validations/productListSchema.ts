@@ -5,6 +5,6 @@ export const productListSchema = (t: TFunction) =>
   yup.object({
     quantity: yup
       .number()
-      .required(t("validation.required"))
-      .min(1, t("validation.minQuantity")),
+      .required(t("product.quantityRequired"))
+      .min(1, t("product.minQuantity", { count: 1 })),
   });

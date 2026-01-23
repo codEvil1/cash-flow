@@ -33,15 +33,15 @@ function Product() {
     <Page theme={theme}>
       <HeaderControls
         breadcrumbs={[
-          { label: "checkout.checkout", path: "/checkout" },
-          { label: "checkout.product", path: "/checkout/product" },
+          { label: t("checkout.checkout"), path: "/checkout" },
+          { label: t("product.product"), path: "/checkout/product" },
         ]}
       />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Body>
           <Input
-            placeholder={t("checkout.product")}
-            text={t("checkout.enterProduct")}
+            placeholder={t("product.product")}
+            text={t("product.enterProduct")}
             error={errors.product?.message}
             {...register("product")}
           />

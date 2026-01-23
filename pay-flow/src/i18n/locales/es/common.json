@@ -1,95 +1,119 @@
 {
-  "login": {
-    "forgotPassword": "¿Olvidaste la Contraseña?",
-    "login": "Iniciar Sesión",
-    "createAccount": "Crear Cuenta",
-    "email": "Correo Electrónico",
-    "password": "Contraseña",
-    "logo": "Logo",
-    "signIn": "Ingresar",
-    "enterEmail": "Ingrese su Correo Electrónico",
-    "enterPassword": "Ingrese su Contraseña",
-    "confirmaPassword": "Confirme su Contraseña"
-  },
-  "app": { "version": "Versión" },
-  "validation": {
-    "emailInvalid": "Correo Electrónico Inválido",
-    "emailRequired": "El Correo Electrónico es Obligatorio",
-    "passwordMin": "La Contraseña Debe Tener Doce Caracteres",
-    "passwordNoSpaces": "La Contraseña No Puede Contener Espacios",
-    "passwordRequired": "La Contraseña es Obligatoria",
-    "quantityRequired": "La Cantidad es Obligatoria",
-    "quantityMin": "Cantidad Inválida"
-  },
-  "resetPassword": {
-    "sendCode": "Enviar Código",
-    "sentEmail": "Correo Enviado",
-    "sendCodeEmail": "Enviar Código de Restablecimiento por Correo",
-    "changePassword": "Cambiar Contraseña",
-    "confirmPassword": "Confirmar Contraseña",
-    "titleEmail": "Recuperación de Contraseña",
-    "titleReset": "Crear Nueva Contraseña",
-    "recoveryCode": "Código de Recuperación"
-  },
-  "common": { "back": "Volver" },
-  "theme": {
-    "light": "Claro",
-    "dark": "Oscuro",
-    "selectTheme": "Seleccionar Tema"
-  },
-  "createAccount": {
-    "titleEmail": "Crea Tu Cuenta",
-    "titleCreate": "Define Tu Contraseña",
-    "verificationCode": "Código de Verificación",
-    "createAccount": "Crear Cuenta"
-  },
-  "checkout": {
-    "checkout": "Checkout",
-    "product": "Producto",
-    "enterProduct": "Ingrese Código del Producto",
-    "discount": "Descuento",
-    "noImage": "Producto sin Imagen",
-    "description": "Descripción",
-    "quantity": "Cantidad",
-    "price": "Precio",
-    "productList": "Lista de Productos"
-  },
-  "discount": {
-    "cupom": "Cupón",
-    "discount": "Descuento",
-    "originalValue": "Valor Original",
-    "economy": "Ahorro",
-    "total": "Descuento Total"
+  "app": {
+    "version": "Versión"
   },
   "cashier": {
     "cashier": "Cajero",
+    "confirmCashier": "Confirmar cajero",
+    "errorGetCashier": "Error al obtener la información del cajero",
     "id": "ID",
+    "idRequired": "El ID es obligatorio",
     "name": "Nombre",
     "rating": "Calificación"
   },
-  "productList": {
-    "emptyList": "Lista Vacía",
-    "addProduct": "Agregar Producto"
+  "checkout": {
+    "checkout": "Checkout"
+  },
+  "common": {
+    "back": "Volver",
+    "cancel": "Cancelar",
+    "remove": "Eliminar"
+  },
+  "createAccount": {
+    "createAccount": "Crear cuenta",
+    "titleCreate": "Define tu contraseña",
+    "titleEmail": "Crea tu cuenta",
+    "verificationCode": "Código de verificación"
   },
   "customer": {
+    "confirmCustomer": "Confirmar cliente",
     "customer": "Cliente",
-    "name": "Nombre",
+    "email": "Correo electrónico",
+    "errorGetCustomer": "Error al obtener la información del cliente",
     "identifier": "Identificador",
-    "phone": "Teléfono",
-    "email": "Correo Electrónico"
+    "identifierInvalid": "Identificador inválido",
+    "identifierRequired": "El identificador es obligatorio",
+    "name": "Nombre",
+    "phone": "Teléfono"
+  },
+  "discount": {
+    "coupon": "Cupón",
+    "couponRequired": "El cupón es obligatorio",
+    "discount": "Descuento",
+    "economy": "Ahorro",
+    "errorGetDiscount": "Error al obtener la información del descuento",
+    "originalValue": "Valor original",
+    "total": "Total con descuento"
+  },
+  "login": {
+    "codeRequired": "El código es obligatorio",
+    "confirmPassword": "Confirma tu contraseña",
+    "createAccount": "Crear cuenta",
+    "email": "Correo electrónico",
+    "emailInvalid": "Correo electrónico inválido",
+    "emailRequired": "El correo electrónico es obligatorio",
+    "enterEmail": "Ingresa tu correo electrónico",
+    "enterPassword": "Ingresa tu contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "login": "Iniciar sesión",
+    "logo": "Logo",
+    "password": "Contraseña",
+    "passwordMin": "La contraseña debe tener al menos doce caracteres",
+    "passwordNoSpaces": "La contraseña no debe contener espacios",
+    "passwordRequired": "La contraseña es obligatoria",
+    "signIn": "Iniciar sesión"
   },
   "payment": {
+    "cash": "Efectivo",
+    "confirmPayment": "Confirmar pago",
+    "credit": "Crédito",
+    "debit": "Débito",
+    "installments": "Cuotas",
+    "interest": "Interés",
+    "onTime": "Al contado",
     "payment": "Pago",
-    "value": "Valor Original",
+    "paymentMethod": "Método de pago",
+    "paymentRequired": "El pago es obligatorio",
+    "pix": "Pix",
+    "installmentsOf": "x de",
     "total": "Total",
-    "paymentMethod": "Método de Pago",
-    "installments": "Cuotas"
+    "value": "Valor original"
+  },
+  "product": {
+    "addProduct": "Agregar producto",
+    "description": "Descripción",
+    "enterProduct": "Ingresa el código del producto",
+    "minQuantity": "La cantidad mínima es {{count}}",
+    "noImage": "Producto sin imagen",
+    "price": "Precio total",
+    "product": "Producto",
+    "productRequired": "El producto es obligatorio",
+    "quantity": "Cantidad",
+    "quantityRequired": "La cantidad es obligatoria",
+    "unitPrice": "Precio unitario"
+  },
+  "productList": {
+    "emptyList": "Lista vacía",
+    "productList": "Lista de productos"
+  },
+  "resetPassword": {
+    "confirmPassword": "Confirmación de contraseña",
+    "passwordChanged": "Contraseña cambiada",
+    "sendCode": "Enviar código",
+    "sentEmail": "Correo enviado"
   },
   "shipping": {
-    "shipping": "Envío",
-    "type": "Tipo",
-    "deliveryTime": "Tiempo de Entrega",
+    "address": "Dirección",
+    "confirmShipping": "Confirmar envío",
     "cost": "Costo",
-    "address": "Dirección"
+    "deliveryTime": "Plazo de entrega",
+    "errorGetShipping": "Error al obtener la información del envío",
+    "shipping": "Envío",
+    "type": "Tipo"
+  },
+  "theme": {
+    "dark": "Oscuro",
+    "light": "Claro",
+    "selectTheme": "Seleccionar tema"
   }
 }

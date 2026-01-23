@@ -19,8 +19,8 @@ export interface ProductFormData {
   item: string;
   description?: string;
   quantity: number;
-  unitPrice: number;
-  price: number;
+  unitPrice?: number;
+  price?: number;
   actions?: string;
 }
 
@@ -88,20 +88,20 @@ function ProductCard() {
 
   return (
     <Card
-      title={t("checkout.product")}
+      title={t("product.product")}
       onClick={() => navigate("/checkout/product")}
     >
       <form onSubmit={handleSubmit(handleAddProduct)}>
         <Row align="center">
           <Col lg={3}>
-            <ImageProduct src={image} alt={t("checkout.noImage")} />
+            <ImageProduct src={image} alt={t("product.noImage")} />
           </Col>
           <Col lg={9}>
             <Row>
               <Col lg={3} align="center" justify="center">
                 <Input
-                  text={t("checkout.enterProduct")}
-                  placeholder={t("checkout.product")}
+                  text={t("product.enterProduct")}
+                  placeholder={t("product.product")}
                   error={errors.item?.message}
                   autoFocus
                   maxLength={PRODUCT_CODE_LENGTH}
@@ -110,8 +110,8 @@ function ProductCard() {
               </Col>
               <Col lg={9}>
                 <Input
-                  text={t("checkout.description")}
-                  placeholder={t("checkout.description")}
+                  text={t("product.description")}
+                  placeholder={t("product.description")}
                   {...register("description")}
                 />
               </Col>
@@ -119,8 +119,8 @@ function ProductCard() {
             <Row>
               <Col lg={3}>
                 <Input
-                  text={t("checkout.quantity")}
-                  placeholder={t("checkout.quantity")}
+                  text={t("product.quantity")}
+                  placeholder={t("product.quantity")}
                   type="number"
                   error={errors.quantity?.message}
                   {...register("quantity")}
@@ -128,15 +128,15 @@ function ProductCard() {
               </Col>
               <Col lg={3}>
                 <Input
-                  text={t("checkout.unitPrice")}
-                  placeholder={t("checkout.unitPrice")}
+                  text={t("product.unitPrice")}
+                  placeholder={t("product.unitPrice")}
                   {...register("unitPrice")}
                 />
               </Col>
               <Col lg={3}>
                 <Input
-                  text={t("checkout.price")}
-                  placeholder={t("checkout.price")}
+                  text={t("product.price")}
+                  placeholder={t("product.price")}
                   {...register("price")}
                 />
               </Col>
@@ -145,13 +145,13 @@ function ProductCard() {
               <Col>
                 <Button
                   icon={PackagePlus}
-                  text={t("productList.addProduct")}
+                  text={t("product.addProduct")}
                   type="submit"
                   onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
                     event.stopPropagation()
                   }
                 >
-                  {t("productList.addProduct")}
+                  {t("product.addProduct")}
                 </Button>
               </Col>
             </Row>

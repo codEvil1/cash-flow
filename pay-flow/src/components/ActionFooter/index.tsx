@@ -45,14 +45,14 @@ export function ActionFooter({
       </Col>
       <Col xs={2}>
         <Button
-          text={t("utils.exit")}
+          text={t("common.cancel")}
           icon={Undo}
           onClick={() => navigate("/checkout")}
         />
       </Col>
       <Col xs={2}>
         <Button
-          text={t("utils.cancel")}
+          text={t("common.remove")}
           icon={Trash2}
           color={colors.red}
           onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
