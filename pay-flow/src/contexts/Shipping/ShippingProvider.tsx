@@ -43,6 +43,7 @@ export function ShippingProvider({ children }: { children: ReactNode }) {
       ...prev,
       shipping,
     }));
+    toast.success(t("shipping.submitShipping"));
   };
 
   return (

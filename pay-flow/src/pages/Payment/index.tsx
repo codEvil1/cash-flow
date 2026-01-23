@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../contexts/Theme/useTheme";
-import { Body, Footer, Page } from "../Login/style";
+import { Body, Page } from "../Login/style";
 import HeaderControls from "../../components/HeaderControls";
 import Select from "../../components/Select";
 import { Row } from "../../components/Row";
@@ -13,7 +13,6 @@ import { useCurrency } from "../../contexts/Currency/useCurrency";
 import { SummaryLabel } from "./style";
 import { useMemo } from "react";
 import { PaymentMethod } from "../../domain/enum";
-import { APP_VERSION } from "../../domain/constants";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { paymentSchema } from "../../validations/paymentSchema";
 import { useNavigate } from "react-router-dom";
@@ -164,9 +163,6 @@ function Payment() {
           </form>
         </Card>
       </Body>
-      <Footer theme={theme}>
-        {t("app.version")} v{APP_VERSION}
-      </Footer>
     </Page>
   );
 }

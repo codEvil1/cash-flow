@@ -9,7 +9,8 @@
     "id": "ID",
     "idRequired": "El ID es obligatorio",
     "name": "Nombre",
-    "rating": "Calificación"
+    "rating": "Calificación",
+    "submitCashier": "Cajero guardado con éxito"
   },
   "checkout": {
     "checkout": "Checkout"
@@ -34,7 +35,8 @@
     "identifierInvalid": "Identificador inválido",
     "identifierRequired": "El identificador es obligatorio",
     "name": "Nombre",
-    "phone": "Teléfono"
+    "phone": "Teléfono",
+    "submitCustomer": "Cliente guardado con éxito"
   },
   "discount": {
     "coupon": "Cupón",
@@ -43,7 +45,8 @@
     "economy": "Ahorro",
     "errorGetDiscount": "Error al obtener la información del descuento",
     "originalValue": "Valor original",
-    "total": "Total con descuento"
+    "total": "Total con descuento",
+    "submitDiscount": "Descuento guardado con éxito"
   },
   "login": {
     "codeRequired": "El código es obligatorio",
@@ -59,7 +62,7 @@
     "logo": "Logo",
     "password": "Contraseña",
     "passwordMin": "La contraseña debe tener al menos doce caracteres",
-    "passwordNoSpaces": "La contraseña no debe contener espacios",
+    "passwordNoSpaces": "La contraseña no puede contener espacios",
     "passwordRequired": "La contraseña es obligatoria",
     "signIn": "Iniciar sesión"
   },
@@ -109,7 +112,8 @@
     "deliveryTime": "Plazo de entrega",
     "errorGetShipping": "Error al obtener la información del envío",
     "shipping": "Envío",
-    "type": "Tipo"
+    "type": "Tipo",
+    "submitShipping": "Envío guardado con éxito"
   },
   "theme": {
     "dark": "Oscuro",

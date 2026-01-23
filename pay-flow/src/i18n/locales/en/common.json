@@ -9,7 +9,8 @@
     "id": "ID",
     "idRequired": "ID is required",
     "name": "Name",
-    "rating": "Rating"
+    "rating": "Rating",
+    "submitCashier": "Cashier saved successfully"
   },
   "checkout": {
     "checkout": "Checkout"
@@ -34,7 +35,8 @@
     "identifierInvalid": "Invalid identifier",
     "identifierRequired": "Identifier is required",
     "name": "Name",
-    "phone": "Phone"
+    "phone": "Phone",
+    "submitCustomer": "Customer saved successfully"
   },
   "discount": {
     "coupon": "Coupon",
@@ -43,7 +45,8 @@
     "economy": "Savings",
     "errorGetDiscount": "Error fetching discount information",
     "originalValue": "Original value",
-    "total": "Total with discount"
+    "total": "Total with discount",
+    "submitDiscount": "Discount saved successfully"
   },
   "login": {
     "codeRequired": "Code is required",
@@ -54,7 +57,7 @@
     "emailRequired": "Email is required",
     "enterEmail": "Enter your email",
     "enterPassword": "Enter your password",
-    "forgotPassword": "Forgot password?",
+    "forgotPassword": "Forgot your password?",
     "login": "Login",
     "logo": "Logo",
     "password": "Password",
@@ -109,7 +112,8 @@
     "deliveryTime": "Delivery time",
     "errorGetShipping": "Error fetching shipping information",
     "shipping": "Shipping",
-    "type": "Type"
+    "type": "Type",
+    "submitShipping": "Shipping saved successfully"
   },
   "theme": {
     "dark": "Dark",

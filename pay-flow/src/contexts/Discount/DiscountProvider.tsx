@@ -46,6 +46,7 @@ export function DiscountProvider({ children }: { children: ReactNode }) {
       ...prev,
       discount,
     }));
+    toast.success(t("discount.submitDiscount"));
   };
 
   return (

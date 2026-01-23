@@ -1,10 +1,8 @@
 import { useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../contexts/Theme/useTheme";
-import { toast } from "react-toastify";
-import { Body, Footer, Page } from "../Login/style";
+import { Body, Page } from "../Login/style";
 import HeaderControls from "../../components/HeaderControls";
-import { APP_VERSION } from "../../domain/constants";
 import { useDiscount } from "../../contexts/Discount/useDiscount";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -57,7 +55,6 @@ function Discount() {
       discountPercentage: previewDiscount?.discountPercentage,
       discountValue: previewDiscount?.discountValue,
     });
-    toast.success("Sucesso");
     navigate("/checkout");
   };
 
@@ -114,9 +111,6 @@ function Discount() {
           </form>
         </Card>
       </Body>
-      <Footer theme={theme}>
-        {t("app.version")} v{APP_VERSION}
-      </Footer>
     </Page>
   );
 }

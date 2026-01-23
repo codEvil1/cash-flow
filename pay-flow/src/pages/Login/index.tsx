@@ -8,8 +8,8 @@ import {
   RightContainer,
   StyledLink,
 } from "./style";
-import logoDark from "../../assets/logo_dark.png";
-import logoLight from "../../assets/logo_light.png";
+import logoDark from "../../assets/logoDark.png";
+import logoLight from "../../assets/logoLight.png";
 import { LogIn } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";

@@ -1,10 +1,8 @@
 import { useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { toast } from "react-toastify";
 import { useTheme } from "../../contexts/Theme/useTheme";
 import HeaderControls from "../../components/HeaderControls";
-import { Body, Footer, Page } from "../Login/style";
-import { APP_VERSION } from "../../domain/constants";
+import { Body, Page } from "../Login/style";
 import Card from "../../components/Card";
 import { Row } from "../../components/Row";
 import { Col } from "../../components/Col";
@@ -50,7 +48,6 @@ function Shipping() {
       freight: previewShipping?.freight,
       deliveryTime: previewShipping?.deliveryTime,
     });
-    toast.success("Sucesso");
     navigate("/checkout");
   };
 
@@ -98,9 +95,6 @@ function Shipping() {
           </form>
         </Card>
       </Body>
-      <Footer theme={theme}>
-        {t("app.version")} v{APP_VERSION}
-      </Footer>
     </Page>
   );
 }

@@ -38,6 +38,7 @@ export function CashierProvider({ children }: { children: ReactNode }) {
       ...prev,
       cashier,
     }));
+    toast.success(t("cashier.submitCashier"));
   };
 
   return (

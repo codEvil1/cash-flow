@@ -48,6 +48,7 @@ export function CustomerProvider({ children }: { children: ReactNode }) {
       ...prev,
       customer,
     }));
+    toast.success(t("custumer.submitCustomer"));
   };
 
   return (
