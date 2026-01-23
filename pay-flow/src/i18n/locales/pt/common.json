@@ -9,7 +9,8 @@
     "id": "ID",
     "idRequired": "ID é obrigatório",
     "name": "Nome",
-    "rating": "Avaliação"
+    "rating": "Avaliação",
+    "submitCashier": "Atendente salvo com sucesso"
   },
   "checkout": {
     "checkout": "Checkout"
@@ -34,7 +35,8 @@
     "identifierInvalid": "Identificador inválido",
     "identifierRequired": "Identificador é obrigatório",
     "name": "Nome",
-    "phone": "Telefone"
+    "phone": "Telefone",
+    "submitCustomer": "Cliente salvo com sucesso"
   },
   "discount": {
     "coupon": "Cupom",
@@ -43,7 +45,8 @@
     "economy": "Economia",
     "errorGetDiscount": "Erro ao buscar as informações do desconto",
     "originalValue": "Valor original",
-    "total": "Total com desconto"
+    "total": "Total com desconto",
+    "submitDiscount": "Desconto salvo com sucesso"
   },
   "login": {
     "codeRequired": "Código é obrigatório",
@@ -109,7 +112,8 @@
     "deliveryTime": "Prazo de entrega",
     "errorGetShipping": "Erro ao buscar as informações do frete",
     "shipping": "Frete",
-    "type": "Tipo"
+    "type": "Tipo",
+    "submitShipping": "Frete salvo com sucesso"
   },
   "theme": {
     "dark": "Escuro",
