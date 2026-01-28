@@ -1,14 +1,18 @@
-import { useState, type ReactNode } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { DiscountContext } from "./DiscountContext";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import { calculateDiscountValue } from "../../utils/saleCalculations";
+import {
+  calculateDiscountValue,
+  calculateTotalWithDiscount,
+} from "../../utils/saleCalculations";
 import { useCheckout } from "../Checkout/useCheckout";
 
 export interface Discount {
   couponCode?: string;
   discountPercentage?: number;
   discountValue?: number;
+  totalWithDiscount?: number;
 }
 
 export function DiscountProvider({ children }: { children: ReactNode }) {
@@ -17,21 +21,42 @@ export function DiscountProvider({ children }: { children: ReactNode }) {
 
   const [loading, setLoading] = useState<boolean>(false);
 
+  const discountValue = useMemo(() => {
+    console.log(
+      calculateDiscountValue(
+        checkout?.payment?.subTotal,
+        checkout?.discount?.discountPercentage,
+      ),
+    );
+    return calculateDiscountValue(
+      checkout?.payment?.subTotal,
+      checkout?.discount?.discountPercentage,
+    );
+  }, [checkout?.discount?.discountPercentage, checkout?.payment?.subTotal]);
+
+  const totalWithDiscount = useMemo(() => {
+    console.log(
+      calculateTotalWithDiscount(
+        checkout?.payment?.subTotal,
+        checkout?.discount?.discountValue,
+      ),
+    );
+    return calculateTotalWithDiscount(
+      checkout?.payment?.subTotal,
+      checkout?.discount?.discountValue,
+    );
+  }, [checkout?.discount?.discountValue, checkout?.payment?.subTotal]);
+
   const getDiscount = async (
     couponCode: string,
   ): Promise<Discount | undefined> => {
     try {
       // mock
-      //TODO: inicialiizar subTotal zero
+      //TODO: inicializar subTotal zero
       const discountPercentage = 10;
-      const discountValue = calculateDiscountValue(
-        checkout?.payment?.subTotal ?? 0,
-        discountPercentage,
-      );
       const discount = {
         couponCode,
         discountPercentage,
-        discountValue,
       };
       return discount;
     } catch {
@@ -54,6 +79,8 @@ export function DiscountProvider({ children }: { children: ReactNode }) {
       value={{
         loading,
         getDiscount,
+        discountValue,
+        totalWithDiscount,
         confirmDiscount,
       }}
     >

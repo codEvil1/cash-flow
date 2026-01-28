@@ -10,7 +10,6 @@ export function calculateInterest(
   installmentCount: number,
 ): number {
   if (netTotal <= 0 || installmentCount <= 1) return 0;
-  console.log(netTotal, netTotal * INTEREST_RATE);
   return netTotal * INTEREST_RATE;
 }
 
@@ -33,17 +32,17 @@ export function calculateInstallments(
 }
 
 export function calculateDiscountValue(
-  netTotal: number,
-  discountPercentage: number,
+  netTotal?: number,
+  discountPercentage?: number,
 ): number {
-  if (!netTotal) return 0;
+  if (!netTotal || !netTotal || !discountPercentage) return 0;
   return netTotal * (discountPercentage / 100);
 }
 
 export function calculateTotalWithDiscount(
-  netTotal: number,
-  discountValue: number | undefined,
+  netTotal?: number,
+  discountValue?: number | undefined,
 ): number {
-  if (!discountValue) return 0;
+  if (!discountValue || !netTotal) return 0;
   return netTotal - discountValue;
 }

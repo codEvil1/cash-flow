@@ -7,10 +7,9 @@ import { useTheme } from "../../contexts/Theme/useTheme";
 import Card from "../Card";
 import { useNavigate } from "react-router-dom";
 import { formatEmpty, formatValueEmpty } from "../../utils/formatEmpty";
-import { calculateTotalWithDiscount } from "../../utils/saleCalculations";
-import { useMemo } from "react";
 import type { Discount } from "../../contexts/Discount/DiscountProvider";
 import { useCheckout } from "../../contexts/Checkout/useCheckout";
+import { useDiscount } from "../../contexts/Discount/useDiscount";
 
 interface DiscountCardProps {
   previewDiscount?: Discount;
@@ -22,23 +21,17 @@ function DiscountCard({ previewDiscount, title }: DiscountCardProps) {
   const { currency, locale } = useCurrency();
   const { theme } = useTheme();
   const { checkout } = useCheckout();
+  const { discountValue, totalWithDiscount } = useDiscount();
   const navigate = useNavigate();
 
   const activeDiscount = previewDiscount ?? checkout?.discount;
+  const hasDiscount = (activeDiscount?.discountPercentage ?? 0) > 0;
 
-  //TODO: inicializar subtotal com zero
-  const handleCalculateTotalWithDiscount = useMemo(() => {
-    const totalWithDiscount = calculateTotalWithDiscount(
-      checkout?.payment?.subTotal ?? 0,
-      activeDiscount?.discountValue,
-    );
-    return formatCurrency(totalWithDiscount, locale, currency);
-  }, [
-    activeDiscount?.discountValue,
-    checkout?.payment?.subTotal,
-    currency,
-    locale,
-  ]);
+  const originalTotal = checkout?.payment?.subTotal ?? 0;
+  const finalTotal =
+    hasDiscount && totalWithDiscount !== undefined
+      ? totalWithDiscount
+      : checkout?.payment?.netTotal;
 
   return (
     <Card title={title} onClick={() => navigate("/checkout/discount")}>
@@ -47,34 +40,33 @@ function DiscountCard({ previewDiscount, title }: DiscountCardProps) {
         <Label>{t("discount.coupon")}</Label>
         <Value>{formatEmpty(activeDiscount?.couponCode)}</Value>
       </RowItem>
+
       <RowItem theme={theme}>
         <Percent size={16} />
         <Label>{t("discount.discount")}</Label>
         <Value>{formatValueEmpty(activeDiscount?.discountPercentage)}%</Value>
       </RowItem>
+
       <RowItem theme={theme}>
         <DollarSign size={16} />
         <Label>{t("discount.originalValue")}</Label>
-        <Value>
-          {formatCurrency(checkout?.payment?.subTotal, locale, currency)}
-        </Value>
+        <Value>{formatCurrency(originalTotal, locale, currency)}</Value>
       </RowItem>
-      <RowItem theme={theme}>
-        <ArrowDown size={16} />
-        <Label>{t("discount.economy")}</Label>
-        <Value>
-          {formatCurrency(
-            activeDiscount?.discountValue,
-            locale,
-            currency,
-            "minus",
-          )}
-        </Value>
-      </RowItem>
+
+      {hasDiscount && (
+        <RowItem theme={theme}>
+          <ArrowDown size={16} />
+          <Label>{t("discount.economy")}</Label>
+          <Value>
+            {formatCurrency(discountValue, locale, currency, "minus")}
+          </Value>
+        </RowItem>
+      )}
+
       <RowItem theme={theme}>
         <Check size={16} />
         <Label>{t("discount.total")}</Label>
-        <Value>{handleCalculateTotalWithDiscount}</Value>
+        <Value>{formatCurrency(finalTotal, locale, currency)}</Value>
       </RowItem>
     </Card>
   );

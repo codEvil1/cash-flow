@@ -17,6 +17,10 @@ import type { Discount } from "../../contexts/Discount/DiscountProvider";
 import DiscountCard from "../../components/DiscountCard";
 import { useCheckout } from "../../contexts/Checkout/useCheckout";
 import { ActionFooter } from "../../components/ActionFooter";
+import {
+  calculateDiscountValue,
+  calculateTotalWithDiscount,
+} from "../../utils/saleCalculations";
 
 interface DiscountFormData {
   couponCode: string;
@@ -61,7 +65,19 @@ function Discount() {
   const handleGetDiscount = async () => {
     if (!couponCode) return;
     const result = await getDiscount(couponCode);
-    setPreviewDiscount(result);
+    const previewDiscountValue = calculateDiscountValue(
+      checkout?.payment?.subTotal,
+      result?.discountPercentage,
+    );
+    const previewTotalWithDiscount = calculateTotalWithDiscount(
+      checkout?.payment?.subTotal,
+      previewDiscountValue,
+    );
+    setPreviewDiscount({
+      ...result,
+      discountValue: previewDiscountValue,
+      totalWithDiscount: previewTotalWithDiscount,
+    });
   };
 
   const handleClear = () => {
